@@ -13,11 +13,11 @@
           <router-link active-class="active" to="/user/supplies"
             >物资浏览</router-link
           >
-          
-          <router-link active-class="active" to="/user/release" 
+
+          <router-link active-class="active" to="/user/release"
             >发布需求</router-link
           >
-          <router-link active-class="active" to="/user/release2" 
+          <router-link active-class="active" to="/user/release2"
             >发布物资</router-link
           >
         </nav>
@@ -30,7 +30,11 @@
           name="search"
         />
         <input class="button" type="button" value="搜索" />
-        <img src="../assets/Home/user.jpg" style="border-radius: 100%" />
+        <img
+          src="../assets/Home/user.jpg"
+          style="border-radius: 100%;cursor:pointer;"
+          @click="toUserInfo"
+        />
       </div>
     </div>
 
@@ -51,8 +55,11 @@ export default {
   },
   methods: {
     activeClass() {
-        // if(this.router == '/user/release')
-        console.log(1)
+      // if(this.router == '/user/release')
+      console.log(1);
+    },
+    toUserInfo() {
+      this.$router.push('/user/info');
     }
   },
 };
@@ -147,10 +154,10 @@ nav a:hover {
   flex-wrap: wrap;
   justify-content: center;
 }
-.content{
-    display: flex;
-    // width: 1400px;
-    // height: 1400px;
+.content {
+  display: flex;
+  // width: 1400px;
+  // height: 1400px;
 }
 .footer {
   height: 10vh;

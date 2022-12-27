@@ -1,20 +1,12 @@
 <template>
   <div class="table">
     <div class="title">
-      <!-- <h3
-        v-for="item in titles"
-        :key="item.highlight"
-        :class="item.highlight == 0 ? 'highlight' : ''"
-        @click="goOther"
-      >
-        {{ item.label }}
-      </h3> -->
       <h2>我需要物资</h2>
     </div>
     <div class="form">
-      <ul>
-        <li><h4>需求物资</h4><input type="text"  placeholder="请输入您需要的物资"/></li>
-        <li>
+      <form action="">
+        <div class="cell"><h4>需要物资</h4><input type="text"  placeholder="请输入您需要的物资"/></div>
+        <div class="cell">
           <h4 style="margin-right:20px">物资类型</h4>
           <div class="single">
             <label for="type1">防护用具</label
@@ -28,52 +20,42 @@
           <label for="type3">其他</label
           ><input type="radio" name="Group1" id="type3" />
           </div>
-        </li>
-        <li><h4>所在位置</h4><input type="text"  placeholder="请输入您所在的位置"/></li>
-        <li><h4>联系方式</h4><input type="text"  placeholder="请输入您的联系方式"/></li>
-        <li>
-          <h4 style="margin-right:20px">需求说明</h4
+        </div>
+        <div class="cell"><h4>所在位置</h4><input type="text"  placeholder="请输入您所在的位置"/></div>
+        <div class="cell"><h4>联系方式</h4><input type="text"  placeholder="请输入您的联系方式"/></div>
+        <div class="cell">
+          <h4 style="margin-right:20px ;">需求说明</h4
           ><textarea
             name=""
             id=""
             cols="30"
             rows="10"
-            style="vertical-align: top" placeholder="请简要描述您的问题，以便更快寻求到帮助"
+            style="vertical-align:top;" placeholder="请简要描述您的问题，更快寻求到帮助"
           ></textarea>
-        </li>
-        <li><input type="checkbox"><span style="font-size:12px">我已阅读并同意《隐私政策与免责声明》</span></li>
-      </ul>
+        </div>
+        <div class="lastCell">
+          <div style="margin-bottom:15px;"><input type="checkbox" style="vertical-align:middle;"><span style="font-size:12px">我已阅读并同意《隐私政策与免责声明》</span>
+          </div>
+          <button>提交</button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {
-      flag: 1,
-      titles: [
-        {
-          highlight: 0,
-          name: "INeed",
-          label: "我需要物资",
-        },
-        {
-          highlight: 1,
-          name: "IHave",
-          label: "我有多的物资",
-        },
-      ],
-    };
+    return {};
   },
-  created() {},
   computed: {},
-  methods: {},
+  methods: {
+  },
 };
 </script>
 <style lang="less" scoped>
 .table {
   width: 60vw;
-  
+  height: 600px;
   background-color: #f5f5f5;
   border-radius: 10px;
 }
@@ -88,12 +70,15 @@ h2 {
   margin-top: 30px;
 }
 // 表单样式
-ul {
-  margin-left: 20%;
+form {
+  display: flex;
+  flex-direction: column;
+  
 }
-li {
+.cell {
   list-style: none;
   margin-top: 30px;
+  margin-left: 25%;
 }
 input[type="text"] {
   margin-left: 20px;
@@ -124,5 +109,27 @@ textarea {
   outline: none;
   font-size: 14px;
   font-family: '黑体';
+}
+.lastCell {
+  margin-top: 30px;
+  text-align: center;
+}
+button {
+  height: 30px;
+  width: 75px;
+  margin-bottom: 40px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #606266;
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  background-color: #fff;
+}
+button:hover {
+   
+  color: #3da8ff;
+}
+button:active {
+  border: 1px solid #3da8ff;
 }
 </style>
