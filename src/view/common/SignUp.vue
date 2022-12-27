@@ -26,14 +26,14 @@ export default {
 .signup {
   width: 100%;
   height: 100vh;
-  background: url("../../src/assets/images/F3B023E41A741EF062AFCD55AD561386.png")
+  background: url("../../assets/login/bg.png")
     no-repeat;
   background-size: 100% 130%;
 }
 
 #signup_box {
   width: 20%;
-  height: 400px;
+  height: 50%;
   position: relative;
   background-color: #00000060;
   margin: auto;

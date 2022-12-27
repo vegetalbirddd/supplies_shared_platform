@@ -1,7 +1,8 @@
 <template>
 <div class="user">
     <nav-bar/>
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
+    
 </div>
 </template>
 <script>
