@@ -1,19 +1,26 @@
 <template>
-  <div class="UserInfo">
-    <header>
-      <img
-        src="../../assets/Home/user.jpg"
-        style="border-radius: 100%; width: 150px"
-      />
-      <div class="info">
-        <p>姓名<span>noni</span></p>
-        <p>账号<span>1063030602</span></p>
-        
-      </div>
-    </header>
-    <main>
-        
-    </main>
+  <div class="userInfo">
+    <el-container>
+      <el-header>
+        <div class="user">
+          <img src="../../assets/Home/user.jpg" />
+          <div class="wordInfo">
+            <p>姓名<span>noni</span></p>
+            <p>联系方式<span>12345678901</span></p>
+          </div>
+        </div>
+      </el-header>
+      <el-main>
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>卡片名称</span>
+          </div>
+          <div v-for="o in 4" :key="o" class="text item">
+            {{ "列表内容 " + o }}
+          </div>
+        </el-card>
+      </el-main>
+    </el-container>
   </div>
 </template>
 <script>
@@ -27,31 +34,40 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.UserInfo {
+.userInfo {
   width: 80vw;
   //   background-color: #f5f5f5;
 }
-header {
-    margin-left: 80px;
-  img {
-    float: left;
-  }
-  .info {
-    float: left;
-    margin-top: 15px;
-    margin-left: 80px;
+//用户信息样式header部分
+.el-header {
+  display: block;
+  margin-left: 80px;
+  margin-bottom: 100px;
+  .user {
+    display: flex;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
     p {
       font-weight: 600;
       margin-top: 10px;
       font-size: 20px;
       span {
-      font-weight: 400;
-      margin-top: 10px;
-      padding-left: 20px;
-      font-size: 16px;
+        font-weight: 400;
+        margin-top: 10px;
+        padding-left: 20px;
+        font-size: 16px;
+      }
     }
+    .wordInfo {
+      padding-left: 50px;
     }
-    
   }
 }
+//main部分信息样式
 </style>
