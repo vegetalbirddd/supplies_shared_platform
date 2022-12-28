@@ -55,7 +55,7 @@ export default {
 <style lang="less" scoped>
 .table {
   width: 60vw;
-
+  height: 600px;
   background-color: #f5f5f5;
   border-radius: 10px;
 }
