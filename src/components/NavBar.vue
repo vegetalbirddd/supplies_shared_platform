@@ -30,11 +30,27 @@
           name="search"
         />
         <input class="button" type="button" value="搜索" />
-        <img
+        <!-- <img
           src="../assets/Home/user.jpg"
           style="border-radius: 100%;cursor:pointer;"
           @click="toUserInfo"
-        />
+        /> -->
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            <img
+              src="../assets/Home/user.jpg"
+              alt=""
+              style="cursor: pointer; border-radius: 100%"
+              @click="toUserInfo"
+            />
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item
+              ><span @click="toUserInfo">个人中心</span></el-dropdown-item
+            >
+            <el-dropdown-item><span @click="open">退出</span></el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </div>
 
@@ -59,8 +75,30 @@ export default {
       console.log(1);
     },
     toUserInfo() {
-      this.$router.push('/user/info');
-    }
+      this.$router.push("/user/info");
+    },
+    toLogin() {
+      this.$router.push("/login");
+    },
+    open() {
+      this.$confirm("确定要退出吗？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          // 清空token
+          window.sessionStorage.clear();
+          //跳转回登录页面
+          this.$router.push("/login");
+          this.$message({
+            type: "success",
+            message: "退出成功啦",
+          });
+        })
+        .catch(() => {
+        });
+    },
   },
 };
 </script>

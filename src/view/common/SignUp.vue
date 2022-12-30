@@ -17,7 +17,7 @@ export default {
   name: "signup",
   methods: {
      goLogin(){
-        this.$router.push('/Login');
+        this.$router.push('/login');
      },
   },
 };

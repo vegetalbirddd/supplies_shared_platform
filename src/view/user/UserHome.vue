@@ -17,7 +17,7 @@
       <el-card class="box-card needcard">
         <div slot="header" class="clearfix">
           <span>求助信息</span>
-          <el-button style="float: right; padding: 3px 0" type="text"
+          <el-button @click="goNeed" style="float: right; padding: 3px 0" type="text"
             >查看更多</el-button
           >
         </div>
@@ -32,7 +32,7 @@
       <el-card class="box-card">
         <div slot="header" class="clearfix">
           <span>物资浏览</span>
-          <el-button style="float: right; padding: 3px 0" type="text"
+          <el-button @click="goSupplies" style="float: right; padding: 3px 0" type="text"
             >查看更多</el-button
           >
         </div>
@@ -65,7 +65,14 @@ export default {
   },
   created() {},
   computed: {},
-  methods: {},
+  methods: {
+    goSupplies() {
+      this.$router.push('/user/supplies')
+    },
+    goNeed() {
+      this.$router.push('/user/need')
+    }
+  },
 };
 </script>
 <style lang="less" scoped>

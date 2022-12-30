@@ -3,11 +3,12 @@
     <div id="login_box">
       <h2>LOGIN</h2>
       <div id="input_box">
-        <input type="text" placeholder="请输入用户名" />
+        <input type="text" v-model="name" placeholder="请输入用户名" />
       </div>
       <div class="input_box">
-        <input type="password" placeholder="请输入密码" />
+        <input type="password" v-model="password" placeholder="请输入密码" />
       </div>
+
       <!-- 后期需要加一个判断，账号是用户还是管理员 -->
       <button @click="goHome">登 录</button><br />
       <span class="sign_up" @click="goSignUp">sign up</span>
@@ -17,23 +18,46 @@
 <script >
 export default {
   name: "login",
-  methods: {
-  //  需要添加判断用户/管理员
-    goHome(){
-      this.$router.push('/user');
-    },
-    goSignUp(){
-        this.$router.push('/SignUp');
-    }
+  data() {
+    return {
+      name: "",
+      password: "",
+    };
   },
-};
+  methods: {
+    //  需要添加判断用户/管理员
+    login(){
+        const url = request.baseUrl+'/login'
+        let user = {name:this.name,password:this.password}
+        request.post(url,user).then(
+          res => {
+            console.log(res)
+            if(res.code===200) {
+              this.$message('登录成功');
+              console.log("成功")
+            }else{
+              this.$message.warning('用户密码错误');
+              console.log("失败")
+            }
+          }
+        ).catch(err => {
+          this.$message.error('网络请求失败');
+        })
+      },
+    goHome() {
+      this.$router.push("/user");
+    },
+    goSignUp() {
+      this.$router.push("/signUp");
+    },
+  },
+}
 </script>
 <style lang="less" scoped>
 .login {
   width: 100%;
   height: 100vh;
-  background: url("../../assets/login/bg.png")
-    no-repeat;
+  background: url("../../assets/login/bg.png") no-repeat;
   background-size: 100% 130%;
 }
 
@@ -125,7 +149,7 @@ button:hover {
 }
 
 button:active {
-    background-color: #8cc8f7;
+  background-color: #8cc8f7;
 }
 
 #sign_up {

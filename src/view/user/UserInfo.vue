@@ -11,12 +11,31 @@
         </div>
       </el-header>
       <el-main>
-        <el-card class="box-card">
+        <el-card class="published">
           <div slot="header" class="clearfix">
-            <span>卡片名称</span>
+            <span>我发布的</span>
           </div>
-          <div v-for="o in 4" :key="o" class="text item">
-            {{ "列表内容 " + o }}
+          <div
+            v-for="o in 4"
+            :key="o"
+            class="text item"
+            style="margin-bottom: 15px"
+          >
+            {{ "物资信息 " + o }}
+          </div>
+        </el-card>
+        <br /><br />
+        <el-card class="acquired">
+          <div slot="header" class="clearfix">
+            <span>已获得的</span>
+          </div>
+          <div
+            v-for="o in 4"
+            :key="o"
+            class="text item"
+            style="margin-bottom: 15px"
+          >
+            {{ "物资信息 " + o }}
           </div>
         </el-card>
       </el-main>
