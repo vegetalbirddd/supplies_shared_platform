@@ -2,9 +2,7 @@
   <div class="supplies">
     <div class="sort">
       <ul>
-        <li class="firstSort">
-          排序方式
-        </li>
+        <li class="firstSort">排序方式</li>
         <li
           v-for="item in sorts"
           :key="item.name"
@@ -21,27 +19,26 @@
         <!-- <li :class="sorted == 3 ? 'sorted' : ''" class="string">物资类型</li> -->
       </ul>
     </div>
-  
+
     <div class="cards">
-      <div class="card"
-      v-for="item in 10"
-      :key="item.index"
-      >
-        <div class="title">
-          <span>提供</span> <span>（xx物资）</span><span>（类型）</span>
-        </div>
-       
-        <div class="position"><span>位置</span> <span>xxxxxxxxxxx</span></div>
-       
-        <div class="contact"><span>联系方式</span> <span>12345678901</span></div>
- 
-        <div class="description">
-          <p><span style="font-size:16px;">描述说明 </span>由于Vue在开发时对路由支持的不足，于是官方补充了vue-router插件。vue的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。传统的页面应用，是用一些超链接来实现页面切换和跳转的。在vue-router单页面应用中，则是路径之间的切换，实际上就是组件的切换。路由就是SPA（单页应用）的路径管理器。再通俗的说，vue-router就是我们WebApp的链接路径管理系统。</p>
-        
-        </div>
-        <button>请求帮助</button>
+      <div class="card" v-for="item in 10" :key="item.index">
+        <p style="-webkit-line-clamp: 2">
+          <span>提供 </span
+          >（一个长长长长长长长长长长长长长长长长长长的药名）（类型）
+        </p>
+        <p style="-webkit-line-clamp: 2">
+          <span>位置 </span
+          >湖南省湘潭市岳塘区福星东路88号湖南工程学院新校区滨江10-666
+        </p>
+        <p style="-webkit-line-clamp: 2">
+          <span>联系方式 </span>12345678901（手机号码）12345678901（微信）
+        </p>
+        <p style="-webkit-line-clamp: 6">
+          <span>描述说明 </span
+          >11111111111111111111哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗
+        </p>
+        <button @click="goDetail">查看详情</button>
       </div>
-      
     </div>
   </div>
 </template>
@@ -74,14 +71,15 @@ export default {
   methods: {
     isSorted(no) {
       this.sorted = no;
-      console.log(no);
+    },
+    goDetail() {
+      this.$router.push("/user/supdetails");
     },
   },
 };
 </script>
 <style lang="less" scoped>
 .sort {
-   
   height: 30px;
   line-height: 30px;
   // margin-top: 30px;
@@ -89,9 +87,9 @@ export default {
   border-radius: 8px;
 }
 .firstSort {
-    cursor: default !important;
-    font-weight: 600;
-  }
+  cursor: default !important;
+  font-weight: 600;
+}
 li {
   height: 20px;
   cursor: pointer;
@@ -102,7 +100,6 @@ li {
   color: #333;
   padding: 0 30px;
   border-right: 1px solid #c7c7c7;
-  
 }
 li:last-child {
   border: none;
@@ -123,32 +120,34 @@ li:last-child {
 .card {
   // float: left;
   width: calc(25% - 30px);
-  height: 300px;
-  cursor: pointer;
+  // cursor: pointer;
   // border-radius: 5px;
   box-shadow: 1px 1px 5px #c7c7c7;
   box-sizing: border-box;
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
-  margin-right: 30px;//card's spacing
+  margin-right: 30px; //card's spacing
   margin-bottom: 30px;
   div {
     margin-bottom: 15px;
   }
-}
-.description {
   p {
-
     font-size: 12px;
     word-break: break-all;
-  overflow: hidden;
-   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    span {
+      font-size: 16px;
+    }
   }
 }
+// .description {
+
+// }
 .card:hover {
   box-shadow: 1px 1px 10px #999;
 }
@@ -162,9 +161,10 @@ button {
   border: 1px solid #c7c7c7;
   border-radius: 5px;
   background-color: #fff;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 button:hover {
-   
   color: #3da8ff;
 }
 button:active {
