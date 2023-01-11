@@ -100,7 +100,6 @@ h2 {
   margin-top: 30px;
 }
 // 表单样式
-
 .form {
   margin-bottom: 50px;
 }

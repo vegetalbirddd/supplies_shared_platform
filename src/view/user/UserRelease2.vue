@@ -4,7 +4,6 @@
       <h2>我有多的物资</h2>
     </div>
     <div class="form">
-
       <el-form
         :model="ruleForm"
         :rules="rules"
@@ -125,7 +124,6 @@ h2 {
   margin-top: 30px;
 }
 // 表单样式
-
 .form {
   margin-bottom: 50px;
 }
