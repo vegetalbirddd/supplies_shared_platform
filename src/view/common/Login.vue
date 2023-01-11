@@ -84,18 +84,20 @@ export default {
     //   },
     //ele引入方法 登录方法逻辑
     submitForm(formName) {
+      
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loginLoading = true;
           //后端接口
-          this.$axios.post("https://mock.apifox.cn/m1/2177250-0-default/login",this.form).then((res) => {
-            
+          this.$axios.post("http://127.0.0.1:4523/m1/2177250-0-default/login",this.form).then((res) => {
             //成功则跳转到user页面(管理员记得写)
             if (res.data.success) {
-              console.log(res);
-              sessionStorage.setItem("user",JSON.stringify(res.data.data.user));
-              sessionStorage.setItem("token",res.data.token);
-              this.$router.push('/user')
+              sessionStorage.setItem("user",JSON.stringify("res.data.data.user"));
+              sessionStorage.setItem("token","res.data.token");
+              console.log(res)
+              this.$router.push({
+                name:"user"
+              })
             }else {
               this.$message.error(res.data.msg);
               this.loginLoading = false;

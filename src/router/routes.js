@@ -40,6 +40,7 @@ const routes = [
  // 用户界面
  {
     path: '/user',
+    name:"user",
     component: User,
     children: [
         // 子路由

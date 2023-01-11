@@ -30,13 +30,7 @@
           name="search"
         />
         <input class="button" type="button" value="搜索" />
-<<<<<<< HEAD
-        <img
-          src="../assets/Home/user.jpg"
-          style="border-radius: 100%;cursor:pointer;"
-          @click="toUserInfo"
-        />
-=======
+
         <!-- <img
           src="../assets/Home/user.jpg"
           style="border-radius: 100%;cursor:pointer;"
@@ -58,7 +52,6 @@
             <el-dropdown-item><span @click="open">退出</span></el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
->>>>>>> origin/aa
       </div>
     </div>
 
@@ -83,10 +76,6 @@ export default {
       console.log(1);
     },
     toUserInfo() {
-<<<<<<< HEAD
-      this.$router.push('/user/info');
-    }
-=======
       this.$router.push("/user/info");
     },
     toLogin() {
@@ -111,7 +100,6 @@ export default {
         .catch(() => {
         });
     },
->>>>>>> origin/aa
   },
 };
 </script>
