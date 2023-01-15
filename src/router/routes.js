@@ -71,20 +71,20 @@ const router = new VueRouter({
 })
 
 // 挂载路由导航守卫
-// router.beforeEach((to, from, next) => {
-//     //放行登录页面
-//     if(to.path == '/login') {
-//         return next()
-//     }
-//     //校验token
-//     const tokenStr = sessionStorage.getItem('token')
+router.beforeEach((to, from, next) => {
+    //放行登录页面
+    if(to.path == '/login') {
+        return next()
+    }
+    //校验token
+    const tokenStr = sessionStorage.getItem('token')
     
-//     if(!tokenStr) {
-//         return next('/login')
-//     }else {
-//         next()
-//     }
-// })
+    if(!tokenStr) {
+        return next('/login')
+    }else {
+        next()
+    }
+})
 
 
 router.afterEach((to,from,next)=>{
