@@ -14,8 +14,19 @@ import UserRelease from '../view/user/UserRelease'
 import UserRelease2 from '../view/user/UserRelease2'
 import SupDetails from '../view/user/SupDetails'
 import NeedDetails from '../view/user/NeedDetails';
+//管理员
+import Admin from '../view/admin/index'
+import AdminHome from '../view/admin/home'
+import AdminInfo from '../view/admin/info' //这里是用户的信息
+import AdminSupplies from '../view/admin/supplies'
+import AdminNeed from '../view/admin/need'
 
 import region from '../components/region'
+//改变原型链的push方法来解决路由访问重复的报错问题
+const originalPush = VueRouter.prototype.push
+   VueRouter.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
 
 Vue.use(VueRouter)
 
@@ -53,6 +64,20 @@ const routes = [
         {path: 'info',name: 'info',component: UserInfo},//个人信息
         {path: 'supdetails',name: 'supdetails',component: SupDetails},//物资详情页面
         {path: 'needdetails',name: 'needdetails',component: NeedDetails},//需求详情页
+    ],
+},
+ // 管理员界面
+ {
+    path: '/admin',
+    name:"admin",
+    component: Admin,
+    children: [
+        // 子路由
+        // {path: '',component: AdminHome},//首页
+        {path: 'home',name: 'aHome',component: AdminHome},//首页
+        {path: 'info',name: 'aInfo',component: AdminInfo},
+        {path: 'sup',name: 'aSup',component: AdminSupplies},
+        {path: 'need',name: 'aNeed',component: AdminNeed},
     ],
 
 },

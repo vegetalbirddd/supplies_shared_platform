@@ -1,21 +1,22 @@
 <template>
-<div>
-    123
-</div>
+  <div>
+       home
+  </div>
 </template>
 <script>
 export default {
-   data() {
-      return {
-      }
-   },
-   created(){
-   },
-   computed:{
-   },
-   methods:{
-   },
-}
+  data() {
+    return {
+      
+    };
+  },
+  created() {
+  },
+  computed: {},
+  methods: {
+
+  },
+};
 </script>
 <style>
 
