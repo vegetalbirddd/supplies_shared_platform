@@ -34,50 +34,54 @@ const routes = [
 // 默认进入为登录页面
 {
     path: '/',
-    component: Login
+    meta: { title: '登录' },
+    component: Login,
+    
 },
 // 登录页面
 {
     path: '/login',
     name: 'login',
+    meta: { title: '登录' },
     component: Login
 },
 // 注册页面
 {
     path: '/signUp',
     name: 'signup',
+    meta: { title: '注册' },
     component: SignUp
 },
  // 用户界面
  {
     path: '/user',
-    name:"user",
     component: User,
+    meta: { title: '用户首页' },
     children: [
         // 子路由
-        {path: '',component: UserHome},//首页
-        {path: 'home',name: 'home',component: UserHome},//首页
-        {path: 'need',name: 'need',component: UserNeed},//需求页面
-        {path: 'supplies',name: 'supplies',component: UserSupplies},//物资浏览
-        {path: 'release',name: 'release',component: UserRelease},//发布需求
-        {path: 'release2',name: 'release2',component: UserRelease2},//发布物资
-        {path: 'info',name: 'info',component: UserInfo},//个人信息
-        {path: 'supdetails',name: 'supdetails',component: SupDetails},//物资详情页面
-        {path: 'needdetails',name: 'needdetails',component: NeedDetails},//需求详情页
+        {path: '',meta: { title: '用户首页' },component: UserHome},//首页
+        {path: 'home',name: 'home',meta: { title: '用户首页' },component: UserHome},//首页
+        {path: 'need',name: 'need',meta: { title: '需求页面' },component: UserNeed},//需求页面
+        {path: 'supplies',name: 'supplies',meta: { title: '物资浏览' },component: UserSupplies},//物资浏览
+        {path: 'release',name: 'release',meta: { title: '发布需求' },component: UserRelease},//发布需求
+        {path: 'release2',name: 'release2',meta: { title: '发布物资' },component: UserRelease2},//发布物资
+        {path: 'info',name: 'info',meta: { title: '个人信息' },component: UserInfo},//个人信息
+        {path: 'supdetails',name: 'supdetails',meta: { title: '物资详情' },component: SupDetails},//物资详情页面
+        {path: 'needdetails',name: 'needdetails',meta: { title: '需求详情' },component: NeedDetails},//需求详情页
     ],
 },
  // 管理员界面
  {
     path: '/admin',
-    name:"admin",
     component: Admin,
+    meta: { title: '主页' },
     children: [
         // 子路由
-        // {path: '',component: AdminHome},//首页
-        {path: 'home',name: 'aHome',component: AdminHome},//首页
-        {path: 'info',name: 'aInfo',component: AdminInfo},
-        {path: 'sup',name: 'aSup',component: AdminSupplies},
-        {path: 'need',name: 'aNeed',component: AdminNeed},
+        {path: '',meta: { title: '管理首页' },component: AdminHome},//首页
+        {path: 'home',name: 'aHome',meta: { title: '管理首页' },component: AdminHome},//首页
+        {path: 'info',name: 'aInfo',meta: { title: '用户信息' },component: AdminInfo},
+        {path: 'sup',name: 'aSup',meta: { title: '已发布物资' },component: AdminSupplies},
+        {path: 'need',name: 'aNeed',meta: { title: '已发布需求' },component: AdminNeed},
     ],
 
 },
@@ -109,6 +113,8 @@ router.beforeEach((to, from, next) => {
     }else {
         next()
     }
+    window.document.title = to.meta.title || '疫情物资共享平台'
+
 })
 
 

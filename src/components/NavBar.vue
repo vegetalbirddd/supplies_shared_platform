@@ -169,7 +169,7 @@ nav a:hover {
 .text:focus {
   outline: none;
   border-color: #3da8ff;
-  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075), 0 0 8px #3da8ff;
+  // box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075), 0 0 2px #3da8ff;
 }
 .button {
   width: 60px;
