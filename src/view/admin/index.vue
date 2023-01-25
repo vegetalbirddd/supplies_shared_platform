@@ -25,7 +25,7 @@
         </el-dropdown>
       </el-header>
       <el-container>
-        <el-aside style="width: auto">
+        <el-aside style="width: auto;">
           <nav-aside />
         </el-aside>
         <el-main>
@@ -76,5 +76,9 @@ export default {
   justify-content: space-between;
   background-color: #2380cb;
   line-height: 60px;
+}
+.el-main {
+  height: calc(100vh - 60px);
+  background-color: #f8f8f8;
 }
 </style>
