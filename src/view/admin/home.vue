@@ -6,7 +6,7 @@
           <div>
             <img src="../../assets/icon/user.png" alt="" />
           </div>
-          <h4 style="margin-bottom: 5px">123124241</h4>
+          <h4>123124241</h4>
           <p style="font-size: 14px; color: #666">用户数量</p>
         </li>
         <li style="margin-right: 10%">
@@ -46,13 +46,14 @@ export default {
   width: 100%;
   height: 50vh;
   background: #fff;
+  border-radius: 5px;
 }
 li {
   list-style: none;
   display: inline-block;
   width: 20%;
   height: 60%;
-  background-color: #fff;
+  background-color: rgba(243, 243, 243, 0.324);
   border: 1px solid #ebeef5;
   border-radius: 3px;
   box-shadow: #bbb 3px 3px 5px, rgb(234, 234, 234) -3px -3px 5px;
@@ -62,7 +63,7 @@ li {
     align-content: center;
     margin-top: 12%;
     img {
-      width: 40%;
+      width: 35%;
     }
   }
   p,
@@ -71,8 +72,19 @@ li {
     justify-content: center;
     align-content: center;
   }
+  h4 {
+    margin-top: 7px;
+  }
 }
 li:hover {
   box-shadow: #999 5px 5px 5px, #bbb -3px -3px 5px;
+}
+// 图标部分
+.echarts {
+  width: 100%;
+  height: 50vh;
+  background: #fff;
+  margin-top: 20px;
+  border-radius: 5px;
 }
 </style>

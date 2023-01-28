@@ -18,8 +18,11 @@ import NeedDetails from '../view/user/NeedDetails';
 import Admin from '../view/admin/index'
 import AdminHome from '../view/admin/home'
 import AdminInfo from '../view/admin/info' //这里是用户的信息
+import AdminInfoDetail from '../view/admin/infoDetail'
 import AdminSupplies from '../view/admin/supplies'
+import AdminSupDetail from '../view/admin/supDetail'
 import AdminNeed from '../view/admin/need'
+import AdminNeedDetail from '../view/admin/needDetail'
 
 import region from '../components/region'
 //改变原型链的push方法来解决路由访问重复的报错问题
@@ -80,8 +83,11 @@ const routes = [
         {path: '',meta: { title: '管理首页' },component: AdminHome},//首页
         {path: 'home',name: 'aHome',meta: { title: '管理首页' },component: AdminHome},//首页
         {path: 'info',name: 'aInfo',meta: { title: '用户信息' },component: AdminInfo},
+        {path: 'infoDetail',name: 'aInfoD',meta: { title: '用户信息详情' },component: AdminInfoDetail},//用户信息详情
         {path: 'sup',name: 'aSup',meta: { title: '已发布物资' },component: AdminSupplies},
+        {path: 'supDetail',name: 'aSupD',meta: { title: '物资详情'},component: AdminSupDetail},
         {path: 'need',name: 'aNeed',meta: { title: '已发布需求' },component: AdminNeed},
+        {path: 'needDetail',name: 'aNeedD',meta: {title: '需求详情'},component: AdminNeedDetail}
     ],
 
 },
