@@ -14,7 +14,6 @@ import UserRelease from '../view/user/UserRelease'
 import UserRelease2 from '../view/user/UserRelease2'
 import SupDetails from '../view/user/SupDetails'
 import NeedDetails from '../view/user/NeedDetails'
-import UserReward from '../view/user/UserReward'
 //管理员
 import Admin from '../view/admin/index'
 import AdminHome from '../view/admin/home'
@@ -70,7 +69,6 @@ const routes = [
         {path: 'release',name: 'release',meta: { title: '发布需求' },component: UserRelease},//发布需求
         {path: 'release2',name: 'release2',meta: { title: '发布物资' },component: UserRelease2},//发布物资
         {path: 'info',name: 'info',meta: { title: '个人信息' },component: UserInfo},//个人信息
-        {path: 'reward',name: 'reward',meta: { title: '奖励浏览'},component: UserReward},
         {path: 'supdetails',name: 'supdetails',meta: { title: '物资详情' },component: SupDetails},//物资详情页面
         {path: 'needdetails',name: 'needdetails',meta: { title: '需求详情' },component: NeedDetails},//需求详情页
     ],
