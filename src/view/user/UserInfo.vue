@@ -14,6 +14,7 @@
         <el-card class="published">
           <div slot="header" class="clearfix">
             <span>我发布的</span>
+            <el-button @click="toReward()" style="float: right; padding: 3px 0" type="text">下载帮助奖励文件</el-button>
           </div>
           <div
             v-for="o in 4"
@@ -49,7 +50,11 @@ export default {
   },
   created() {},
   computed: {},
-  methods: {},
+  methods: {
+    toReward(){
+      this.$router.push('/user/reward');
+    }
+  },
 };
 </script>
 <style lang="less" scoped>

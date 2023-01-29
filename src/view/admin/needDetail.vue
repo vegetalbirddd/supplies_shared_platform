@@ -2,7 +2,9 @@
 <div class="bg">
 <div class="need-top">
         <h3>需求详情</h3>
-        <el-button @click="back()">返回</el-button>
+        <div class="button">
+        <el-button type="primary">编辑</el-button> <el-button @click="back()">返回</el-button>
+      </div>
       </div>
       <div class="need-bottom">
          <p>

@@ -37,19 +37,23 @@
     </div>
     <div class="table">
       <el-table :data="tableData" border stripe style="width: 100%">
-        <el-table-column prop="needid" label="序号" width="80">
+        <el-table-column prop="needid" label="序号" width="50">
         </el-table-column>
         <el-table-column prop="needname" label="需求名称" width="180">
         </el-table-column>
-        <el-table-column prop="needtype" label="需求类型" width="180">
+        <el-table-column prop="needtype" label="需求类型" width="100">
         </el-table-column>
         <el-table-column prop="needuser" label="发布用户" width="180">
         </el-table-column>
+        <el-table-column prop="situation" label="展示情况" width="80">
+          </el-table-column>
+          <el-table-column prop="solve" label="解决情况" width="80">
+          </el-table-column>
         <el-table-column prop="operate" label="操作">
           <template slot-scope="scope">
             <el-button size="medium" @click="checkNeed()">查看</el-button>
-            <el-button size="medium" type="success">上线</el-button>
-            <el-button size="medium" type="warning">下线</el-button>
+            <el-button size="medium" type="success">解决</el-button>
+            <el-button size="medium" type="warning">展示</el-button>
             <el-button
               size="medium"
               type="danger"
@@ -76,18 +80,24 @@ export default {
           needname: "护目镜",
           needtype: "防护用具",
           needuser: "王五",
+          situation: "上线",
+          solve: "未解决",
         },
         {
           needid: 2,
           needname: "感康",
           needtype: "药品",
           needuser: "李四",
+          situation: "下线",
+          solve: "已解决",
         },
         {
           needid: 3,
           needname: "维生素c",
           needtype: "其他",
           needuser: "张三",
+          situation: "下线",
+          solve: "已解决",
         },
       ],
     };
@@ -98,9 +108,9 @@ export default {
     resetForm(form) {
       this.$refs[form].resetFields();
     },
-    checkNeed(){
-      this.$router.push('/admin/needDetail')
-    }
+    checkNeed() {
+      this.$router.push("/admin/needDetail");
+    },
   },
 };
 </script>

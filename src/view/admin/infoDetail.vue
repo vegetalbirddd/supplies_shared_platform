@@ -16,6 +16,7 @@
     <div class="bg">
       <div class="user-top">
         <h3>基础信息</h3>
+        <el-button>编辑</el-button>
       </div>
       <el-row>
         <el-col :span="8"

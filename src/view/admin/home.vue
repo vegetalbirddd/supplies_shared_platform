@@ -25,17 +25,72 @@
         </li>
       </ul>
     </div>
-    <div class="echarts"></div>
+    <div id="mycharts" ref="mycharts"></div>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      
+    };
   },
   created() {},
   computed: {},
-  methods: {},
+  mounted() {
+    this.drawLine()
+  },
+  methods: {
+    drawLine() {
+      const echarts = require("echarts")
+      let mycharts = echarts.init(this.$refs.mycharts);
+      let option = {
+        title: {
+          text: "平台近一周发布数据情况",
+        },
+        tooltip: {
+          trigger: "axis",
+        },
+        legend: {
+          data: ["发布物资数量", "发布需求数量"],
+        },
+        grid: {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true,
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {},
+          },
+        },
+        xAxis: {
+          type: "category",
+          boundaryGap: false,
+          data: ["day1", "dya2", "day3", "day4", "day5", "day6", "day7"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            name: "发布物资数量",
+            type: "line",
+
+            data: [7, 5, 6, 9, 10, 9, 8],
+          },
+          {
+            name: "发布需求数量",
+            type: "line",
+            data: [1, 2, 5, 9, 11, 8, 6],
+          },
+        ],
+      
+      };
+      mycharts.setOption(option);
+    }
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -80,11 +135,16 @@ li:hover {
   box-shadow: #999 5px 5px 5px, #bbb -3px -3px 5px;
 }
 // 图标部分
-.echarts {
+#mycharts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 50vh;
   background: #fff;
   margin-top: 20px;
+  padding: 20px;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 </style>

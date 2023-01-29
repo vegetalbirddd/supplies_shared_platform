@@ -9,6 +9,10 @@ import axios from 'axios'
 //把axios挂载到Vue上
 Vue.prototype.$axios = axios
 
+// echarts引入
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);

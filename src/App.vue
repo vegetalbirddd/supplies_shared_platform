@@ -19,4 +19,7 @@ export default {
   padding: 0;
   margin: 0;
 }
+.el-card,.card {
+  background-color: #edf3f6;
+}
 </style>
