@@ -8,9 +8,15 @@
       id="signup_box"
     >
     <h2>Sign Up</h2>
-      <el-form-item prop="username">
+    <el-form-item prop="account">
         <el-input
           placeholder="请输入账号"
+          v-model.number="ruleForm.account"
+        ></el-input>
+      </el-form-item>
+      <el-form-item prop="username">
+        <el-input
+          placeholder="请输入用户名"
           v-model="ruleForm.username"
         ></el-input>
       </el-form-item>
@@ -32,7 +38,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')"
-          >提交</el-button
+          >注册</el-button
         >
         <!-- <el-button @click="resetForm('ruleForm')">重置</el-button> -->
       </el-form-item>
@@ -41,63 +47,6 @@
   </div>
 </template>
 <script >
-// export default {
-//   name: "signup",
-//   data() {
-//     var validatePass = (rule, value, callback) => {
-//       if (value === "") {
-//         callback(new Error("请输入密码"));
-//       } else {
-//         if (this.ruleForm.checkPass !== "") {
-//           this.$refs.ruleForm.validateField("checkPass");
-//         }
-//         callback();
-//       }
-//     };
-//     var validatePass2 = (rule, value, callback) => {
-//       if (value === "") {
-//         callback(new Error("请再次输入密码"));
-//       } else if (value !== this.ruleForm.pass) {
-//         callback(new Error("两次输入密码不一致!"));
-//       } else {
-//         callback();
-//       }
-//     };
-//     return {
-//       form: {
-//         username: "",
-//         pass: "",
-//         checkPass: "",
-//       },
-//       rules: {
-//         username: [{ required: true, message: "请输入账号", trigger: "blur" }],
-//         pass: [
-//           {
-
-//             validator: validatePass,
-//             trigger: "blur",
-//           },
-//         ],
-//         checkPass: [{ validator: validatePass2, trigger: "blur" }],
-//       },
-//     };
-//   },
-//   methods: {
-//     submitForm(formName) {
-//         this.$refs[formName].validate((valid) => {
-//           if (valid) {
-//             alert('submit!');
-//           } else {
-//             console.log('error submit!!');
-//             return false;
-//           }
-//         });
-//       },
-//       back() {
-//         this.$router.push('/login');
-//       }
-//   },
-// };
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
@@ -121,12 +70,14 @@ export default {
     };
     return {
       ruleForm: {
+        account: "",
         username: "",
         pass: "",
         checkPass: "",
       },
       rules: {
-        username: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        account: [{required: true, message: "请输入账号"},{type: 'number', message: '账号必须为数字值'}],
+        username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
         pass: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
       },
@@ -159,12 +110,12 @@ export default {
 
 #signup_box {
   width: 20%;
-  height: 50%;
+  // height: 50%;
   position: relative;
   background-color: #00000060;
   margin: auto;
-  /* margin-top: 10%; */
-  top: 20%;
+  // margin-top: 10%; 
+  top: 15%;
   text-align: center;
   border-radius: 10px;
   padding: 50px 50px;

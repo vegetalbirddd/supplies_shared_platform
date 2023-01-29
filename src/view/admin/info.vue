@@ -32,7 +32,7 @@
     style="width: 100%">
     <el-table-column
       prop="userid"
-      label="序号"
+      label="id"
       width="80">
     </el-table-column>
     <el-table-column

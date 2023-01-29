@@ -1,23 +1,15 @@
 <template>
   <div class="login">
-    <el-form
-      :model="form"
-      :rules="rules"
-      ref="ruleForm"
-      id="login_box"
-    >
+    <el-form :model="form" :rules="rules" ref="ruleForm" id="login_box">
       <h2>LOGIN</h2>
-      <el-form-item prop="username">
-        <el-input 
-        placeholder="请输入账号"
-        v-model="form.username"
-        ></el-input>
+      <el-form-item prop="account">
+        <el-input placeholder="请输入账号" v-model.number="form.account"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input 
-        type="password"
-        placeholder="请输入密码"
-        v-model="form.password"
+        <el-input
+          type="password"
+          placeholder="请输入密码"
+          v-model="form.password"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -26,7 +18,6 @@
         >
       </el-form-item>
       <span class="sign_up" @click="goSignUp">sign up</span>
-      
     </el-form>
   </div>
 </template>
@@ -36,17 +27,16 @@ export default {
   data() {
     return {
       form: {
-        username: "",
+        account: "",
         password: "",
       },
-      loginLoading: false,//登录状态校验
+      loginLoading: false, //登录状态校验
       rules: {
-        username: [
-          { required: true, message: "请输入账号", trigger: "blur" },
+        account: [
+          { required: true, message: "请输入账号" },
+          { type: "number", message: "账号必须为数字值" },
         ],
-        password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
-        ],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
     };
   },
@@ -72,33 +62,37 @@ export default {
     //   },
     //ele引入方法 登录方法逻辑
     submitForm(formName) {
-      
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loginLoading = true;
           //后端接口
-          this.$axios.post("http://127.0.0.1:4523/m1/2177250-0-default/login",this.form).then((res) => {
-            //成功则跳转到user页面(管理员记得写)
-            if (res.data.success) {
-              try{
-                sessionStorage.setItem("user",JSON.stringify(res?.data?.data));
-                sessionStorage.setItem("token",res.data.token);
-              }catch(err){
-                  console.log(err)
+          this.$axios
+            .post("http://127.0.0.1:4523/m1/2177250-0-default/login", this.form)
+            .then((res) => {
+              //成功则跳转到user页面(管理员记得写)
+              if (res.data.success) {
+                try {
+                  sessionStorage.setItem(
+                    "user",
+                    JSON.stringify(res?.data?.data)
+                  );
+                  sessionStorage.setItem("token", res.data.token);
+                } catch (err) {
+                  console.log(err);
+                }
+                console.log(res);
+                this.$router.push({
+                  path: "/user",
+                });
+              } else {
+                this.$message.error(res.data.msg);
+                this.loginLoading = false;
               }
-              console.log(res)
-              this.$router.push({
-                path:"/user"  
-              })
-            }else {
-              this.$message.error(res.data.msg);
+            })
+            .catch((err) => {
+              this.$message.error("服务器连接失败，请稍后重试");
               this.loginLoading = false;
-            }
-          })  
-          .catch((err) => {
-            this.$message.error("服务器连接失败，请稍后重试");
-            this.loginLoading = false;
-          });
+            });
         } else {
           return false;
         }
@@ -146,7 +140,6 @@ h2 {
 }
 .el-form-item {
   margin-bottom: 5%;
-  
 }
 #input-box {
   margin-top: 5%;
@@ -157,13 +150,13 @@ span {
 }
 /deep/ .el-input__inner {
   background-color: transparent;
-  border: 0; 
+  border: 0;
   border-bottom: 2px solid #fff;
   border-radius: 0;
   color: #fff;
 }
 // input {
-//   border: 0; 
+//   border: 0;
 //   width: 60% ;
 //   font-size: 15px;
 //   color: #fff;
