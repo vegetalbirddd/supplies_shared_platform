@@ -1,24 +1,151 @@
 <template>
   <div class="signup">
-    <div id="signup_box">
-      <h2>Sign Up</h2>
-      <div id="input_box">
-        <input type="text" placeholder="请输入用户名"/>
-      </div>
-      <div class="input_box">
-        <input type="password" placeholder="请输入密码"/>
-      </div>
-      <button @click="goLogin">注 册</button><br/>
-    </div>
+    <el-form
+      :model="ruleForm"
+      status-icon
+      :rules="rules"
+      ref="ruleForm"
+      id="signup_box"
+    >
+    <h2>Sign Up</h2>
+      <el-form-item prop="username">
+        <el-input
+          placeholder="请输入账号"
+          v-model="ruleForm.username"
+        ></el-input>
+      </el-form-item>
+      <el-form-item prop="pass">
+        <el-input
+          placeholder="请输入密码"
+          type="password"
+          v-model="ruleForm.pass"
+          autocomplete="off"
+        ></el-input>
+      </el-form-item>
+      <el-form-item prop="checkPass">
+        <el-input
+          placeholder="请再次输入密码"
+          type="password"
+          v-model="ruleForm.checkPass"
+          autocomplete="off"
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('ruleForm')"
+          >提交</el-button
+        >
+        <!-- <el-button @click="resetForm('ruleForm')">重置</el-button> -->
+      </el-form-item>
+      <span class="back" @click="back">back</span>
+    </el-form>
   </div>
 </template>
 <script >
+// export default {
+//   name: "signup",
+//   data() {
+//     var validatePass = (rule, value, callback) => {
+//       if (value === "") {
+//         callback(new Error("请输入密码"));
+//       } else {
+//         if (this.ruleForm.checkPass !== "") {
+//           this.$refs.ruleForm.validateField("checkPass");
+//         }
+//         callback();
+//       }
+//     };
+//     var validatePass2 = (rule, value, callback) => {
+//       if (value === "") {
+//         callback(new Error("请再次输入密码"));
+//       } else if (value !== this.ruleForm.pass) {
+//         callback(new Error("两次输入密码不一致!"));
+//       } else {
+//         callback();
+//       }
+//     };
+//     return {
+//       form: {
+//         username: "",
+//         pass: "",
+//         checkPass: "",
+//       },
+//       rules: {
+//         username: [{ required: true, message: "请输入账号", trigger: "blur" }],
+//         pass: [
+//           {
+
+//             validator: validatePass,
+//             trigger: "blur",
+//           },
+//         ],
+//         checkPass: [{ validator: validatePass2, trigger: "blur" }],
+//       },
+//     };
+//   },
+//   methods: {
+//     submitForm(formName) {
+//         this.$refs[formName].validate((valid) => {
+//           if (valid) {
+//             alert('submit!');
+//           } else {
+//             console.log('error submit!!');
+//             return false;
+//           }
+//         });
+//       },
+//       back() {
+//         this.$router.push('/login');
+//       }
+//   },
+// };
 export default {
-  name: "signup",
+  data() {
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"));
+      } else {
+        if (this.ruleForm.checkPass !== "") {
+          this.$refs.ruleForm.validateField("checkPass");
+        }
+        callback();
+      }
+    };
+    var validatePass2 = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
+      } else if (value !== this.ruleForm.pass) {
+        callback(new Error("两次输入密码不一致!"));
+      } else {
+        callback();
+      }
+    };
+    return {
+      ruleForm: {
+        username: "",
+        pass: "",
+        checkPass: "",
+      },
+      rules: {
+        username: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        pass: [{ validator: validatePass, trigger: "blur" }],
+        checkPass: [{ validator: validatePass2, trigger: "blur" }],
+      },
+    };
+  },
   methods: {
-     goLogin(){
-        this.$router.push('/login');
-     },
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    back() {
+      this.$router.push("/login");
+    },
   },
 };
 </script>
@@ -26,8 +153,7 @@ export default {
 .signup {
   width: 100%;
   height: 100vh;
-  background: url("../../assets/login/bg.png")
-    no-repeat;
+  background: url("../../assets/login/bg.png") no-repeat;
   background-size: 100% 130%;
 }
 
@@ -47,8 +173,11 @@ export default {
 h2 {
   color: #fff;
   margin-top: 5%;
+  margin-bottom: 5%;
 }
-
+.el-form-item {
+  margin-bottom: 5%;
+}
 #input-box {
   margin-top: 5%;
 }
@@ -56,70 +185,28 @@ h2 {
 span {
   color: #fff;
 }
-
-input {
+/deep/ .el-input__inner {
+  background-color: transparent;
   border: 0;
-  width: 60%;
-  font-size: 15px;
-  color: #fff;
-  background: transparent;
   border-bottom: 2px solid #fff;
-  padding: 5px 10px;
-  outline: none;
-  margin-top: 10px;
-}
-
-input::-webkit-input-placeholder {
-  /* WebKit, Blink, Edge */
-
-  color: rgb(225, 225, 225);
-}
-
-:-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-
-  color: rgb(225, 225, 225);
-}
-
-::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-
-  color: rgb(225, 225, 225);
-}
-
-input:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-
-  color: rgb(225, 225, 225);
-}
-
-input::-ms-input-placeholder {
-  /* Microsoft Edge */
-
-  color: rgb(225, 225, 225);
-}
-
-button {
-  cursor: pointer;
-  margin-top: 50px;
-  width: 60%;
-  height: 40px;
-  border-radius: 10px;
-  border: 0;
+  border-radius: 0;
   color: #fff;
-  font-weight: 600;
-  text-align: center;
-  line-height: 30px;
-  font-size: 15px;
-  background-color: #8cc8f7;
+}
+button {
+  width: 100%;
+  border: 1px solid #38a6fa;
+  background-color: #38a6fa;
+  margin-top: 10%;
 }
 
 button:hover {
+  border: 1px solid #b6ddfb;
   background-color: #b6ddfb;
 }
 
 button:active {
-    background-color: #8cc8f7;
+  border: 1px solid #8cc8f7;
+  background-color: #8cc8f7;
 }
 
 #sign_up {
@@ -130,5 +217,10 @@ button:active {
 a {
   color: #b94648;
 }
-
+.back {
+  cursor: pointer;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
 </style>

@@ -1,18 +1,5 @@
 <template>
   <div class="login">
-    <!-- <form id="login_box">
-      <h2>LOGIN</h2>
-      <div id="input_box">
-        <input type="text" v-model="name" placeholder="请输入用户名" />
-      </div>
-      <div class="input_box">
-        <input type="password" v-model="password" placeholder="请输入密码" />
-      </div>
-
-     
-      <button @click="goHome">登 录</button><br />
-      <span class="sign_up" @click="goSignUp">sign up</span>
-    </form> -->
     <el-form
       :model="form"
       :rules="rules"
@@ -28,6 +15,7 @@
       </el-form-item>
       <el-form-item prop="password">
         <el-input 
+        type="password"
         placeholder="请输入密码"
         v-model="form.password"
         ></el-input>
