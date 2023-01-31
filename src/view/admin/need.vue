@@ -16,15 +16,16 @@
           </el-form-item>
           <el-form-item label="需求类型" prop="type">
             <el-select v-model="formInline.type" placeholder="请选择需求类型">
-              <el-option label="防护用具" value="type1"></el-option>
-              <el-option label="药品" value="type2"></el-option>
-              <el-option label="其他" value="type3"></el-option>
+              <el-option label="所有类型" value=""></el-option>
+              <el-option label="防护用具" value="防护用具"></el-option>
+              <el-option label="药品" value="药品"></el-option>
+              <el-option label="其他" value="其他"></el-option>
             </el-select>
           </el-form-item>
         </div>
         <div class="right">
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search">查询</el-button>
+            <el-button @click="search()" type="primary" icon="el-icon-search">查询</el-button>
             <el-button
               icon="el-icon-refresh-right"
               @click="resetForm('formInline')"
@@ -36,7 +37,7 @@
       </el-form>
     </div>
     <div class="table">
-      <el-table :data="tableData" border stripe style="width: 100%">
+      <el-table :data="table" border stripe style="width: 100%">
         <el-table-column prop="needid" label="序号" width="50">
         </el-table-column>
         <el-table-column prop="needname" label="需求名称" width="180">
@@ -100,11 +101,20 @@ export default {
           solve: "已解决",
         },
       ],
+      table: [],
     };
+  },
+  mounted() {
+    this.search()
   },
   created() {},
   computed: {},
   methods: {
+    search(){
+      this.table = this.tableData.filter(data => {
+        return data.needname.match(this.formInline.needname) && data.needtype.match(this.formInline.type)
+      })
+    },
     resetForm(form) {
       this.$refs[form].resetFields();
     },

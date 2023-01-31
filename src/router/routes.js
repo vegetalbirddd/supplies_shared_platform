@@ -105,29 +105,29 @@ const router = new VueRouter({
     mode: 'history'
 })
 
-// // 挂载路由导航守卫
-// router.beforeEach((to, from, next) => {
-//     //放行登录页面
-//     if(to.path == '/login') {
-//         return next()
-//     }else if(to.path == '/signUp'){
-//         return next()
-//     }
-//     //校验token
-//     const tokenStr = sessionStorage.getItem('token')
+// 挂载路由导航守卫
+router.beforeEach((to, from, next) => {
+    //放行登录页面
+    if(to.path == '/login') {
+        return next()
+    }else if(to.path == '/signUp'){
+        return next()
+    }
+    //校验token
+    const tokenStr = sessionStorage.getItem('token')
     
-//     if(!tokenStr) {
-//         return next('/login')
-//     }else {
-//         next()
-//     }
-//     window.document.title = to.meta.title || '疫情物资共享平台'
+    if(!tokenStr) {
+        return next('/login')
+    }else {
+        next()
+    }
+    window.document.title = to.meta.title || '疫情物资共享平台'
 
-// })
+})
 
 
-// router.afterEach((to,from,next)=>{
-//     window.scrollTo(0,0)
-//   })//跳转后自动返回顶部
+router.afterEach((to,from,next)=>{
+    window.scrollTo(0,0)
+  })//跳转后自动返回顶部
 
 export default router

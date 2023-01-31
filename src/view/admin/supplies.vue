@@ -16,6 +16,7 @@
           </el-form-item>
           <el-form-item label="物资类型" prop="type">
             <el-select v-model="formInline.type" placeholder="请选择物资类型">
+              <el-option label="所有类型" value=""></el-option>
               <el-option label="防护用具" value="防护用具"></el-option>
               <el-option label="药品" value="药品"></el-option>
               <el-option label="其他" value="其他"></el-option>
