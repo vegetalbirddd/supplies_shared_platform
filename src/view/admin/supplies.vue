@@ -46,7 +46,7 @@
           <el-table-column prop="supuser" label="发布用户" width="180">
           </el-table-column>
           <el-table-column prop="situation" label="展示情况" width="80">
-          </el-table-column>
+          </el-table-column>  
           <el-table-column prop="solve" label="解决情况" width="80">
           </el-table-column>
           <el-table-column prop="operate" label="操作">
@@ -109,9 +109,13 @@ export default {
           solve: "已解决",
         },
       ],
+      createdMark:false
     };
+
   },
-  created() {},
+  created() {
+    this.createdMark=true
+  },
   computed: {
     tables(){
       const input1 = this.formInline.supname
@@ -124,7 +128,11 @@ export default {
         
       }
       
-      return this.tableData
+      if(this.createdMark){
+        this.createdMark=false
+
+        return this.tableData
+      }
       
     }
   },
