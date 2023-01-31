@@ -12,7 +12,7 @@
         </div>
         <div class="right">
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search">查询</el-button>
+            <el-button @click="handleSearch()" type="primary" icon="el-icon-search">查询</el-button>
             <el-button
               icon="el-icon-refresh-right"
               @click="resetForm('formInline')"
@@ -26,7 +26,7 @@
     <!-- 用户表格 -->
     <div class="table">
        <el-table
-    :data="tableData"
+    :data="tables"
     border
     stripe
     style="width: 100%">
@@ -71,6 +71,7 @@
 export default {
   data() {
     return {
+      flag: false,
       formInline: {
         username: "",
       },
@@ -81,7 +82,7 @@ export default {
           neednum: 7,
         }, {
           userid: 2,
-          username: '张三',
+          username: 'n张三',
           supnum: 62,
           neednum: 34,
         }, {
@@ -94,12 +95,27 @@ export default {
           username: '王五',
           supnum: 42,
           neednum: 23,
-        }]
+        }],
     };
   },
   created() {},
-  computed: {},
+  computed: {
+    tables() { 
+		   const input = this.formInline.username
+			 if (input && this.flag) {
+        this.flag = false
+				return this.tableData.filter(data => {
+					return data.username.match(this.formInline.username)
+				})
+			}
+			return this.tableData
+		}
+  },
   methods: {
+    handleSearch() {
+      // console.log(this.flag)
+      this.flag = true
+    },
     resetForm(form) {
       this.$refs[form].resetFields();
       // console.log(form);
