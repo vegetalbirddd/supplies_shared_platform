@@ -41,33 +41,14 @@ export default {
     };
   },
   methods: {
-    //  需要添加判断用户/管理员（）
-    // login(){
-    //     const url = request.baseUrl+'/login'
-    //     let user = {name:this.name,password:this.password}
-    //     request.post(url,user).then(
-    //       res => {
-    //         console.log(res)
-    //         if(res.code===200) {
-    //           this.$message('登录成功');
-    //           console.log("成功")
-    //         }else{
-    //           this.$message.warning('用户密码错误');
-    //           console.log("失败")
-    //         }
-    //       }
-    //     ).catch(err => {
-    //       this.$message.error('网络请求失败');
-    //     })
-    //   },
-    //ele引入方法 登录方法逻辑
+
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loginLoading = true;
           //后端接口
           this.$axios
-            .post("http://127.0.0.1:4523/m1/2177250-0-default/login", this.form)
+            .post("/login", this.form)
             .then((res) => {
               //成功则跳转到user页面(管理员记得写)
               if (res.data.success) {

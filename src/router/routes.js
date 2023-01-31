@@ -110,6 +110,8 @@ router.beforeEach((to, from, next) => {
     //放行登录页面
     if(to.path == '/login') {
         return next()
+    }else if(to.path == '/signUp'){
+        return next()
     }
     //校验token
     const tokenStr = sessionStorage.getItem('token')

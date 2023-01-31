@@ -5,9 +5,9 @@
         <li style="margin-right: 10%">
           <div>
             <img src="../../assets/icon/user.png" alt="" />
-          </div>
+          
           <h4>123124241</h4>
-          <p style="font-size: 14px; color: #666">用户数量</p>
+          <p style="font-size: 14px; color: #666">用户数量</p></div>
         </li>
         <li style="margin-right: 10%">
           <div>
@@ -31,18 +31,16 @@
 <script>
 export default {
   data() {
-    return {
-      
-    };
+    return {};
   },
   created() {},
   computed: {},
   mounted() {
-    this.drawLine()
+    this.drawLine();
   },
   methods: {
     drawLine() {
-      const echarts = require("echarts")
+      const echarts = require("echarts");
       let mycharts = echarts.init(this.$refs.mycharts);
       let option = {
         title: {
@@ -86,10 +84,9 @@ export default {
             data: [1, 2, 5, 9, 11, 8, 6],
           },
         ],
-      
       };
       mycharts.setOption(option);
-    }
+    },
   },
 };
 </script>
@@ -104,21 +101,26 @@ export default {
   border-radius: 5px;
 }
 li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   list-style: none;
-  display: inline-block;
-  width: 20%;
-  height: 60%;
+  // display: inline-block;
+  width: 20vw;
+  height: 20vw;
   background-color: rgba(243, 243, 243, 0.324);
   border: 1px solid #ebeef5;
   border-radius: 3px;
   box-shadow: #bbb 3px 3px 5px, rgb(234, 234, 234) -3px -3px 5px;
   div {
     display: flex;
-    justify-content: center;
-    align-content: center;
-    margin-top: 12%;
+    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    // margin-top: 20%;
     img {
-      width: 35%;
+      width: 8vw
     }
   }
   p,
