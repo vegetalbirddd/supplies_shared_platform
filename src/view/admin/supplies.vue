@@ -16,15 +16,15 @@
           </el-form-item>
           <el-form-item label="物资类型" prop="type">
             <el-select v-model="formInline.type" placeholder="请选择物资类型">
-              <el-option label="防护用具" value="type1"></el-option>
-              <el-option label="药品" value="type2"></el-option>
-              <el-option label="其他" value="type3"></el-option>
+              <el-option label="防护用具" value="防护用具"></el-option>
+              <el-option label="药品" value="药品"></el-option>
+              <el-option label="其他" value="其他"></el-option>
             </el-select>
           </el-form-item>
         </div>
         <div class="right">
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search">查询</el-button>
+            <el-button @click="search()" type="primary" icon="el-icon-search">查询</el-button>
             <el-button
               icon="el-icon-refresh-right"
               @click="resetForm('formInline')"
@@ -36,7 +36,7 @@
       </el-form>
     </div>
       <div class="table">
-        <el-table :data="tableData" border stripe style="width: 100%">
+        <el-table :data="tables" border stripe style="width: 100%">
           <el-table-column prop="supid" label="序号" width="50">
           </el-table-column>
           <el-table-column prop="supname" label="物资名称" width="180">
@@ -70,7 +70,7 @@
 export default {
   data() {
     return {
-      
+      flag: false,
       formInline: {
         supname: "",
         type: "",
@@ -112,8 +112,26 @@ export default {
     };
   },
   created() {},
-  computed: {},
+  computed: {
+    tables(){
+      const input1 = this.formInline.supname
+      const input2 = this.formInline.type
+      if(input1&&this.flag || input2 && this.flag) {
+        this.flag = false
+        return this.tableData.filter(data=>{
+          return data.supname.match(input1) && data.suptype.match(input2) 
+        })
+        
+      }
+      
+      return this.tableData
+      
+    }
+  },
   methods: {
+    search() {
+      this.flag = true
+    },
     resetForm(form) {
       this.$refs[form].resetFields();
     },
