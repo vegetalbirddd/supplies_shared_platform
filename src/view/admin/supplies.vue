@@ -36,7 +36,7 @@
       </el-form>
     </div>
       <div class="table">
-        <el-table :data="tables" border stripe style="width: 100%">
+        <el-table :data="table" border stripe style="width: 100%">
           <el-table-column prop="supid" label="序号" width="50">
           </el-table-column>
           <el-table-column prop="supname" label="物资名称" width="180">
@@ -109,36 +109,19 @@ export default {
           solve: "已解决",
         },
       ],
-      createdMark:false
+      table:[]
     };
-
   },
-  created() {
-    this.createdMark=true
+  mounted(){
+      this.search()
   },
   computed: {
-    tables(){
-      const input1 = this.formInline.supname
-      const input2 = this.formInline.type
-      if(input1&&this.flag || input2 && this.flag) {
-        this.flag = false
-        return this.tableData.filter(data=>{
-          return data.supname.match(input1) && data.suptype.match(input2) 
-        })
-        
-      }
-      
-      if(this.createdMark){
-        this.createdMark=false
-
-        return this.tableData
-      }
-      
-    }
   },
   methods: {
     search() {
-      this.flag = true
+      this.table =this.tableData.filter(data=>{
+          return data.supname.match(this.formInline.supname) && data.suptype.match(this.formInline.type) 
+        })
     },
     resetForm(form) {
       this.$refs[form].resetFields();
