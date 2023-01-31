@@ -38,19 +38,19 @@
     </div>
       <div class="table">
         <el-table :data="table" border stripe style="width: 100%">
-          <el-table-column prop="supid" label="序号" width="50">
+          <el-table-column prop="supid" label="序号" min-width="50">
           </el-table-column>
-          <el-table-column prop="supname" label="物资名称" width="180">
+          <el-table-column prop="supname" label="物资名称" min-width="180">
           </el-table-column>
-          <el-table-column prop="suptype" label="物资类型" width="100">
+          <el-table-column prop="suptype" label="物资类型" min-width="70">
           </el-table-column>
-          <el-table-column prop="supuser" label="发布用户" width="180">
+          <el-table-column prop="supuser" label="发布用户" min-width="150">
           </el-table-column>
-          <el-table-column prop="situation" label="展示情况" width="80">
+          <el-table-column prop="situation" label="展示情况" min-width="70">
           </el-table-column>  
-          <el-table-column prop="solve" label="解决情况" width="80">
+          <el-table-column prop="solve" label="解决情况" min-width="70">
           </el-table-column>
-          <el-table-column prop="operate" label="操作">
+          <el-table-column prop="operate" label="操作" min-width="300">
             <template slot-scope="scope">
               <el-button size="medium" @click="checkSup()">查看</el-button>
               <el-button size="medium" type="success">解决</el-button>

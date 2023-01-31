@@ -138,6 +138,7 @@ li:last-child {
       font-size: 16px;
     }
   }
+  transition: box-shadow .5s;
 }
 // .description {
 

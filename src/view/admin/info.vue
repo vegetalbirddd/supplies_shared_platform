@@ -33,26 +33,28 @@
     <el-table-column
       prop="userid"
       label="id"
-      width="80">
+      min-width="50">
     </el-table-column>
     <el-table-column
       prop="username"
       label="用户名"
-      width="180">
+      min-width="180">
     </el-table-column>
     <el-table-column
       prop="supnum"
       label="发布物资数量"
-      width="180">
+      min-width="180">
     </el-table-column>
     <el-table-column
       prop="neednum"
       label="发布需求数量"
-      width="180">
+      min-width="180">
     </el-table-column>
     <el-table-column
       prop="operate"
-      label="操作">
+      label="操作"
+      min-width="150"
+      >
       <template slot-scope="scope">
         <el-button
           size="medium"

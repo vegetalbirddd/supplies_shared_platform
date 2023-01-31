@@ -109,6 +109,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .table {
+  margin-top: 10vh;
   width: 60vw;
   background-color: #f5f5f5;
   border-radius: 10px;

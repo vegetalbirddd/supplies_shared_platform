@@ -132,6 +132,7 @@ li {
   h4 {
     margin-top: 7px;
   }
+  transition: box-shadow .6s;
 }
 li:hover {
   box-shadow: #999 5px 5px 5px, #bbb -3px -3px 5px;

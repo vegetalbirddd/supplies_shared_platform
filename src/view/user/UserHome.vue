@@ -5,7 +5,7 @@
       <el-carousel indicator-position="outside">
         <el-carousel-item v-for="item in banner" :key="item.name">
           <h3>
-            <img :src="item.url" alt="" style="height: 350px; width: 100vw" />
+            <img :src="item.url" alt="" style="height: 337px; width: 1280px" />
           </h3>
         </el-carousel-item>
       </el-carousel>
