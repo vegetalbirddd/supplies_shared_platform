@@ -62,9 +62,16 @@ export default {
                   console.log(err);
                 }
                 console.log(res);
-                this.$router.push({
+                if(res.data.judge){
+                  this.$router.push({
                   path: "/user",
                 });
+                }else {
+                  this.$router.push({
+                  path: "/admin",
+                });
+                }
+                
               } else {
                 this.$message.error(res.data.msg);
                 this.loginLoading = false;
