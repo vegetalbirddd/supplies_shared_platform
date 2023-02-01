@@ -90,7 +90,7 @@ export default {
     return {
       dialogVisible: false,
       pageData: null, //接收html格式代码
-      htmlTitle: "结业证书",
+      htmlTitle: "荣誉证书",
       isShow: true,
       isCanvas: false,
       downType: true, // false为 pdf , true为图片

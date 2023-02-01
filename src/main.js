@@ -13,6 +13,10 @@ Vue.prototype.$axios = axios
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 
+import htmlToPdf from '../src/utils/htmlToPdf'
+// 使用Vue.use()方法就会调用工具方法中的install方法
+Vue.use(htmlToPdf)
+
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
