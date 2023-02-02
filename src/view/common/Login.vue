@@ -41,7 +41,6 @@ export default {
     };
   },
   methods: {
-
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -50,7 +49,7 @@ export default {
           this.$axios
             .post("/login", this.form)
             .then((res) => {
-              //成功则跳转到user页面(管理员记得写)
+              //成功则执行
               if (res.data.success) {
                 try {
                   sessionStorage.setItem(

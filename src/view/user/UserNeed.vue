@@ -24,11 +24,12 @@
           <span>位置 </span
           >湖南省湘潭市岳塘区福星东路88号湖南工程学院新校区滨江10-666
         </p>
-       
-        <p style="-webkit-line-clamp: 6">
-          <span>描述说明 </span
-          >11111111111111111111哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗
-        </p>
+        <div class="last" style="height: 101px">
+          <p style="-webkit-line-clamp: 6">
+            <span>描述说明 </span
+            >11111111111111111111哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗
+          </p>
+        </div>
         <button @click="goDetail">查看详情</button>
       </div>
     </div>
@@ -136,7 +137,7 @@ li:last-child {
       font-size: 16px;
     }
   }
-  transition: box-shadow .5s;
+  transition: box-shadow 0.5s;
 }
 // .description {
 
