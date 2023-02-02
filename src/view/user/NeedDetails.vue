@@ -23,7 +23,9 @@
         content="注意保护他人隐私！！"
         placement="top-start"
       >
-        <button @click="dialogVisible = true" style="height: 30px; width: 75px">给予帮助</button>
+        <button @click="dialogVisible = true" style="height: 30px; width: 75px">
+          给予帮助
+        </button>
       </el-tooltip>
 
       <button
@@ -33,15 +35,9 @@
         返回
       </button>
     </div>
-    <el-dialog
-      title="需求者联系方式"
-      :visible.sync="dialogVisible"
-      width="30%"
-    >
-      <span>12345678901（手机号码）12345678901（微信）
-      </span>
+    <el-dialog title="需求者联系方式" :visible.sync="dialogVisible" width="30%">
+      <span>12345678901（手机号码）12345678901（微信） </span>
       <span slot="footer" class="dialog-footer">
-
         <el-button type="primary" @click="dialogVisible = false"
           >确 定</el-button
         >
@@ -53,7 +49,7 @@
 export default {
   data() {
     return {
-      dialogVisible: false
+      dialogVisible: false,
     };
   },
   created() {},
@@ -97,21 +93,20 @@ export default {
     }
   }
   button {
-  //   float: right;
-  font-size: 12px;
-  cursor: pointer;
-  color: #606266;
-  border: 1px solid #c7c7c7;
-  border-radius: 5px;
-  background-color: #fff;
-  margin-top: 30px;
+    //   float: right;
+    font-size: 12px;
+    cursor: pointer;
+    color: #606266;
+    border: 1px solid #c7c7c7;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 30px;
+  }
+  button:hover {
+    color: #3da8ff;
+  }
+  button:active {
+    border: 1px solid #3da8ff;
+  }
 }
-button:hover {
-  color: #3da8ff;
-}
-button:active {
-  border: 1px solid #3da8ff;
-}
-}
-
 </style>

@@ -25,7 +25,9 @@
         </div>
         <div class="right">
           <el-form-item>
-            <el-button @click="search()" type="primary" icon="el-icon-search">查询</el-button>
+            <el-button @click="search()" type="primary" icon="el-icon-search"
+              >查询</el-button
+            >
             <el-button
               icon="el-icon-refresh-right"
               @click="resetForm('formInline')"
@@ -36,36 +38,36 @@
         </div>
       </el-form>
     </div>
-      <div class="table">
-        <el-table :data="table" border stripe style="width: 100%">
-          <el-table-column prop="supid" label="序号" min-width="50">
-          </el-table-column>
-          <el-table-column prop="supname" label="物资名称" min-width="180">
-          </el-table-column>
-          <el-table-column prop="suptype" label="物资类型" min-width="70">
-          </el-table-column>
-          <el-table-column prop="supuser" label="发布用户" min-width="150">
-          </el-table-column>
-          <el-table-column prop="situation" label="展示情况" min-width="70">
-          </el-table-column>  
-          <el-table-column prop="solve" label="解决情况" min-width="70">
-          </el-table-column>
-          <el-table-column prop="operate" label="操作" min-width="300">
-            <template slot-scope="scope">
-              <el-button size="medium" @click="checkSup()">查看</el-button>
-              <el-button size="medium" type="success">解决</el-button>
-              <el-button size="medium" type="warning">展示</el-button>
-              <el-button
-                size="medium"
-                type="danger"
-                @click="handleDelete(scope.$index, scope.row)"
-                >删除</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
+    <div class="table">
+      <el-table :data="table" border stripe style="width: 100%">
+        <el-table-column prop="supid" label="序号" min-width="50">
+        </el-table-column>
+        <el-table-column prop="supname" label="物资名称" min-width="180">
+        </el-table-column>
+        <el-table-column prop="suptype" label="物资类型" min-width="70">
+        </el-table-column>
+        <el-table-column prop="supuser" label="发布用户" min-width="150">
+        </el-table-column>
+        <el-table-column prop="situation" label="展示情况" min-width="70">
+        </el-table-column>
+        <el-table-column prop="solve" label="解决情况" min-width="70">
+        </el-table-column>
+        <el-table-column prop="operate" label="操作" min-width="300">
+          <template slot-scope="scope">
+            <el-button size="medium" @click="checkSup()">查看</el-button>
+            <el-button size="medium" type="success">解决</el-button>
+            <el-button size="medium" type="warning">展示</el-button>
+            <el-button
+              size="medium"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)"
+              >删除</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
     </div>
+  </div>
 </template>
 <script>
 export default {
@@ -101,7 +103,7 @@ export default {
           situation: "下线",
           solve: "未解决",
         },
-       {
+        {
           supid: 4,
           supname: "新型冠状病毒抗原检测试剂",
           suptype: "其他",
@@ -110,26 +112,28 @@ export default {
           solve: "已解决",
         },
       ],
-      table:[]
+      table: [],
     };
   },
-  mounted(){
-      this.search()
+  mounted() {
+    this.search();
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     search() {
-      this.table =this.tableData.filter(data=>{
-          return data.supname.match(this.formInline.supname) && data.suptype.match(this.formInline.type) 
-        })
+      this.table = this.tableData.filter((data) => {
+        return (
+          data.supname.match(this.formInline.supname) &&
+          data.suptype.match(this.formInline.type)
+        );
+      });
     },
     resetForm(form) {
       this.$refs[form].resetFields();
     },
-    checkSup(){
-      this.$router.push('/admin/supDetail')
-    }
+    checkSup() {
+      this.$router.push("/admin/supDetail");
+    },
   },
 };
 </script>

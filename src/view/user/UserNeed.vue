@@ -132,7 +132,7 @@ li:last-child {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-
+    margin-bottom: 10px;
     span {
       font-size: 16px;
     }

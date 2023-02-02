@@ -25,12 +25,12 @@
         </el-dropdown>
       </el-header>
       <el-container>
-        <el-aside style="width: auto;">
+        <el-aside style="width: auto">
           <nav-aside />
         </el-aside>
         <el-main>
           <!-- 面包屑 -->
-          <breadcrumb style="padding-bottom: 20px;"/>
+          <breadcrumb style="padding-bottom: 20px" />
           <!-- 页面内容 -->
           <router-view></router-view>
         </el-main>
@@ -39,10 +39,10 @@
   </div>
 </template>
 <script>
-import Breadcrumb from '../../components/Breadcrumb';
+import Breadcrumb from "../../components/Breadcrumb";
 import NavAside from "../../components/NavAside";
 export default {
-  components: { NavAside,Breadcrumb },
+  components: { NavAside, Breadcrumb },
   data() {
     return {};
   },

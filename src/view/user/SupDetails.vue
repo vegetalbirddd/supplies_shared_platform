@@ -83,7 +83,7 @@ export default {
     -webkit-box-orient: vertical;
     margin-bottom: 20px;
     letter-spacing: 2px;
-    
+
     span {
       color: #113a4f;
       font-size: 20px;

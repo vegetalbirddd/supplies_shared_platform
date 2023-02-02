@@ -19,8 +19,8 @@ export default {
         // width: 1000,
         // height: 800
         // 下面两个用来提高清晰度
-        dpi: window.devicePixelRatio*4, //将分辨率提高到特定的DPI 提高四倍
-        scale:4, //按比例增加分辨率
+        dpi: window.devicePixelRatio * 4, //将分辨率提高到特定的DPI 提高四倍
+        scale: 4, //按比例增加分辨率
         useCORS: true // 【重要】开启跨域配置
       }).then(function (canvas) {
         let contentWidth = canvas.width
@@ -39,8 +39,8 @@ export default {
         // 1.0 清晰度0-1
         let pageData = canvas.toDataURL('image/jpeg', 1.0)
 
-        if(type) {
-        // 生成图片
+        if (type) {
+          // 生成图片
           //创建一个 a 标签，并设置 href 和 download 属性
           const el = document.createElement("a");
           // 设置 href 为图片经过 base64 编码后的字符串，默认为 png 格式
@@ -50,24 +50,24 @@ export default {
           const event = new MouseEvent("click");
           el.dispatchEvent(event);
         } else {
-      // 生成 pdf
-        //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
-        //当内容未超过pdf一页显示的范围，无需分页
-        // l 横向 默认竖向
-        let PDF = new JsPDF('l', 'pt', 'a4')
-        if (leftHeight < pageHeight) {
-          PDF.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight)
-        } else {
-          while (leftHeight > 0) {
-            PDF.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight)
-            leftHeight -= pageHeight
-            position -= 841.89
-            if (leftHeight > 0) {
-              PDF.addPage()
+          // 生成 pdf
+          //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
+          //当内容未超过pdf一页显示的范围，无需分页
+          // l 横向 默认竖向
+          let PDF = new JsPDF('l', 'pt', 'a4')
+          if (leftHeight < pageHeight) {
+            PDF.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight)
+          } else {
+            while (leftHeight > 0) {
+              PDF.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight)
+              leftHeight -= pageHeight
+              position -= 841.89
+              if (leftHeight > 0) {
+                PDF.addPage()
+              }
             }
           }
-        }
-        PDF.save(title + '.pdf')
+          PDF.save(title + '.pdf')
         }
       })
     }

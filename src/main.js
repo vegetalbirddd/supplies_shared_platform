@@ -23,9 +23,9 @@ Vue.use(ElementUI);
 //接口请求的前缀地址，地址还没写
 axios.defaults.baseURL = 'http://127.0.0.1:4523/m1/2218851-0-default'
 //全局设置token
-axios.interceptors.request.use(function(config){
+axios.interceptors.request.use(function (config) {
   let token = sessionStorage.getItem('token')
-  if(token) {
+  if (token) {
     config.headers['token'] = token
   }
   return config

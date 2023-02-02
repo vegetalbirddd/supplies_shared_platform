@@ -96,8 +96,7 @@ export default {
             message: "退出成功啦",
           });
         })
-        .catch(() => {
-        });
+        .catch(() => {});
     },
   },
 };

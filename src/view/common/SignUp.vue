@@ -7,8 +7,8 @@
       ref="ruleForm"
       id="signup_box"
     >
-    <h2>Sign Up</h2>
-    <el-form-item prop="account">
+      <h2>Sign Up</h2>
+      <el-form-item prop="account">
         <el-input
           placeholder="请输入账号"
           v-model.number="ruleForm.account"
@@ -76,8 +76,13 @@ export default {
         checkPass: "",
       },
       rules: {
-        account: [{required: true, message: "请输入账号"},{type: 'number', message: '账号必须为数字值'}],
-        username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+        account: [
+          { required: true, message: "请输入账号" },
+          { type: "number", message: "账号必须为数字值" },
+        ],
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+        ],
         pass: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
       },
@@ -114,7 +119,7 @@ export default {
   position: relative;
   background-color: #00000060;
   margin: auto;
-  // margin-top: 10%; 
+  // margin-top: 10%;
   top: 15%;
   text-align: center;
   border-radius: 10px;

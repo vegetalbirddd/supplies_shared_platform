@@ -1,7 +1,12 @@
 <template>
   <div class="bg">
     <div class="top">
-      <el-form :inline="true" :model="formInline" class="demo-form-inline" ref="formInline">
+      <el-form
+        :inline="true"
+        :model="formInline"
+        class="demo-form-inline"
+        ref="formInline"
+      >
         <div class="left">
           <el-form-item label="用户名" prop="username">
             <el-input
@@ -12,7 +17,12 @@
         </div>
         <div class="right">
           <el-form-item>
-            <el-button @click="handleSearch()" type="primary" icon="el-icon-search">查询</el-button>
+            <el-button
+              @click="handleSearch()"
+              type="primary"
+              icon="el-icon-search"
+              >查询</el-button
+            >
             <el-button
               icon="el-icon-refresh-right"
               @click="resetForm('formInline')"
@@ -25,47 +35,27 @@
     </div>
     <!-- 用户表格 -->
     <div class="table">
-       <el-table
-    :data="tables"
-    border
-    stripe
-    style="width: 100%">
-    <el-table-column
-      prop="userid"
-      label="id"
-      min-width="50">
-    </el-table-column>
-    <el-table-column
-      prop="username"
-      label="用户名"
-      min-width="180">
-    </el-table-column>
-    <el-table-column
-      prop="supnum"
-      label="发布物资数量"
-      min-width="180">
-    </el-table-column>
-    <el-table-column
-      prop="neednum"
-      label="发布需求数量"
-      min-width="180">
-    </el-table-column>
-    <el-table-column
-      prop="operate"
-      label="操作"
-      min-width="150"
-      >
-      <template slot-scope="scope">
-        <el-button
-          size="medium"
-          @click="handleCheck()">查看</el-button>
-        <el-button
-          size="medium"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+      <el-table :data="tables" border stripe style="width: 100%">
+        <el-table-column prop="userid" label="id" min-width="50">
+        </el-table-column>
+        <el-table-column prop="username" label="用户名" min-width="180">
+        </el-table-column>
+        <el-table-column prop="supnum" label="发布物资数量" min-width="180">
+        </el-table-column>
+        <el-table-column prop="neednum" label="发布需求数量" min-width="180">
+        </el-table-column>
+        <el-table-column prop="operate" label="操作" min-width="150">
+          <template slot-scope="scope">
+            <el-button size="medium" @click="handleCheck()">查看</el-button>
+            <el-button
+              size="medium"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)"
+              >删除</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
     </div>
   </div>
 </template>
@@ -77,57 +67,62 @@ export default {
       formInline: {
         username: "",
       },
-       tableData: [{
+      tableData: [
+        {
           userid: 1,
-          username: 'noni',
+          username: "noni",
           supnum: 7,
           neednum: 7,
-        }, {
+        },
+        {
           userid: 2,
-          username: 'n张三',
+          username: "n张三",
           supnum: 62,
           neednum: 34,
-        }, {
+        },
+        {
           userid: 3,
-          username: '李四',
+          username: "李四",
           supnum: 22,
           neednum: 11,
-        }, {
+        },
+        {
           userid: 4,
-          username: '王五',
+          username: "王五",
           supnum: 42,
           neednum: 23,
-        }],
+        },
+      ],
     };
   },
   created() {},
   computed: {
-    tables() { 
-		   const input = this.formInline.username
-			 if (input && this.flag) {
-        this.flag = false
-				return this.tableData.filter(data => {
-					return data.username.match(this.formInline.username)
-				})
-			}
-			return this.tableData
-		}
+    tables() {
+      const input = this.formInline.username;
+      if (input && this.flag) {
+        this.flag = false;
+        return this.tableData.filter((data) => {
+          return data.username.match(this.formInline.username);
+        });
+      }
+      return this.tableData;
+    },
   },
   methods: {
     handleSearch() {
       // console.log(this.flag)
-      this.flag = true
+      this.flag = true;
     },
     resetForm(form) {
       this.$refs[form].resetFields();
       // console.log(form);
     },
     handleCheck() {
-        this.$router.push('/admin/infoDetail');
-      },
-      handleDelete(index, row) {
-        console.log(index, row);
-      }
+      this.$router.push("/admin/infoDetail");
+    },
+    handleDelete(index, row) {
+      console.log(index, row);
+    },
   },
 };
 </script>

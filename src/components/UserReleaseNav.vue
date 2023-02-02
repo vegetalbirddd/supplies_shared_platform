@@ -10,9 +10,7 @@
         {{ item.label }}
       </h3>
     </div>
-    <div class="form">
-      
-    </div>
+    <div class="form"></div>
   </div>
 </template>
 <script>
@@ -38,7 +36,7 @@ export default {
   computed: {},
   methods: {
     changeFlag(index) {
-      this.flag = index;   
+      this.flag = index;
     },
   },
 };

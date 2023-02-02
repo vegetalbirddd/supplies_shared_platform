@@ -5,9 +5,10 @@
         <li style="margin-right: 10%">
           <div>
             <img src="../../assets/icon/user.png" alt="" />
-          
-          <h4>123124241</h4>
-          <p style="font-size: 14px; color: #666">用户数量</p></div>
+
+            <h4>123124241</h4>
+            <p style="font-size: 14px; color: #666">用户数量</p>
+          </div>
         </li>
         <li style="margin-right: 10%">
           <div>
@@ -116,11 +117,11 @@ li {
   div {
     display: flex;
     flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
     // margin-top: 20%;
     img {
-      width: 8vw
+      width: 8vw;
     }
   }
   p,
@@ -132,7 +133,7 @@ li {
   h4 {
     margin-top: 7px;
   }
-  transition: box-shadow .6s;
+  transition: box-shadow 0.6s;
 }
 li:hover {
   box-shadow: #999 5px 5px 5px, #bbb -3px -3px 5px;

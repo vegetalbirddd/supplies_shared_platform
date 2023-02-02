@@ -3,7 +3,10 @@
     <el-form :model="form" :rules="rules" ref="ruleForm" id="login_box">
       <h2>LOGIN</h2>
       <el-form-item prop="account">
-        <el-input placeholder="请输入账号" v-model.number="form.account"></el-input>
+        <el-input
+          placeholder="请输入账号"
+          v-model.number="form.account"
+        ></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input
@@ -61,16 +64,15 @@ export default {
                   console.log(err);
                 }
                 console.log(res);
-                if(res.data.judge){
+                if (res.data.judge) {
                   this.$router.push({
-                  path: "/user",
-                });
-                }else {
+                    path: "/user",
+                  });
+                } else {
                   this.$router.push({
-                  path: "/admin",
-                });
+                    path: "/admin",
+                  });
                 }
-                
               } else {
                 this.$message.error(res.data.msg);
                 this.loginLoading = false;

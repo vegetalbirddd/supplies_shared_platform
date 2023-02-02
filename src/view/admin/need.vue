@@ -25,7 +25,9 @@
         </div>
         <div class="right">
           <el-form-item>
-            <el-button @click="search()" type="primary" icon="el-icon-search">查询</el-button>
+            <el-button @click="search()" type="primary" icon="el-icon-search"
+              >查询</el-button
+            >
             <el-button
               icon="el-icon-refresh-right"
               @click="resetForm('formInline')"
@@ -47,9 +49,9 @@
         <el-table-column prop="needuser" label="发布用户" min-width="150">
         </el-table-column>
         <el-table-column prop="situation" label="展示情况" min-width="70">
-          </el-table-column>
-          <el-table-column prop="solve" label="解决情况" min-width="70">
-          </el-table-column>
+        </el-table-column>
+        <el-table-column prop="solve" label="解决情况" min-width="70">
+        </el-table-column>
         <el-table-column prop="operate" label="操作" min-width="300">
           <template slot-scope="scope">
             <el-button size="medium" @click="checkNeed()">查看</el-button>
@@ -105,15 +107,18 @@ export default {
     };
   },
   mounted() {
-    this.search()
+    this.search();
   },
   created() {},
   computed: {},
   methods: {
-    search(){
-      this.table = this.tableData.filter(data => {
-        return data.needname.match(this.formInline.needname) && data.needtype.match(this.formInline.type)
-      })
+    search() {
+      this.table = this.tableData.filter((data) => {
+        return (
+          data.needname.match(this.formInline.needname) &&
+          data.needtype.match(this.formInline.type)
+        );
+      });
     },
     resetForm(form) {
       this.$refs[form].resetFields();

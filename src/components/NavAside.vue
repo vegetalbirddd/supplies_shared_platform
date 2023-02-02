@@ -4,11 +4,11 @@
       <i v-if="!isCollapse" class="el-icon-s-fold"></i>
       <i v-if="isCollapse" class="el-icon-s-unfold"></i>
     </div>
-    <el-menu-item 
-    @click="clickMenu(item)"
-    v-for="(item, index) in menuData" 
-    :key="index"
-    :index="item.key"
+    <el-menu-item
+      @click="clickMenu(item)"
+      v-for="(item, index) in menuData"
+      :key="index"
+      :index="item.key"
     >
       <i :class="`el-icon-${item.icon}`"></i>
       <span slot="title">{{ item.label }}</span>
@@ -38,28 +38,28 @@ export default {
       isCollapse: false,
       menuData: [
         {
-          key: '1',
+          key: "1",
           path: "/admin/home",
           name: "home",
           label: "首页",
           icon: "house",
         },
         {
-          key: '2',
+          key: "2",
           path: "/admin/info",
           name: "info",
           label: "用户信息",
           icon: "user",
         },
         {
-          key: '3',
+          key: "3",
           path: "/admin/sup",
           name: "sup",
           label: "已发布的物资",
           icon: "takeaway-box",
         },
         {
-          key: '4',
+          key: "4",
           path: "/admin/need",
           name: "need",
           label: "已发布的需求",
@@ -72,19 +72,19 @@ export default {
   computed: {},
   methods: {
     clickMenu(item) {
-        if(item.path !== this.$router.path) {
-            this.$router.push(item.path);
-        }
-    }
+      if (item.path !== this.$router.path) {
+        this.$router.push(item.path);
+      }
+    },
   },
 };
 </script>
 <style lang="less" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-    overflow: hidden;
-    border: 0;
-    width: 200px;
-//   min-height: 400px;
+  overflow: hidden;
+  border: 0;
+  width: 200px;
+  //   min-height: 400px;
 }
 .toggle-button {
   background-color: #bedeff;

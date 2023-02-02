@@ -5,13 +5,10 @@
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  components: {
-
-  }
-}
+  name: "App",
+  components: {},
+};
 </script>
 
 <style>
@@ -19,7 +16,8 @@ export default {
   padding: 0;
   margin: 0;
 }
-.el-card,.card {
+.el-card,
+.card {
   background-color: #edf3f6;
 }
 </style>

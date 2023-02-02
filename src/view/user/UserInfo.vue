@@ -14,7 +14,12 @@
         <el-card class="published">
           <div slot="header" class="clearfix">
             <span>我发布的</span>
-            <el-button @click="preview" style="float: right; padding: 3px 0" type="text">下载帮助奖励文件</el-button>
+            <el-button
+              @click="preview"
+              style="float: right; padding: 3px 0"
+              type="text"
+              >下载帮助奖励文件</el-button
+            >
           </div>
           <div
             v-for="o in 4"

@@ -3,7 +3,8 @@
     <div class="sup-top">
       <h3>物资详情</h3>
       <div class="button">
-        <el-button type="primary">编辑</el-button> <el-button @click="back()">返回</el-button>
+        <el-button type="primary">编辑</el-button>
+        <el-button @click="back()">返回</el-button>
       </div>
     </div>
     <div class="sup-bottom">

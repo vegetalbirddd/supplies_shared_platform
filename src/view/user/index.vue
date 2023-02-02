@@ -1,26 +1,20 @@
 <template>
-<div class="user">
-    <nav-bar/>
+  <div class="user">
+    <nav-bar />
     <!-- <router-view></router-view> -->
-    
-</div>
+  </div>
 </template>
 <script>
-import NavBar from '../../components/NavBar.vue'
+import NavBar from "../../components/NavBar.vue";
 export default {
   components: { NavBar },
-   data() {
-      return {
-      }
-   },
-   created(){
-   },
-   computed:{
-   },
-   methods:{
-   },
-}
+  data() {
+    return {};
+  },
+  created() {},
+  computed: {},
+  methods: {},
+};
 </script>
 <style>
-
 </style>
