@@ -67,6 +67,7 @@ export default {
       }
     };
     return {
+      loading: false, //注册状态校验
       ruleForm: {
         account: "",
         username: "",
@@ -87,19 +88,20 @@ export default {
     };
   },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
+    //elementui提供的提交功能
+    // submitForm(formName) {
+    //   this.$refs[formName].validate((valid) => {
+    //     if (valid) {
+    //       alert("submit!");
+    //     } else {
+    //       console.log("error submit!!");
+    //       return false;
+    //     }
+    //   });
+    // },
     handleRegister() {
       this.$refs.ruleForm.validate((valid) => {
-        // 获取signForm的实例（el-form），找到validate方法，根据验证规则rules校验是否valid
+        // 获取signForm的实例，找到validate方法，根据验证规则rules校验是否valid
         if (valid) {
           this.loading = true;
           this.$axios({
@@ -115,7 +117,7 @@ export default {
             },
           })
             .then((res) => {
-              //请求成功后执行函数(res.data.message === 'SUCCESS')
+              //请求成功后执行函数
               if (res.data.success) {
                 this.$router.push("/login"); //登录验证成功路由实现跳转
                 this.$message.success("注册成功啦，可以登录咯");
@@ -126,10 +128,12 @@ export default {
             })
             .catch(() => {
               this.$message.error("服务器连接失败，请稍后重试");
+              this.loading = false;
               console.log(err);
             });
         } else {
           console.log("error submit!!");
+          this.loading = false;
           return false;
         }
       });
