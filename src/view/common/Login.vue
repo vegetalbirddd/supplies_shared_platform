@@ -13,7 +13,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')"
+        <el-button type="primary" @click="goHome()"
           >登录</el-button
         >
       </el-form-item>
@@ -43,52 +43,57 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.loginLoading = true;
-          //后端接口
-          this.$axios
-            .post("/login", this.form)
-            .then((res) => {
-              //成功则执行
-              if (res.data.success) {
-                try {
-                  sessionStorage.setItem(
-                    "user",
-                    JSON.stringify(res?.data?.data)
-                  );
-                  sessionStorage.setItem("token", res.data.token);
-                } catch (err) {
-                  console.log(err);
-                }
-                console.log(res);
-                if(res.data.judge){
-                  this.$router.push({
-                  path: "/user",
-                });
-                }else {
-                  this.$router.push({
-                  path: "/admin",
-                });
-                }
+        // if (valid) {
+        //   this.loginLoading = true;
+        //   //后端接口
+        //   this.$axios
+        //     .post("/login", this.form)
+        //     .then((res) => {
+        //       //成功则执行
+        //       if (res.data.success) {
+        //         try {
+        //           sessionStorage.setItem(
+        //             "user",
+        //             JSON.stringify(res?.data?.data)
+        //           );
+        //           sessionStorage.setItem("token", res.data.token);
+        //         } catch (err) {
+        //           console.log(err);
+        //         }
+        //         console.log(res);
+        //         if(res.data.judge){
+        //           this.$router.push({
+        //           path: "/user",
+        //         });
+        //         }else {
+        //           this.$router.push({
+        //           path: "/admin",
+        //         });
+        //         }
                 
-              } else {
-                this.$message.error(res.data.msg);
-                this.loginLoading = false;
-              }
-            })
-            .catch((err) => {
-              this.$message.error("服务器连接失败，请稍后重试");
-              this.loginLoading = false;
-            });
-        } else {
+        //       } else {
+        //         this.$message.error(res.data.msg);
+        //         this.loginLoading = false;
+        //       }
+        //     })
+        //     .catch((err) => {
+        //       this.$message.error("服务器连接失败，请稍后重试");
+        //       this.loginLoading = false;
+        //     });
+        // } else {
+        //   return false;
+        // }
+        if(valid) {
+          this.$router.push("/user");
+        }else {
           return false;
         }
       });
     },
-    //重置页面方法
-    // resetForm(formName) {
-    //   this.$refs[formName].resetFields();
-    // },
+    // 重置页面方法
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
     //以上
     goHome() {
       this.$router.push("/user");

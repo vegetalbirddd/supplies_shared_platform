@@ -5,6 +5,9 @@
         <h2 style="color: #fff; letter-spacing: 0.2rem">
           疫情物资共享平台——后台管理系统
         </h2>
+        <router-link active-class="active" to="/user"
+            >跳转用户界面(test)</router-link
+          >
         <el-dropdown>
           <span class="el-dropdown-link">
             <img

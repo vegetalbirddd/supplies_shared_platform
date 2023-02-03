@@ -20,6 +20,9 @@
           <router-link active-class="active" to="/user/release2"
             >发布物资</router-link
           >
+          <router-link active-class="active" to="/admin" style="color:red;font-size:10px"
+            >跳转管理员(test)</router-link
+          >
         </nav>
       </div>
       <div class="box" style="padding-right: 20px">
