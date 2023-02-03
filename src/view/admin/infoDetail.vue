@@ -71,7 +71,14 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      userName: '',
+      userSupNum: 1,
+      userNeedNum: 2,
+      userSex: '',
+      userPhoneNum: '',
+      userAddress: '',
+    };
   },
   created() {},
   computed: {},

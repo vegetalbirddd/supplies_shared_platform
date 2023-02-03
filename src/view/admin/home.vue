@@ -6,7 +6,7 @@
           <div>
             <img src="../../assets/icon/user.png" alt="" />
 
-            <h4>123124241</h4>
+            <h4>{{userN}}</h4>
             <p style="font-size: 14px; color: #666">用户数量</p>
           </div>
         </li>
@@ -14,14 +14,14 @@
           <div>
             <img src="../../assets/icon/sup.png" alt="" />
           </div>
-          <h4 style="margin-bottom: 5px">99889898</h4>
+          <h4 style="margin-bottom: 5px">{{supN}}</h4>
           <p style="font-size: 14px; color: #666">发布物资数量</p>
         </li>
         <li>
           <div>
             <img src="../../assets/icon/need.png" alt="" />
           </div>
-          <h4 style="margin-bottom: 5px">898787</h4>
+          <h4 style="margin-bottom: 5px">{{needN}}</h4>
           <p style="font-size: 14px; color: #666">发布需求数量</p>
         </li>
       </ul>
@@ -32,14 +32,20 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      userN: 1,
+      supN: 2,
+      needN: 3,
+    };
   },
   created() {},
   computed: {},
   mounted() {
     this.drawLine();
+    this.getData();
   },
   methods: {
+    // 绘制折线图
     drawLine() {
       const echarts = require("echarts");
       let mycharts = echarts.init(this.$refs.mycharts);
@@ -87,6 +93,20 @@ export default {
         ],
       };
       mycharts.setOption(option);
+    },
+    // 请求后端数据接口
+    getData() {
+      this.$axios({
+        method: "get",
+        url: "/admin",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }).then((res) => {
+        this.userN = res.data.userN
+        this.supN = res.data.supN
+        this.needN = res.data.needN
+      })
     },
   },
 };

@@ -36,13 +36,13 @@
     <!-- 用户表格 -->
     <div class="table">
       <el-table :data="tables" border stripe style="width: 100%">
-        <el-table-column prop="userid" label="id" min-width="50">
+        <el-table-column prop="userId" label="id" min-width="50">
         </el-table-column>
-        <el-table-column prop="username" label="用户名" min-width="180">
+        <el-table-column prop="userName" label="用户名" min-width="180">
         </el-table-column>
-        <el-table-column prop="supnum" label="发布物资数量" min-width="180">
+        <el-table-column prop="userSupNum" label="发布物资数量" min-width="180">
         </el-table-column>
-        <el-table-column prop="neednum" label="发布需求数量" min-width="180">
+        <el-table-column prop="userNeedNum" label="发布需求数量" min-width="180">
         </el-table-column>
         <el-table-column prop="operate" label="操作" min-width="150">
           <template slot-scope="scope">
@@ -60,6 +60,7 @@
   </div>
 </template>
 <script>
+// import { getData } from "@/api/api.js";
 export default {
   data() {
     return {
@@ -67,42 +68,45 @@ export default {
       formInline: {
         username: "",
       },
-      tableData: [
-        {
-          userid: 1,
-          username: "noni",
-          supnum: 7,
-          neednum: 7,
-        },
-        {
-          userid: 2,
-          username: "n张三",
-          supnum: 62,
-          neednum: 34,
-        },
-        {
-          userid: 3,
-          username: "李四",
-          supnum: 22,
-          neednum: 11,
-        },
-        {
-          userid: 4,
-          username: "王五",
-          supnum: 42,
-          neednum: 23,
-        },
-      ],
+      tableData: [],
+      // tableData: [
+      //   {
+      //     userid: 1,
+      //     username: "noni",
+      //     supnum: 7,
+      //     neednum: 7,
+      //   },
+      //   // {
+      //   //   userid: 2,
+      //   //   username: "n张三",
+      //   //   supnum: 62,
+      //   //   neednum: 34,
+      //   // },
+      //   // {
+      //   //   userid: 3,
+      //   //   username: "李四",
+      //   //   supnum: 22,
+      //   //   neednum: 11,
+      //   // },
+      //   // {
+      //   //   userid: 4,
+      //   //   username: "王五",
+      //   //   supnum: 42,
+      //   //   neednum: 23,
+      //   // },
+      // ],
     };
   },
-  created() {},
+  created() {
+    this.fetchUserInfo();
+  },
   computed: {
     tables() {
       const input = this.formInline.username;
       if (input && this.flag) {
         this.flag = false;
         return this.tableData.filter((data) => {
-          return data.username.match(this.formInline.username);
+          return data.userName.match(this.formInline.username);
         });
       }
       return this.tableData;
@@ -122,6 +126,19 @@ export default {
     },
     handleDelete(index, row) {
       console.log(index, row);
+    },
+    fetchUserInfo() {
+      this.$axios({
+        method: "get",
+        url: "/admin/info",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      })
+     .then((res) => {
+        this.tableData = res.data
+        // console.log(this.tableData);
+      });
     },
   },
 };
