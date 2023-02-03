@@ -48,7 +48,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loginLoading = true;
-          //后端接口
+          
           this.$axios
             .post("/login", this.form)
             .then((res) => {
