@@ -37,9 +37,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="handleRegister()"
-          >注册</el-button
-        >
+        <el-button type="primary" @click="handleRegister()">注册</el-button>
         <!-- <el-button @click="resetForm('ruleForm')">重置</el-button> -->
       </el-form-item>
       <span class="back" @click="back">back</span>
@@ -100,40 +98,41 @@ export default {
       });
     },
     handleRegister() {
-      this.$refs.ruleForm.validate(valid => {
+      this.$refs.ruleForm.validate((valid) => {
         // 获取signForm的实例（el-form），找到validate方法，根据验证规则rules校验是否valid
         if (valid) {
-        this.loading = true
+          this.loading = true;
           this.$axios({
-            method: 'post',
-            url: '/signUp',
+            method: "post",
+            url: "/signUp",
             headers: {
-              'Content-Type': "application/json;charset=UTF-8"
+              "Content-Type": "application/json;charset=UTF-8",
             },
             data: {
               userAccount: this.ruleForm.account,
               userName: this.ruleForm.username,
-              userPasswd: this.ruleForm.pass
-            }
+              userPasswd: this.ruleForm.pass,
+            },
           })
-          .then(res=>{                    //请求成功后执行函数(res.data.message === 'SUCCESS')
-            if(res.data.success){
-            this.$router.push('/login')	//登录验证成功路由实现跳转
-            this.$message.success("注册成功啦，可以登录咯");
-            }else{ 
-              console.log(res)
-              this.$message.error("注册失败");
-            } 
-          })
-          .catch(() => {
-             this.$message.error("服务器连接失败，请稍后重试");
-              console.log(err)
+            .then((res) => {
+              //请求成功后执行函数(res.data.message === 'SUCCESS')
+              if (res.data.success) {
+                this.$router.push("/login"); //登录验证成功路由实现跳转
+                this.$message.success("注册成功啦，可以登录咯");
+              } else {
+                console.log(res);
+                this.$message.error("注册失败");
+              }
             })
-          } else {
-          console.log('error submit!!')
-          return false
-          }
-      })
+            .catch(() => {
+              this.$message.error("服务器连接失败，请稍后重试");
+              console.log(err);
+            });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     },
     back() {
       this.$router.push("/login");
