@@ -123,7 +123,7 @@ export default {
                 this.$message.success("注册成功啦，可以登录咯");
               } else {
                 console.log(res);
-                this.$message.error("注册失败");
+                this.$message.error(res.data.msg);
               }
             })
             .catch(() => {
