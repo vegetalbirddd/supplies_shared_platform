@@ -42,7 +42,11 @@
         </el-table-column>
         <el-table-column prop="userSupNum" label="发布物资数量" min-width="180">
         </el-table-column>
-        <el-table-column prop="userNeedNum" label="发布需求数量" min-width="180">
+        <el-table-column
+          prop="userNeedNum"
+          label="发布需求数量"
+          min-width="180"
+        >
         </el-table-column>
         <el-table-column prop="operate" label="操作" min-width="150">
           <template slot-scope="scope">
@@ -135,10 +139,11 @@ export default {
           "Content-Type": "application/json;charset=UTF-8",
         },
       })
-     .then((res) => {
-        this.tableData = res.data.data
-        // console.log(this.tableData);
-      });
+        .then((res) => {
+          this.tableData = res.data;
+          console.log(this.tableData);
+        })
+        .catch((err) => {});
     },
   },
 };
