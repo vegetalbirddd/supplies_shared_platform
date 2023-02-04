@@ -136,7 +136,7 @@ export default {
         },
       })
      .then((res) => {
-        this.tableData = res.data
+        this.tableData = res.data.data
         // console.log(this.tableData);
       });
     },

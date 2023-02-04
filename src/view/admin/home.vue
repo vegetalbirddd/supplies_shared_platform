@@ -128,8 +128,8 @@ export default {
         this.allSupNum = res.data.allSupNum;
         this.allNeedNum = res.data.allNeedNum;
         this.date = res.data.date;
-        // this.supNum = res.data.supNum;
-        // this.needNum = res.data.needNum;
+        this.supNum = res.data.supNum;
+        this.needNum = res.data.needNum;
         console.log( this.date)
         this.drawLine()
       });
