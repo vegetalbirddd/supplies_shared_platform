@@ -6,7 +6,7 @@
           <div>
             <img src="../../assets/icon/user.png" alt="" />
 
-            <h4>{{userN}}</h4>
+            <h4>{{ allUserNum }}</h4>
             <p style="font-size: 14px; color: #666">用户数量</p>
           </div>
         </li>
@@ -14,14 +14,14 @@
           <div>
             <img src="../../assets/icon/sup.png" alt="" />
           </div>
-          <h4 style="margin-bottom: 5px">{{supN}}</h4>
+          <h4 style="margin-bottom: 5px">{{ allSupNum }}</h4>
           <p style="font-size: 14px; color: #666">发布物资数量</p>
         </li>
         <li>
           <div>
             <img src="../../assets/icon/need.png" alt="" />
           </div>
-          <h4 style="margin-bottom: 5px">{{needN}}</h4>
+          <h4 style="margin-bottom: 5px">{{ allNeedNum }}</h4>
           <p style="font-size: 14px; color: #666">发布需求数量</p>
         </li>
       </ul>
@@ -33,16 +33,39 @@
 export default {
   data() {
     return {
-      userN: 1,
-      supN: 2,
-      needN: 3,
+      allUserNum: 1,
+      allSupNum: 2,
+      allNeedNum: 3,
+      date: ["a","b","c"],
+      supNum: [3,2,3],
+      needNum: [1,4,2],
+      // echarts: [
+      //   {
+      //     supNum: 7,
+      //     needNum: 1,
+      //     date: "day1",
+      //   },
+      //   {
+      //     supNum: 5,
+      //     needNum: 5,
+      //     date: "day2",
+      //   },
+      //   {
+      //     supNum: 8,
+      //     needNum: 6,
+      //     date: "day3",
+      //   },
+      // ],
     };
   },
-  created() {},
+  created() {
+  },
   computed: {},
   mounted() {
-    this.drawLine();
     this.getData();
+    this.drawLine();
+    console.log(this.date)
+    
   },
   methods: {
     // 绘制折线图
@@ -73,7 +96,7 @@ export default {
         xAxis: {
           type: "category",
           boundaryGap: false,
-          data: ["day1", "dya2", "day3", "day4", "day5", "day6", "day7"],
+          data: this.date,
         },
         yAxis: {
           type: "value",
@@ -82,13 +105,12 @@ export default {
           {
             name: "发布物资数量",
             type: "line",
-
-            data: [7, 5, 6, 9, 10, 9, 8],
+            data: this.supNum,
           },
           {
             name: "发布需求数量",
             type: "line",
-            data: [1, 2, 5, 9, 11, 8, 6],
+            data: this.needNum,
           },
         ],
       };
@@ -103,10 +125,15 @@ export default {
           "Content-Type": "application/json;charset=UTF-8",
         },
       }).then((res) => {
-        this.userN = res.data.userN
-        this.supN = res.data.supN
-        this.needN = res.data.needN
-      })
+        
+        this.allUserNum = res.data.allUserNum;
+        this.allSupNum = res.data.allSupNum;
+        this.allNeedNum = res.data.allNeedNum;
+        this.date = res.data.date;
+        // this.supNum = res.data.supNum;
+        // this.needNum = res.data.needNum;
+        
+      });
     },
   },
 };
