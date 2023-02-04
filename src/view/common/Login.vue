@@ -2,17 +2,17 @@
   <div class="login">
     <el-form :model="form" :rules="rules" ref="ruleForm" id="login_box">
       <h2>LOGIN</h2>
-      <el-form-item prop="account">
+      <el-form-item prop="userAccount">
         <el-input
           placeholder="请输入账号"
-          v-model.number="form.account"
+          v-model.number="form.userAccount"
         ></el-input>
       </el-form-item>
-      <el-form-item prop="password">
+      <el-form-item prop="userPasswd">
         <el-input
           type="password"
           placeholder="请输入密码"
-          v-model="form.password"
+          v-model="form.userPasswd"
         ></el-input>
       </el-form-item>
       <el-form-item>
@@ -30,16 +30,16 @@ export default {
   data() {
     return {
       form: {
-        account: "",
-        password: "",
+        userAccount: "",
+        userPasswd: "",
       },
       loginLoading: false, //登录状态校验
       rules: {
-        account: [
+        userAccount: [
           { required: true, message: "请输入账号" },
           { type: "number", message: "账号必须为数字值" },
         ],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        userPasswd: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
     };
   },
