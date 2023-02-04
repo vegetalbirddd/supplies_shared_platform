@@ -63,8 +63,6 @@ export default {
   computed: {},
   mounted() {
     this.getData();
-    this.drawLine();
-    console.log(this.date)
     
   },
   methods: {
@@ -92,13 +90,13 @@ export default {
           feature: {
             saveAsImage: {},
           },
-        },
+        },  
         xAxis: {
           type: "category",
           boundaryGap: false,
           data: this.date,
         },
-        yAxis: {
+        yAxis: {  
           type: "value",
         },
         series: [
@@ -117,7 +115,7 @@ export default {
       mycharts.setOption(option);
     },
     // 请求后端数据接口
-    getData() {
+    async getData() {
       this.$axios({
         method: "get",
         url: "/admin",
@@ -132,7 +130,8 @@ export default {
         this.date = res.data.date;
         // this.supNum = res.data.supNum;
         // this.needNum = res.data.needNum;
-        
+        console.log( this.date)
+        this.drawLine()
       });
     },
   },
