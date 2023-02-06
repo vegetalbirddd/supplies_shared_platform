@@ -22,15 +22,16 @@
         <h3>基础信息</h3>
         <el-button @click="show()" plain>编辑</el-button>
       </div>
-      <el-row>
-        <el-col :span="8"
-          ><div>账号：{{ editForm.userAccount }}</div></el-col
-        >
-        <el-col :span="8"
+      <el-row
+        ><el-col :span="8"
           ><div class="grid-content bg-purple-light">
             id：{{ editForm.userId }}
           </div></el-col
         >
+        <el-col :span="8"
+          ><div>用户账号：{{ editForm.userAccount }}</div></el-col
+        >
+
         <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
       </el-row>
       <el-row>
