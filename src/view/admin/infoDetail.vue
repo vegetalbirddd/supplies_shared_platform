@@ -169,7 +169,7 @@ export default {
     getUserList() {
       this.$axios({
         method: "get",
-        url: "/admin/infoDetail",
+        url: "/admin/infoDetail/" + this.userId,
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
         },
@@ -185,12 +185,7 @@ export default {
         if (!valid) return;
         // 发起修改用户信息的数据请求
         const res = await this.$axios
-          .put("/admin/infoDetail", {
-            userName: this.editForm.userName,
-            userSex: this.editForm.userSex,
-            userPhoneNum: this.userPhoneNum,
-            userAddress: this.editForm.userAddress,
-          })
+          .put("/admin/infoDetail/" + this.userId, this.editForm)
           .then((res) => {
             // 请求成功
             // console.log(res);
