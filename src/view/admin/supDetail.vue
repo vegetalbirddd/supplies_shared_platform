@@ -3,38 +3,84 @@
     <div class="sup-top">
       <h3>物资详情</h3>
       <div class="button">
-        <el-button type="primary">编辑</el-button>
+        <el-button type="primary" @click="dialogFormVisible = true"
+          >编辑</el-button
+        >
         <el-button @click="back()">返回</el-button>
       </div>
     </div>
     <div class="sup-bottom">
-      <p>
-        <span>提供 </span
-        >（一个长长长长长长长长长长长长长长长长长长的药名）（类型）
-      </p>
-      <p>
-        <span>位置 </span
-        >湖南省湘潭市岳塘区福星东路88号湖南工程学院新校区滨江10-666
-      </p>
-      <p><span>提供者 </span>提供者用户名</p>
-      <p><span>联系方式 </span>12345678901（手机号码）12345678901（微信）</p>
-      <p>
-        <span>描述说明 </span
-        >哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗。哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗
-      </p>
+      <p><span>提供 </span>{{ editForm.supName }}（{{ editForm.supType }}）</p>
+      <p><span>位置 </span>{{ editForm.supLocation }}</p>
+      <p><span>提供者 </span>{{ editForm.userName }}</p>
+      <p><span>联系方式 </span>{{ editForm.supContact }}</p>
+      <p><span>描述说明 </span>{{ editForm.supInstruction }}</p>
     </div>
+    <!-- 编辑信息对话框 -->
+    <el-dialog title="编辑物资信息" :visible.sync="dialogFormVisible">
+      <el-form :model="editForm">
+        <el-form-item label="物资名称" :label-width="formLabelWidth">
+          <el-input v-model="editForm.supName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="物资类型" :label-width="formLabelWidth">
+          <el-select v-model="editForm.supType" placeholder="请选择物资类型">
+            <el-option label="防护用具" value="防护用具"></el-option>
+            <el-option label="药品" value="药品"></el-option>
+            <el-option label="其他" value="其他"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="联系方式" :label-width="formLabelWidth">
+          <el-input v-model="editForm.supContact" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="描述说明" :label-width="formLabelWidth">
+          <el-input v-model="editForm.supInstruction" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogFormVisible = false"
+          >确 定</el-button
+        >
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      // supData: {
+      //   supName: "口罩",
+      //   supType: "防护用具",
+      //   userName: "张三",
+      //   supLocation: "xx",
+      //   supContact: "abc",
+      //   supInstruction: "123456",
+      // },
+      dialogFormVisible: false,
+      editForm: {
+        supName: "口罩",
+        supType: "防护用具",
+        userName: "张三",
+        supLocation: "xx",
+        supContact: "abc",
+        supInstruction: "123456",
+      },
+      formLabelWidth: "120px",
+    };
   },
   created() {},
+  mounted() {
+    this.getSupData();
+  },
   computed: {},
   methods: {
     back() {
       this.$router.push("/admin/sup");
+    },
+    async getSupData() {
+      let res = await this.$axios.get("/admin/supDetail");
+      this.editForm = res.data;
     },
   },
 };
