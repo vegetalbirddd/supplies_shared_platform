@@ -25,7 +25,7 @@
       <el-row
         ><el-col :span="8"
           ><div class="grid-content bg-purple-light">
-            id：{{ editForm.userId }}
+            id：{{ editForm.id }}
           </div></el-col
         >
         <el-col :span="8"
@@ -130,7 +130,7 @@ export default {
       edit: false, //校验是否处于编辑状态
       formLabelWidth: "120px",
       editForm: {
-        userId: 1,
+        id: 1,
         userName: "xxx",
         userAccount: 12345,
         userSupNum: 1,
@@ -169,10 +169,13 @@ export default {
     getUserList() {
       this.$axios({
         method: "get",
-        url: "/admin/infoDetail/" + this.userId,
+        url: `/admin/infoDetail?id=${id}`,
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
         },
+        // params:{
+        //   id
+        // }
       }).then((res) => {
         this.editForm = res.data;
         this.supName = res.data.supName;
@@ -184,8 +187,8 @@ export default {
       this.$refs.editFormRef.validate(async (valid) => {
         if (!valid) return;
         // 发起修改用户信息的数据请求
-        const res = await this.$axios
-          .put("/admin/infoDetail/" + this.userId, this.editForm)
+        await this.$axios
+          .put(`/admin/infoDetail?id=${id}`, this.editForm)
           .then((res) => {
             // 请求成功
             // console.log(res);

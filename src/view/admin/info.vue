@@ -46,7 +46,7 @@
         </el-table-column>
         <el-table-column prop="operate" label="操作" min-width="150">
           <template slot-scope="scope">
-            <el-button size="medium" @click="handleCheck()">查看</el-button>
+            <el-button size="medium" @click="handleCheck(scope.$index, scope.row)">查看</el-button>
             <el-button
               size="medium"
               type="danger"
@@ -121,8 +121,8 @@ export default {
       this.$refs[form].resetFields();
       // console.log(form);
     },
-    handleCheck() {
-      this.$router.push("/admin/infoDetail");
+    handleCheck(index, row) {
+      this.$router.push({path: "/admin/infoDetail",query: {id: row.id}});
     },
     handleDelete(index, row) {
       console.log(index, row);

@@ -121,9 +121,9 @@ export default {
           "Content-Type": "application/json;charset=UTF-8",
         },
       }).then((res) => {
-        this.allUserNum = res.data.allUserNum;
-        this.allSupNum = res.data.allSupNum;
-        this.allNeedNum = res.data.allNeedNum;
+        this.allUserNum = res.data.map.allUserNum;
+        this.allSupNum = res.data.map.allSupNum;
+        this.allNeedNum = res.data.map.allNeedNum;
         this.date = res.data.date;
         this.supNum = res.data.supNum;
         this.needNum = res.data.needNum;
