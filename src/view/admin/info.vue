@@ -36,17 +36,13 @@
     <!-- 用户表格 -->
     <div class="table">
       <el-table :data="tables" border stripe style="width: 100%">
-        <el-table-column prop="userId" label="id" min-width="50">
+        <el-table-column prop="id" label="id" min-width="50">
         </el-table-column>
         <el-table-column prop="userName" label="用户名" min-width="180">
         </el-table-column>
         <el-table-column prop="userSupNum" label="发布物资数量" min-width="180">
         </el-table-column>
-        <el-table-column
-          prop="userNeedNum"
-          label="发布需求数量"
-          min-width="180"
-        >
+        <el-table-column prop="userNeedNum" label="发布需求数量" min-width="180">
         </el-table-column>
         <el-table-column prop="operate" label="操作" min-width="150">
           <template slot-scope="scope">
@@ -139,11 +135,10 @@ export default {
           "Content-Type": "application/json;charset=UTF-8",
         },
       })
-        .then((res) => {
-          this.tableData = res.data;
-          console.log(this.tableData);
-        })
-        .catch((err) => {});
+     .then((res) => {
+        this.tableData = res.data.data
+        console.log(res);
+      });
     },
   },
 };

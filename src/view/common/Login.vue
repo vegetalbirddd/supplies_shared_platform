@@ -6,6 +6,7 @@
         <el-input
           placeholder="请输入账号"
           v-model.number="form.userAccount"
+          maxlength="15"
         ></el-input>
       </el-form-item>
       <el-form-item prop="userPasswd">

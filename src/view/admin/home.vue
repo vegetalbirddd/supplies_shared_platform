@@ -36,9 +36,9 @@ export default {
       allUserNum: 1,
       allSupNum: 2,
       allNeedNum: 3,
-      date: ["a","b","c"],
-      supNum: [3,2,3],
-      needNum: [1,4,2],
+      date: ["a", "b", "c"],
+      supNum: [3, 2, 3],
+      needNum: [1, 4, 2],
       // echarts: [
       //   {
       //     supNum: 7,
@@ -58,12 +58,10 @@ export default {
       // ],
     };
   },
-  created() {
-  },
+  created() {},
   computed: {},
   mounted() {
     this.getData();
-    
   },
   methods: {
     // 绘制折线图
@@ -90,13 +88,13 @@ export default {
           feature: {
             saveAsImage: {},
           },
-        },  
+        },
         xAxis: {
           type: "category",
           boundaryGap: false,
           data: this.date,
         },
-        yAxis: {  
+        yAxis: {
           type: "value",
         },
         series: [
@@ -123,15 +121,14 @@ export default {
           "Content-Type": "application/json;charset=UTF-8",
         },
       }).then((res) => {
-        
         this.allUserNum = res.data.allUserNum;
         this.allSupNum = res.data.allSupNum;
         this.allNeedNum = res.data.allNeedNum;
         this.date = res.data.date;
         this.supNum = res.data.supNum;
         this.needNum = res.data.needNum;
-        console.log( this.date)
-        this.drawLine()
+        console.log(this.date);
+        this.drawLine();
       });
     },
   },

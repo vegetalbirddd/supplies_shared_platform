@@ -8,62 +8,116 @@
       </div>
       <div class="user-bottom">
         <img class="avatar" src="../../assets/Home/user.jpg" alt="" />
-        <h3>用户名</h3>
-        <p>发布&nbsp;&nbsp;&nbsp;物资&nbsp;x&nbsp;|&nbsp;需求&nbsp;x</p>
+        <h3>{{ editForm.userName }}</h3>
+        <p>
+          发布&nbsp;&nbsp;&nbsp;物资&nbsp;{{
+            editForm.userSupNum
+          }}&nbsp;|&nbsp;需求&nbsp;{{ editForm.userNeedNum }}
+        </p>
       </div>
     </div>
     <!-- 第二部分 -->
     <div class="bg">
       <div class="user-top">
         <h3>基础信息</h3>
-        <el-button>编辑</el-button>
+        <el-button @click="show()" plain>编辑</el-button>
       </div>
       <el-row>
         <el-col :span="8"
-          ><div class="grid-content bg-purple">用户名：xxx</div></el-col
+          ><div>账号：{{ editForm.userAccount }}</div></el-col
         >
         <el-col :span="8"
-          ><div class="grid-content bg-purple-light">性别：未知</div></el-col
-        >
-        <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="8"
-          ><div class="grid-content bg-purple">发布物资数：x</div></el-col
-        >
-        <el-col :span="8"
-          ><div class="grid-content bg-purple-light">手机号码：x</div></el-col
+          ><div class="grid-content bg-purple-light">
+            性别：{{ editForm.userSex }}
+          </div></el-col
         >
         <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
       </el-row>
       <el-row>
         <el-col :span="8"
-          ><div class="grid-content bg-purple">发布需求数：x</div></el-col
+          ><div class="grid-content bg-purple">
+            发布物资数：{{ editForm.userSupNum }}
+          </div></el-col
+        >
+        <el-col :span="8"
+          ><div class="grid-content bg-purple-light">
+            手机号码：{{ editForm.userPhoneNum }}
+          </div></el-col
+        >
+        <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="8"
+          ><div class="grid-content bg-purple">
+            发布需求数：{{ editForm.userNeedNum }}
+          </div></el-col
         >
         <el-col :span="12"
           ><div class="grid-content bg-purple-light">
-            联系方式：湖南省湘潭市岳塘区福星中路88号湖南工程学院新校区
+            联系地址：{{ editForm.userAddress }}
           </div></el-col
         >
         <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
       </el-row>
     </div>
+    <!-- 编辑信息对话框 -->
+    <el-dialog title="基础信息" :visible.sync="edit" @close="handleClose()">
+      <el-form ref="editFormRef" :model="editForm" :rules="editFormRules">
+        <el-form-item
+          label="用户名"
+          :label-width="formLabelWidth"
+          prop="userName"
+        >
+          <el-input v-model="editForm.userName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="性别" :label-width="formLabelWidth" prop="userSex">
+          <el-select v-model="editForm.userSex">
+            <el-option label="男" value="男"></el-option>
+            <el-option label="女" value="女"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          label="手机号码"
+          :label-width="formLabelWidth"
+          prop="userPhoneNum"
+        >
+          <el-input
+            v-model="editForm.userPhoneNum"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          label="联系地址"
+          :label-width="formLabelWidth"
+          prop="userAddress"
+        >
+          <el-input
+            v-model="editForm.userAddress"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="handleSave()">保存</el-button>
+        <el-button @click="handleClose()">取 消</el-button>
+      </div>
+    </el-dialog>
     <!-- 第三部分 -->
     <div class="bg">
       <div class="user-top">
         <h3>发布物资</h3>
       </div>
-      <div v-for="o in 4" :key="o" class="item">
-        {{ "列表内容 " + o }}
+      <div v-for="(item,index) in supName" :key="index" class="item">
+        - {{ item.supName }}
       </div>
     </div>
     <!-- 第四部分 -->
     <div class="bg">
       <div class="user-top">
-        <h3>发布需求数</h3>
+        <h3>发布需求</h3>
       </div>
-      <div v-for="o in 4" :key="o" class="item">
-        {{ "列表内容 " + o }}
+      <div v-for="(item,index) in needName" :key="index" class="item">
+       - {{ item.needName }}
       </div>
     </div>
   </div>
@@ -72,17 +126,89 @@
 export default {
   data() {
     return {
-      userName: '',
-      userSupNum: 1,
-      userNeedNum: 2,
-      userSex: '',
-      userPhoneNum: '',
-      userAddress: '',
+      edit: false, //校验是否处于编辑状态
+      formLabelWidth: "120px",
+      editForm: {
+        userName: "xxx",
+        userAccount: 12345,
+        userSupNum: 1,
+        userNeedNum: 2,
+        userSex: "未填写",
+        userPhoneNum: "未填写",
+        userAddress: "未填写",
+        supName: [],
+        needName: [],
+      },
+      // 修改表单的验证规则
+      editFormRules: {
+        userName: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+        ],
+      },
     };
   },
-  created() {},
+  created() {
+    this.getUserList()
+  },
   computed: {},
   methods: {
+    show() {
+      this.edit = true;
+    },
+    // async getUserList() {
+    //   const { data: res } = await this.$axios.get("/admin/infoDetail", {
+    //     params: this.queryInfo,
+    //   });
+    //   if (res.meta.status !== 200) return this.$message.error("数据获取失败");
+    //   this.userList = res.data.users;
+    //   this.total = res.data.total;
+    //   console.log(res);
+    // },
+    getUserList() {
+      this.$axios.get("/admin/infoDetail",this.editForm)
+      .then((res) => {
+        this.editForm = res.data
+        this.supName = res.data.sup
+        this.needName = res.data.need
+      })
+    },
+    handleSave() {
+      this.$refs.editFormRef.validate(async (valid) => {
+        if (!valid) return;
+        // 发起修改用户信息的数据请求
+        const res = await this.$axios
+          .put("/admin/infoDetail", {
+            userName: this.editForm.userName,
+            userSex: this.editForm.userSex,
+            userPhoneNum: this.userPhoneNum,
+            userAddress: this.editForm.userAddress,
+          })
+          .then((res) => {
+            // 请求成功
+            // console.log(res);
+            if (res) {
+              // 刷新数据列表
+              this.getUserList();
+              // 提示修改成功
+              this.$message.success("更新用户信息成功！");
+              // 关闭对话框
+              this.edit = false;
+            } else {
+              this.$message.error("更新用户信息失败！");
+              this.edit = true;
+            }
+          })
+          .catch((err) => {
+            // 请求失败，保持不关闭对话框
+            this.edit = true;
+            return this.$message.error("服务器连接失败，请稍后重试");
+          });
+      });
+    },
+    handleClose() {
+      this.$refs.editFormRef.resetFields();
+      this.edit = false;
+    },
     back() {
       this.$router.push("/admin/info");
     },
@@ -134,5 +260,9 @@ h3 {
 }
 .el-col {
   margin-right: 15px;
+}
+.el-input,
+.el-select {
+  width: 85% !important;
 }
 </style>
