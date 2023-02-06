@@ -28,7 +28,7 @@
         >
         <el-col :span="8"
           ><div class="grid-content bg-purple-light">
-            性别：{{ editForm.userSex }}
+            id：{{ editForm.userId }}
           </div></el-col
         >
         <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
@@ -70,12 +70,12 @@
         >
           <el-input v-model="editForm.userName" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="性别" :label-width="formLabelWidth" prop="userSex">
+        <!-- <el-form-item label="性别" :label-width="formLabelWidth" prop="userSex">
           <el-select v-model="editForm.userSex">
             <el-option label="男" value="男"></el-option>
             <el-option label="女" value="女"></el-option>
           </el-select>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item
           label="手机号码"
           :label-width="formLabelWidth"
@@ -107,8 +107,8 @@
       <div class="user-top">
         <h3>发布物资</h3>
       </div>
-      <div v-for="(item,index) in supName" :key="index" class="item">
-        - {{ item.supName }}
+      <div v-for="(item, index) in supName" :key="index" class="item">
+        - {{ item }}
       </div>
     </div>
     <!-- 第四部分 -->
@@ -116,8 +116,8 @@
       <div class="user-top">
         <h3>发布需求</h3>
       </div>
-      <div v-for="(item,index) in needName" :key="index" class="item">
-       - {{ item.needName }}
+      <div v-for="(item, index) in needName" :key="index" class="item">
+        - {{ item }}
       </div>
     </div>
   </div>
@@ -129,16 +129,17 @@ export default {
       edit: false, //校验是否处于编辑状态
       formLabelWidth: "120px",
       editForm: {
+        userId: 1,
         userName: "xxx",
         userAccount: 12345,
         userSupNum: 1,
         userNeedNum: 2,
-        userSex: "未填写",
+        // userSex: "未填写",
         userPhoneNum: "未填写",
         userAddress: "未填写",
-        supName: [],
-        needName: [],
       },
+      supName: [],
+      needName: [],
       // 修改表单的验证规则
       editFormRules: {
         userName: [
@@ -148,7 +149,7 @@ export default {
     };
   },
   created() {
-    this.getUserList()
+    this.getUserList();
   },
   computed: {},
   methods: {
@@ -165,12 +166,18 @@ export default {
     //   console.log(res);
     // },
     getUserList() {
-      this.$axios.get("/admin/infoDetail",this.editForm)
-      .then((res) => {
-        this.editForm = res.data
-        this.supName = res.data.sup
-        this.needName = res.data.need
-      })
+      this.$axios({
+        method: "get",
+        url: "/admin/infoDetail",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }).then((res) => {
+        this.editForm = res.data;
+        this.supName = res.data.supName;
+        this.needName = res.data.needName;
+        console.log(res);
+      });
     },
     handleSave() {
       this.$refs.editFormRef.validate(async (valid) => {
