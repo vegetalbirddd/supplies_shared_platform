@@ -167,6 +167,7 @@ export default {
     //   console.log(res);
     // },
     getUserList() {
+      const id =this.$route.query.id
       this.$axios({
         method: "get",
         url: `/admin/infoDetail?id=${id}`,

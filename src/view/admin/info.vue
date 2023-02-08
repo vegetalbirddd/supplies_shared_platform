@@ -123,6 +123,7 @@ export default {
     },
     handleCheck(index, row) {
       this.$router.push({path: "/admin/infoDetail",query: {id: row.id}});
+      console.log(row.id)
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -136,7 +137,7 @@ export default {
         },
       })
      .then((res) => {
-        this.tableData = res.data.data
+        this.tableData = res.data
         console.log(res);
       });
     },
