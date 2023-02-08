@@ -176,15 +176,14 @@ export default {
       // if (row.isSupSolve == "未解决") {
       //   row.isSupSolve = "已解决";
       // } else if (row.isSupSolve == "已解决") row.isSupSolve = "未解决";
-
       let res = await this.$axios.post("/admin/sup", {
         isSupSolve: row.isSupSolve,
       });
       if (res.data.isSolve) {
         this.$message.success("修改成功");
         if (row.isSupSolve == "未解决") {
-        row.isSupSolve = "已解决";
-      } else if (row.isSupSolve == "已解决") row.isSupSolve = "未解决";
+          row.isSupSolve = "已解决";
+        } else if (row.isSupSolve == "已解决") row.isSupSolve = "未解决";
       } else this.$message.error("修改失败");
     },
     // 展示按钮
@@ -207,8 +206,10 @@ export default {
       let res = await this.$axios.post("/admin/sup", {
         supId: row.supId,
       });
-      if (res.data.deleteMessage) this.$message.success("删除成功");
-      else this.$message.error("删除失败");
+      if (res.data.isDelete) {
+        this.$message.success("删除成功");
+        this.getTableData();
+      } else this.$message.error("删除失败");
     },
   },
 };

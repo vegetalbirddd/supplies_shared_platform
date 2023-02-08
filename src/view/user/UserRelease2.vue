@@ -91,18 +91,20 @@ export default {
     };
   },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+    submitForm() {
+      this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          alert("submit!");
+          this.$axios.post("/user/release2",this.ruleForm)
+          this.$refs.ruleForm.resetFields();
+          this.$message.success("提交成功！")
         } else {
-          console.log("error submit!!");
+           this.$message.error("提交失败！")
           return false;
         }
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    resetForm() {
+      this.$refs.ruleForm.resetFields();
     },
   },
 };
