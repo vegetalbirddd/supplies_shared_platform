@@ -178,7 +178,7 @@ export default {
         this.editForm = res.data;
         this.supName = res.data.supName;
         this.needName = res.data.needName;
-        // console.log('this.$router.query ---> ' + this.$route.query.id)
+        // console.log('this.$route.query ---> ' + this.$route.query.id)
       });
     },
     handleSave() {
