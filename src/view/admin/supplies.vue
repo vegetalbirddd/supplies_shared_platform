@@ -179,7 +179,7 @@ export default {
       let res = await this.$axios.post("/admin/sup", {
         isSupSolve: row.isSupSolve,
       });
-      if (res.data.isSolve) {
+      if (res.data.isSolve == 1) {
         this.$message.success("修改成功");
         if (row.isSupSolve == "未解决") {
           row.isSupSolve = "已解决";
@@ -194,7 +194,7 @@ export default {
       let res = await this.$axios.post("/admin/sup", {
         isSupShow: row.isSupShow,
       });
-      if (res.data.isShow) {
+      if (res.data.isShow == 1) {
         this.$message.success("修改成功");
         if (row.isSupShow == "上线") {
           row.isSupShow = "下线";
@@ -206,7 +206,7 @@ export default {
       let res = await this.$axios.post("/admin/sup", {
         supId: row.supId,
       });
-      if (res.data.isDelete) {
+      if (res.data.isDelete == 1) {
         this.$message.success("删除成功");
         this.getTableData();
       } else this.$message.error("删除失败");
