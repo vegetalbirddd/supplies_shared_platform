@@ -151,6 +151,7 @@ export default {
   },
   created() {
     this.getUserList();
+    
   },
   computed: {},
   methods: {
@@ -169,18 +170,15 @@ export default {
     getUserList() {
       this.$axios({
         method: "get",
-        url: `/admin/infoDetail?id=${id}`,
+        url: `/admin/infoDetail?id=${this.$route.query.id}`,
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
         },
-        // params:{
-        //   id
-        // }
       }).then((res) => {
         this.editForm = res.data;
         this.supName = res.data.supName;
         this.needName = res.data.needName;
-        console.log(res);
+        // console.log('this.$router.query ---> ' + this.$route.query.id)
       });
     },
     handleSave() {

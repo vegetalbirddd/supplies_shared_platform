@@ -122,7 +122,8 @@ export default {
       // console.log(form);
     },
     handleCheck(index, row) {
-      this.$router.push({path: "/admin/infoDetail",query: {id: row.id}});
+      this.$router.push({name: "aInfoD",query: {id: row.id}});
+      // console.log('row.id ---> '+row.id)
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -136,8 +137,8 @@ export default {
         },
       })
      .then((res) => {
-        this.tableData = res.data.data
-        console.log(res);
+        this.tableData = res.data
+        // console.log(res);
       });
     },
   },
