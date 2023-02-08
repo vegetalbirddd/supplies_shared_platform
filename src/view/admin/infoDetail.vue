@@ -175,7 +175,8 @@ export default {
           "Content-Type": "application/json;charset=UTF-8",
         },
       }).then((res) => {
-        this.editForm = res.data;
+        // this.editForm = res.data;  // 前端测试
+        this.editForm = res.data.data;  // 后端测试
         this.supName = res.data.supName;
         this.needName = res.data.needName;
         // console.log('this.$route.query ---> ' + this.$route.query.id)
