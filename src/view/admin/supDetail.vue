@@ -78,12 +78,12 @@ export default {
       this.$router.push("/admin/sup");
     },
     async getSupData() {
-      let res = await this.$axios.get("/admin/supDetail");
+      let res = await this.$axios.get(`/admin/supDetail?supId=${this.$route.query.supId}`);
       this.editForm = res.data;
     },
     async handleSave() {
       const res = this.$axios
-        .put("/admin/supDetail", this.editForm)
+        .put(`/admin/supDetail?supId=${this.$route.query.supId}`, this.editForm)
         .then((res) => {
           if (res) {
             // 刷新数据列表

@@ -187,7 +187,7 @@ export default {
         if (!valid) return;
         // 发起修改用户信息的数据请求
         await this.$axios
-          .put(`/admin/infoDetail?id=${id}`, this.editForm)
+          .put(`/admin/infoDetail?id=${this.$route.query.id}`, this.editForm)
           .then((res) => {
             // 请求成功
             // console.log(res);
