@@ -54,7 +54,7 @@ export default {
   computed: {},
   methods: {
     back() {
-      this.$router.push("/user/supplies");
+      this.$router.go(-1)
     },
   },
 };
