@@ -5,15 +5,68 @@
         <div class="user">
           <img src="../../assets/Home/user.jpg" />
           <div class="wordInfo">
-            <p>姓名<span>noni</span></p>
-            <p>联系方式<span>12345678901</span></p>
+            <p>
+              姓名<span>{{ editForm.userName }}</span>
+            </p>
+            <p>
+              账号<span>{{ editForm.userAccount }}</span>
+            </p>
           </div>
         </div>
       </el-header>
       <el-main>
+        <el-card class="info">
+          <div slot="header" class="clearfix">
+            <b style="font-size: 20px">基础信息</b>
+            <el-button
+              style="float: right"
+              size="mini"
+              @click="showEdit()"
+              plain
+              >编辑</el-button
+            >
+          </div>
+          <div>
+            <el-row
+              ><el-col :span="10"
+                ><div class="grid-content bg-purple-light">
+                  id：{{ editForm.id }}
+                </div></el-col
+              >
+              <el-col :span="12"
+                ><div>账号：{{ editForm.userAccount }}</div></el-col
+              >
+            </el-row>
+            <el-row>
+              <el-col :span="10"
+                ><div class="grid-content bg-purple">
+                  发布物资数：{{ editForm.userSupNum }}
+                </div></el-col
+              >
+              <el-col :span="12"
+                ><div class="grid-content bg-purple-light">
+                  手机号码：{{ editForm.userPhoneNum }}
+                </div></el-col
+              >
+            </el-row>
+            <el-row>
+              <el-col :span="10"
+                ><div class="grid-content bg-purple">
+                  发布需求数：{{ editForm.userNeedNum }}
+                </div></el-col
+              >
+              <el-col :span="12"
+                ><div class="grid-content bg-purple-light">
+                  联系地址：{{ editForm.userAddress }}
+                </div></el-col
+              >
+            </el-row>
+          </div>
+        </el-card>
+        <br /><br />
         <el-card class="published">
           <div slot="header" class="clearfix">
-            <span>我发布的</span>
+            <b style="font-size: 20px">我发布的</b>
             <el-button
               @click="preview"
               style="float: right; padding: 3px 0"
@@ -22,47 +75,90 @@
             >
           </div>
           <div
-            v-for="o in 4"
-            :key="o"
+            v-for="(item, index) in supName"
+            :key="index"
             class="text item"
             style="margin-bottom: 15px"
           >
-            {{ "物资信息 " + o }}
+            - {{ item }}
           </div>
         </el-card>
         <br /><br />
         <el-card class="acquired">
           <div slot="header" class="clearfix">
-            <span>已获得的</span>
+            <b style="font-size: 20px">已获得的</b>
           </div>
           <div
-            v-for="o in 4"
-            :key="o"
+            v-for="(item, index) in needName"
+            :key="index"
             class="text item"
             style="margin-bottom: 15px"
           >
-            {{ "物资信息 " + o }}
+            - {{ item }}
           </div>
         </el-card>
       </el-main>
     </el-container>
+    <!-- 编辑信息对话框 -->
+    <el-dialog
+      title="编辑基础信息"
+      :visible.sync="edit"
+      @close="closeEdit()"
+      class="edit"
+    >
+      <el-form ref="editFormRef" :model="editForm">
+        <el-form-item
+          label="用户名"
+          :label-width="formLabelWidth"
+          prop="userName"
+        >
+          <el-input v-model="editForm.userName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="手机号码"
+          :label-width="formLabelWidth"
+          prop="userPhoneNum"
+        >
+          <el-input
+            v-model="editForm.userPhoneNum"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          label="联系地址"
+          :label-width="formLabelWidth"
+          prop="userAddress"
+        >
+          <el-input
+            v-model="editForm.userAddress"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="saveEdit()">保存</el-button>
+        <el-button @click="closeEdit()">取 消</el-button>
+      </div>
+    </el-dialog>
+    <!-- 奖状信息框 -->
     <el-dialog
       title="证书预览和下载"
       :visible.sync="dialogVisible"
       width="60%"
       :before-close="handleClose"
+      class="certificate"
     >
       <div id="pdfDom">
         <div class="proBox">
           <p class="tit"></p>
           <!-- <p class="proid"><span>编号：</span> <span>xxjj2021412</span></p> -->
           <p class="con">
-            <span class="con-name">xxx</span>
+            <span class="con-name">{{ editForm.userName }}</span>
             同志乐于助人，在疫情期间将自己的物资分享给他人，符合社会主义核心价值观，值得表扬，再接再厉。
           </p>
           <div class="con-unit">
             <p>计算机科学与技术2020级</p>
-            <p class="time">202x年xx月xx日</p>
+            <p class="time">{{ editForm.presentDate }}</p>
           </div>
           <!-- <p class=" con-footer">xxxxx 监制</p> -->
 
@@ -93,6 +189,22 @@
 export default {
   data() {
     return {
+      // 用户相关数据
+      edit: false,
+      formLabelWidth: "120px",
+      editForm: {
+        id: 1,
+        userName: "xxx",
+        userAccount: 12345,
+        userSupNum: 1,
+        userNeedNum: 2,
+        // userSex: "未填写",
+        userPhoneNum: "未填写",
+        userAddress: "未填写",
+      },
+      supName: [],
+      needName: [],
+      //奖状的相关数据
       dialogVisible: false,
       pageData: null, //接收html格式代码
       htmlTitle: "荣誉证书",
@@ -101,9 +213,51 @@ export default {
       downType: true, // false为 pdf , true为图片
     };
   },
-  created() {},
+  created() {
+    this.getData();
+  },
   computed: {},
   methods: {
+    showEdit() {
+      this.edit = true;
+    },
+    async getData() {
+      const res = await this.$axios.get(`/user/info`);
+      this.editForm = res.data;
+      this.supName = res.data.supName;
+      this.needName = res.data.needName;
+    },
+    saveEdit() {
+      // 发起修改用户信息的数据请求
+      this.$axios
+        .put(`/user/info`, this.editForm)
+        .then((res) => {
+          // 请求成功
+          // console.log(res);
+          if (res) {
+            // 刷新数据列表
+            this.getData();
+            // 提示修改成功
+            this.$message.success("更新信息成功！");
+            // 关闭对话框
+            this.edit = false;
+          } else {
+            this.$message.error("更新信息失败！");
+            this.edit = true;
+          }
+        })
+        .catch((err) => {
+          // 请求失败，保持不关闭对话框
+          this.edit = true;
+          return this.$message.error("服务器连接失败，请稍后重试");
+        });
+    },
+    // 编辑框关闭方式
+    closeEdit() {
+      this.$refs.editFormRef.resetFields();
+      this.edit = false;
+    },
+    // 奖状关闭方式
     handleClose() {
       this.dialogVisible = false;
     },
@@ -229,11 +383,24 @@ export default {
     }
   }
 }
+.el-row {
+  margin-bottom: 15px;
+}
+.edit {
+  .el-input,
+  .el-select {
+    width: 85% !important;
+  }
+  margin: 0;
+}
+
 //奖状信息样式
-::v-deep .el-dialog__body {
-  padding: 0px;
-  display: flex;
-  justify-content: center;
+.certificate {
+  ::v-deep .el-dialog__body {
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+  }
 }
 #pdfDom {
   /* 要想pdf周边留白，要在这里设置 */

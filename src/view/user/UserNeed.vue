@@ -15,22 +15,22 @@
     </div>
 
     <div class="cards">
-      <div class="card" v-for="item in 10" :key="item.index">
+      <div class="card" v-for="(item,index) in need" :key="index">
         <p style="-webkit-line-clamp: 2">
           <span>需要 </span
-          >（一个长长长长长长长长长长长长长长长长长长的药名）（类型）
+          >{{item.needName}}  （{{item.needType}}）
         </p>
         <p style="-webkit-line-clamp: 2">
           <span>位置 </span
-          >湖南省湘潭市岳塘区福星东路88号湖南工程学院新校区滨江10-666
+          >{{item.needLocation}}
         </p>
         <div class="last" style="height: 101px">
           <p style="-webkit-line-clamp: 6">
             <span>描述说明 </span
-            >11111111111111111111哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗
+            >{{item.needInstruction}}
           </p>
         </div>
-        <button @click="goDetail">查看详情</button>
+        <button @click="goDetail(item.needId)">查看详情</button>
       </div>
     </div>
   </div>
@@ -57,17 +57,27 @@ export default {
           label: "物资类型",
         },
       ],
+      need: [],
     };
   },
-  created() {},
+  created() {
+    this.getData();
+  },
   computed: {},
   methods: {
     isSorted(no) {
       this.sorted = no;
     },
-    goDetail() {
-      this.$router.push("/user/needdetails");
+    goDetail(id) {
+      this.$router.push({
+        name: "needdetails",
+        query: { needId: id },
+      });
     },
+    async getData() {
+      const res = await this.$axios.get("/user/need")
+      this.need = res.data
+    }
   },
 };
 </script>

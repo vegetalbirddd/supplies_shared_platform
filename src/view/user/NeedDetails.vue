@@ -4,18 +4,18 @@
       <h1>需求详情</h1>
       <p>
         <span>需要 </span
-        >（一个长长长长长长长长长长长长长长长长长长的药名）（类型）
+        >{{need.needName}}  （{{need.needType}}）
       </p>
       <p>
         <span>位置 </span
-        >湖南省湘潭市岳塘区福星东路88号湖南工程学院新校区滨江10-666
+        >{{need.needLocation}}
       </p>
       <!-- <p>
         <span>联系方式 </span>12345678901（手机号码）12345678901（微信）
       </p> -->
       <p>
         <span>描述说明 </span
-        >哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗。哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗
+        >{{need.needInstruction}}
       </p>
       <el-tooltip
         class="item"
@@ -36,7 +36,7 @@
       </button>
     </div>
     <el-dialog title="需求者联系方式" :visible.sync="dialogVisible" width="30%">
-      <span>12345678901（手机号码）12345678901（微信） </span>
+      <span>{{need.needContact}} </span>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="dialogVisible = false"
           >确 定</el-button
@@ -50,13 +50,20 @@ export default {
   data() {
     return {
       dialogVisible: false,
+      need: [],
     };
   },
-  created() {},
+  created() {
+    this.getData();
+  },
   computed: {},
   methods: {
     back() {
-      this.$router.go(-1)
+      this.$router.go(-1);
+    },
+    async getData() {
+      const res = await this.$axios.get(`/user/needdetails?needId=${this.$route.query.needId}`);
+      this.need = res.data;
     },
   },
 };

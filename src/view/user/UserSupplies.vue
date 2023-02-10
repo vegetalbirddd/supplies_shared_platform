@@ -21,14 +21,14 @@
     </div>
 
     <div class="cards">
-      <div class="card" v-for="item in 10" :key="item.index">
+      <div class="card" v-for="(item, index) in sup" :key="index">
         <p style="-webkit-line-clamp: 2">
           <span>提供 </span
-          >（一个长长长长长长长长长长长长长长长长长长的药名）（类型）
+          >{{item.supName}}  （{{item.supType}}）
         </p>
         <p style="-webkit-line-clamp: 2">
           <span>位置 </span
-          >湖南省湘潭市岳塘区福星东路88号湖南工程学院新校区滨江10-666
+          >{{item.supLocation}}
         </p>
         <!-- <p style="-webkit-line-clamp: 2">
           <span>联系方式 </span>12345678901（手机号码）12345678901（微信）
@@ -36,10 +36,10 @@
         <div class="last">
           <p style="-webkit-line-clamp: 6">
             <span>描述说明 </span
-            >哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗
+            >{{item.supInstruction}}
           </p>
         </div>
-        <button @click="goDetail">查看详情</button>
+        <button @click="goDetail(item.supId)">查看详情</button>
       </div>
     </div>
   </div>
@@ -66,17 +66,28 @@ export default {
           label: "物资类型",
         },
       ],
+      sup: [],
     };
   },
-  created() {},
+  created() {
+    this.getData();
+  },
   computed: {},
   methods: {
     isSorted(no) {
       this.sorted = no;
     },
-    goDetail() {
-      this.$router.push("/user/supdetails");
+    goDetail(id) {
+      this.$router.push({
+        name: "supdetails",
+        query: { supId: id },
+      });
     },
+    async getData() {
+      const res = await this.$axios.get("/user/supplies")
+      this.sup = res.data
+      console.log(res)
+    }
   },
 };
 </script>

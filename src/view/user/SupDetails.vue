@@ -4,16 +4,16 @@
       <h1>物资详情</h1>
       <p>
         <span>提供 </span
-        >（一个长长长长长长长长长长长长长长长长长长的药名）（类型）
+        >{{sup.supName}}  （{{sup.supType}}）
       </p>
       <p>
         <span>位置 </span
-        >湖南省湘潭市岳塘区福星东路88号湖南工程学院新校区滨江10-666
+        >{{sup.supLocation}}
       </p>
 
       <p>
         <span>描述说明 </span
-        >哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗。哪怕是在疫情期间我们也要充满正能量，非常时期宅在宿舍，确保自身安全，不让家人担心，阳光明媚的早上，让心情充满阳光，让身体永远健康，让疫情尽快驱散，让生活恢复正常。大家一起抗疫情，尽快打赢这一仗
+        >{{sup.supInstruction}}
       </p>
       <el-tooltip
         class="item"
@@ -34,7 +34,7 @@
       </button>
     </div>
     <el-dialog title="提供者联系方式" :visible.sync="dialogVisible" width="30%">
-      <span>12345678901（手机号码）12345678901（微信） </span>
+      <span>{{sup.supContact}} </span>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="dialogVisible = false"
           >确 定</el-button
@@ -48,14 +48,24 @@ export default {
   data() {
     return {
       dialogVisible: false,
+      sup: {
+        supName: '123',
+      },
     };
   },
-  created() {},
+  created() {
+    this.getData();
+  },
   computed: {},
   methods: {
     back() {
       this.$router.go(-1)
     },
+    async getData() {
+      const res = await this.$axios.get(`/user/supdetails?supId=${this.$route.query.supId}`)
+      this.sup = res.data
+   
+    }
   },
 };
 </script>
