@@ -143,14 +143,14 @@ export default {
   mounted() {},
   computed: {},
   methods: {
-    //获取后端表格数据
+   //获取后端表格数据
     getTableData() {
       this.$axios.get("/admin/sup", this.tableData).then((res) => {
         this.tableData = res.data;
         // 获取数据后执行一次查询
         this.search();
       });
-    },
+    }, 
     //查询功能按钮
     search() {
       this.table = this.tableData.filter((data) => {

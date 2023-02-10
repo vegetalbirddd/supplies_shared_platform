@@ -139,4 +139,8 @@ p {
     margin-right: 10px;
   }
 }
+.el-input,
+.el-select {
+  width: 85% !important;
+}
 </style>
