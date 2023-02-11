@@ -36,7 +36,7 @@
         <div class="last">
           <p style="-webkit-line-clamp: 6">
             <span>描述说明 </span
-            >{{item.supInstruction}}
+            >{{item.supDescription}}
           </p>
         </div>
         <button @click="goDetail(item.supId)">查看详情</button>
