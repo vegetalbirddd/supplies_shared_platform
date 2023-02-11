@@ -40,7 +40,7 @@
     </div>
     <div class="table">
       <el-table :data="table" border stripe style="width: 100%">
-        <el-table-column prop="supId" label="序号" min-width="50">
+        <el-table-column prop="id" label="序号" min-width="50">
         </el-table-column>
         <el-table-column prop="supName" label="物资名称" min-width="180">
         </el-table-column>
@@ -48,9 +48,9 @@
         </el-table-column>
         <el-table-column prop="userName" label="发布用户" min-width="150">
         </el-table-column>
-        <el-table-column prop="isSupShow" label="展示情况" min-width="70">
+        <el-table-column prop="isShow" label="展示情况" min-width="70">
         </el-table-column>
-        <el-table-column prop="isSupSolve" label="解决情况" min-width="70">
+        <el-table-column prop="isFinished" label="解决情况" min-width="70">
         </el-table-column>
         <el-table-column prop="operate" label="操作" min-width="300">
           <template slot-scope="scope">
@@ -92,36 +92,36 @@ export default {
       },
       tableData: [
         {
-          supId: 1,
+          id: 1,
           supName: "口罩",
           supType: "防护用具",
           userName: "张三",
-          isSupShow: "上线",
-          isSupSolve: "已解决",
+          isShow: "上线",
+          isFinished: "已解决",
         },
         {
-          supId: 2,
+          id: 2,
           supName: "布洛芬",
           supType: "药品",
           userName: "李四",
-          isSupShow: "上线",
-          isSupSolve: "未解决",
+          isShow: "上线",
+          isFinished: "未解决",
         },
         {
-          supId: 3,
+          id: 3,
           supName: "999感冒灵",
           supType: "药品",
           userName: "王五",
-          isSupShow: "下线",
-          isSupSolve: "未解决",
+          isShow: "下线",
+          isFinished: "未解决",
         },
         {
-          supId: 4,
+          id: 4,
           supName: "新型冠状病毒抗原检测试剂",
           supType: "其他",
           userName: "张三",
-          isSupShow: "上线",
-          isSupSolve: "已解决",
+          isShow: "上线",
+          isFinished: "已解决",
         },
       ],
       table: [],
@@ -143,14 +143,14 @@ export default {
   mounted() {},
   computed: {},
   methods: {
-   //获取后端表格数据
+    //获取后端表格数据
     getTableData() {
       this.$axios.get("/admin/sup", this.tableData).then((res) => {
-        this.tableData = res.data;
+        this.tableData = res.data.data;
         // 获取数据后执行一次查询
         this.search();
       });
-    }, 
+    },
     //查询功能按钮
     search() {
       this.table = this.tableData.filter((data) => {
@@ -168,50 +168,39 @@ export default {
     checkSup(row) {
       this.$router.push({
         path: "/admin/supDetail",
-        query: { supId: row.supId },
+        query: { SupId: row.id },
       });
     },
     //解决按钮
     async handleSolve(index, row) {
-      // if (row.isSupSolve == "未解决") {
-      //   row.isSupSolve = "已解决";
-      // } else if (row.isSupSolve == "已解决") row.isSupSolve = "未解决";
+      // if (row.isFinished == "未解决") {
+      //   row.isFinished = "已解决";
+      // } else if (row.isFinished == "已解决") row.isFinished = "未解决";
       let res = await this.$axios.post("/admin/sup", {
-        isSupSolve: row.isSupSolve,
-        supId: row.supId
+        isFinished: 1,
+        isShow: row.isShow,
+        id: row.id,
       });
-      if (res.data.isSolve == 1) {
-        this.$message.success("修改成功");
-        if (row.isSupSolve == "未解决") {
-          row.isSupSolve = "已解决";
-        } else if (row.isSupSolve == "已解决") row.isSupSolve = "未解决";
-      } else this.$message.error("修改失败");
+      this.$message.success(res.data.msg);
     },
     // 展示按钮
     async handleShow(index, row) {
-      // if (row.isSupShow == "上线") {
-      //   row.isSupShow = "下线";
-      // } else if (row.isSupShow == "下线") row.isSupShow = "上线";
+      // if (row.isShow == "上线") {
+      //   row.isShow = "下线";
+      // } else if (row.isShow == "下线") row.isShow = "上线";
       let res = await this.$axios.post("/admin/sup", {
-        isSupShow: row.isSupShow,
-        supId: row.supId
+        isShow: 1,
+        isFinished: row.isFinished,
+        id: row.id,
       });
-      if (res.data.isShow == 1) {
-        this.$message.success("修改成功");
-        if (row.isSupShow == "上线") {
-          row.isSupShow = "下线";
-        } else if (row.isSupShow == "下线") row.isSupShow = "上线";
-      } else this.$message.error("修改失败");
+      this.$message.success(res.data.msg);
     },
     //删除按钮
     async handleDelete(index, row) {
       let res = await this.$axios.post("/admin/sup", {
-        supId: row.supId,
+        id: row.id,
       });
-      if (res.data.isDelete == 1) {
-        this.$message.success("删除成功");
-        this.getTableData();
-      } else this.$message.error("删除失败");
+      this.$message.success(res.data.msg);
     },
   },
 };

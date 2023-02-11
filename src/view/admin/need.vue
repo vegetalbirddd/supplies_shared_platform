@@ -133,14 +133,14 @@ export default {
   mounted() {},
   computed: {},
   methods: {
-   //获取后端表格数据
+    //获取后端表格数据
     getTableData() {
       this.$axios.get("/admin/need", this.tableData).then((res) => {
         this.tableData = res.data.data;
         // 获取数据后执行一次查询
         this.search();
       });
-    }, 
+    },
     //查询功能按钮
     search() {
       this.table = this.tableData.filter((data) => {
@@ -169,17 +169,15 @@ export default {
         id: row.id,
       });
       this.$message.success(res.data.msg);
-      
     },
     // 展示按钮
     async handleShow(index, row) {
       let res = await this.$axios.post("/admin/need", {
         isShow: 1,
-         isFinished: row.isFinished,
+        isFinished: row.isFinished,
         id: row.id,
       });
       this.$message.success(res.data.msg);
- 
     },
     //删除按钮
     async handleDelete(index, row) {
