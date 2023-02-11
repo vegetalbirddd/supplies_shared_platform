@@ -13,7 +13,7 @@
 
       <p>
         <span>描述说明 </span
-        >{{sup.supInstruction}}
+        >{{sup.supDescription}}
       </p>
       <el-tooltip
         class="item"

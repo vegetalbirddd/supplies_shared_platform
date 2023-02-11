@@ -27,7 +27,7 @@
         <div class="last" style="height: 101px">
           <p style="-webkit-line-clamp: 6">
             <span>描述说明 </span
-            >{{item.needInstruction}}
+            >{{item.needDescription}}
           </p>
         </div>
         <button @click="goDetail(item.needId)">查看详情</button>

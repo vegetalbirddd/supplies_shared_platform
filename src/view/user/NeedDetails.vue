@@ -15,7 +15,7 @@
       </p> -->
       <p>
         <span>描述说明 </span
-        >{{need.needInstruction}}
+        >{{need.needDescription}}
       </p>
       <el-tooltip
         class="item"

@@ -12,7 +12,7 @@
       <p><span>位置 </span>{{ editForm.supLocation }}</p>
       <p><span>提供者 </span>{{ editForm.userName }}</p>
       <p><span>联系方式 </span>{{ editForm.supContact }}</p>
-      <p><span>描述说明 </span>{{ editForm.supInstruction }}</p>
+      <p><span>描述说明 </span>{{ editForm.supDescription }}</p>
     </div>
     <!-- 编辑信息对话框 -->
     <el-dialog title="编辑物资信息" :visible.sync="edit" @close="handleClose()">
@@ -30,9 +30,9 @@
         <el-form-item prop="supContact" label="联系方式" :label-width="formLabelWidth">
           <el-input v-model="editForm.supContact" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item prop="supInstruction" label="描述说明" :label-width="formLabelWidth">
+        <el-form-item prop="supDescription" label="描述说明" :label-width="formLabelWidth">
           <el-input
-            v-model="editForm.supInstruction"
+            v-model="editForm.supDescription"
             autocomplete="off"
           ></el-input>
         </el-form-item>
@@ -54,7 +54,7 @@ export default {
       //   userName: "张三",
       //   supLocation: "xx",
       //   supContact: "abc",
-      //   supInstruction: "123456",
+      //   supDescription: "123456",
       // },
       edit: false,
       editForm: {
@@ -63,7 +63,7 @@ export default {
         userName: "张三",
         supLocation: "xx",
         supContact: "abc",
-        supInstruction: "123456",
+        supDescription: "123456",
       },
       formLabelWidth: "120px",
     };

@@ -40,7 +40,7 @@
     </div>
     <div class="table">
       <el-table :data="table" border stripe style="width: 100%">
-        <el-table-column prop="needId" label="序号" min-width="50">
+        <el-table-column prop="id" label="序号" min-width="50">
         </el-table-column>
         <el-table-column prop="needName" label="需求名称" min-width="180">
         </el-table-column>
@@ -48,9 +48,9 @@
         </el-table-column>
         <el-table-column prop="userName" label="发布用户" min-width="150">
         </el-table-column>
-        <el-table-column prop="isNeedShow" label="展示情况" min-width="70">
+        <el-table-column prop="isShow" label="展示情况" min-width="70">
         </el-table-column>
-        <el-table-column prop="isNeedSolve" label="解决情况" min-width="70">
+        <el-table-column prop="isFinished" label="解决情况" min-width="70">
         </el-table-column>
         <el-table-column prop="operate" label="操作" min-width="300">
           <template slot-scope="scope">
@@ -92,36 +92,36 @@ export default {
       },
       tableData: [
         {
-          needId: 1,
+          id: 1,
           needName: "口罩",
           needType: "防护用具",
           userName: "张三",
-          isNeedShow: "上线",
-          isNeedSolve: "已解决",
+          isShow: "上线",
+          isFinished: "已解决",
         },
         {
-          needId: 2,
+          id: 2,
           needName: "布洛芬",
           needType: "药品",
           userName: "李四",
           isNeedShow: "上线",
-          isNeedSolve: "未解决",
+          isFinished: "未解决",
         },
         {
-          needId: 3,
+          id: 3,
           needName: "999感冒灵",
           needType: "药品",
           userName: "王五",
           isNeedShow: "下线",
-          isNeedSolve: "未解决",
+          isFinished: "未解决",
         },
         {
-          needId: 4,
+          id: 4,
           needName: "新型冠状病毒抗原检测试剂",
           needType: "其他",
           userName: "张三",
           isNeedShow: "上线",
-          isNeedSolve: "已解决",
+          isFinished: "已解决",
         },
       ],
       table: [],
@@ -136,7 +136,7 @@ export default {
    //获取后端表格数据
     getTableData() {
       this.$axios.get("/admin/need", this.tableData).then((res) => {
-        this.tableData = res.data;
+        this.tableData = res.data.data;
         // 获取数据后执行一次查询
         this.search();
       });
@@ -158,44 +158,35 @@ export default {
     checkNeed(row) {
       this.$router.push({
         path: "/admin/needDetail",
-        query: { needId: row.needId },
+        query: { needId: row.id },
       });
     },
     //解决按钮
     async handleSolve(index, row) {
       let res = await this.$axios.post("/admin/need", {
-        isNeedSolve: row.isNeedSolve,
-        needId: row.needId,
+        isFinished: 1,
+        isShow: row.isShow,
+        id: row.id,
       });
-      if (res.data.isSolve == 1) {
-        this.$message.success("修改成功");
-        if (row.isNeedSolve == "未解决") {
-          row.isNeedSolve = "已解决";
-        } else if (row.isNeedSolve == "已解决") row.isNeedSolve = "未解决";
-      } else this.$message.error("修改失败");
+      this.$message.success(res.data.msg);
+      
     },
     // 展示按钮
     async handleShow(index, row) {
       let res = await this.$axios.post("/admin/need", {
-        isNeedShow: row.isNeedShow,
-        needId: row.needId,
+        isShow: 1,
+         isFinished: row.isFinished,
+        id: row.id,
       });
-      if (res.data.isShow == 1) {
-        this.$message.success("修改成功");
-        if (row.isNeedShow == "上线") {
-          row.isNeedShow = "下线";
-        } else if (row.isNeedShow == "下线") row.isNeedShow = "上线";
-      } else this.$message.error("修改失败");
+      this.$message.success(res.data.msg);
+ 
     },
     //删除按钮
     async handleDelete(index, row) {
-      let res = await this.$axios.post("/admin/need", {
-        needId: row.needId,
+      let res = await this.$axios.post("/admin/need/delete", {
+        id: row.id,
       });
-      if (res.data.isDelete == 1) {
-        this.$message.success("删除成功");
-        this.getTableData();
-      } else this.$message.error("删除失败");
+      this.$message.success(res.data.msg);
     },
   },
 };

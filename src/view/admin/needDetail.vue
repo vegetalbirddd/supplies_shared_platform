@@ -12,7 +12,7 @@
       <p><span>位置 </span>{{ editForm.needLocation }}</p>
       <p><span>需求者 </span>{{ editForm.userName }}</p>
       <p><span>联系方式 </span>{{ editForm.needContact }}</p>
-      <p><span>描述说明 </span>{{ editForm.needInstruction }}</p>
+      <p><span>描述说明 </span>{{ editForm.needDescription }}</p>
     </div>
     <!-- 编辑信息对话框 -->
     <el-dialog title="编辑物资信息" :visible.sync="edit" @close="handleClose()">
@@ -30,9 +30,9 @@
         <el-form-item prop="needContact" label="联系方式" :label-width="formLabelWidth">
           <el-input v-model="editForm.needContact" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item prop="needInstruction" label="描述说明" :label-width="formLabelWidth">
+        <el-form-item prop="needDescription" label="描述说明" :label-width="formLabelWidth">
           <el-input
-            v-model="editForm.needInstruction"
+            v-model="editForm.needDescription"
             autocomplete="off"
           ></el-input>
         </el-form-item>
@@ -55,7 +55,7 @@ export default {
         userName: "张三",
         needLocation: "xx",
         needContact: "abc",
-        needInstruction: "123456",
+        needDescription: "123456",
       },
       formLabelWidth: "120px",
     };
