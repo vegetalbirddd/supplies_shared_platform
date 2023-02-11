@@ -126,7 +126,10 @@ export default {
       console.log(row.id)
     },
     handleDelete(index, row) {
-      console.log(index, row);
+      let res = this.$axios.post("/admin/info/delete", {
+        id: row.id,
+      });
+      this.$message.success(res.data.msg);
     },
     fetchUserInfo() {
       this.$axios({
