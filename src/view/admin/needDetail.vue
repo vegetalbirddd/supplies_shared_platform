@@ -70,7 +70,7 @@ export default {
       this.$router.push("/admin/need");
     },
     async getNeedData() {
-      let res = await this.$axios.get(`/admin/needDetail?needId=${this.$route.query.needId}`);
+      let res = await this.$axios.get(`/admin/need/needDetail?needId=${this.$route.query.needId}`);
       this.editForm = res.data;
     },
     async handleSave() {

@@ -178,6 +178,7 @@ export default {
       // } else if (row.isSupSolve == "已解决") row.isSupSolve = "未解决";
       let res = await this.$axios.post("/admin/sup", {
         isSupSolve: row.isSupSolve,
+        supId: row.supId
       });
       if (res.data.isSolve == 1) {
         this.$message.success("修改成功");
@@ -193,6 +194,7 @@ export default {
       // } else if (row.isSupShow == "下线") row.isSupShow = "上线";
       let res = await this.$axios.post("/admin/sup", {
         isSupShow: row.isSupShow,
+        supId: row.supId
       });
       if (res.data.isShow == 1) {
         this.$message.success("修改成功");

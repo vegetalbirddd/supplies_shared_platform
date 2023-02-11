@@ -11,35 +11,35 @@
         label-width="100px"
         class="demo-ruleForm"
       >
-        <el-form-item label="需要物资" prop="need">
+        <el-form-item label="需要物资" prop="needName">
           <el-input
-            v-model="ruleForm.need"
+            v-model="ruleForm.needName"
             placeholder="请输入需要的物资"
           ></el-input>
         </el-form-item>
-        <el-form-item label="物资类型" prop="type">
-          <el-radio-group v-model="ruleForm.type">
+        <el-form-item label="物资类型" prop="needType">
+          <el-radio-group v-model="ruleForm.needType">
             <el-radio label="防护用具"></el-radio>
             <el-radio label="药品"></el-radio>
             <el-radio label="其他"></el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="所在位置" prop="location">
+        <el-form-item label="所在位置" prop="needLocation">
           <el-input
-            v-model="ruleForm.location"
+            v-model="ruleForm.needLocation"
             placeholder="xx省xx市xx区/县/市xxx（详细地址）"
           ></el-input>
         </el-form-item>
-        <el-form-item label="联系方式" prop="contact">
+        <el-form-item label="联系方式" prop="needContact">
           <el-input
-            v-model="ruleForm.contact"
+            v-model="ruleForm.needContact"
             placeholder="手机：xxx / 微信：xxx;"
           ></el-input>
         </el-form-item>
-        <el-form-item label="需求说明" prop="description">
+        <el-form-item label="需求说明" prop="needDescription">
           <el-input
             type="textarea"
-            v-model="ruleForm.description"
+            v-model="ruleForm.needDescription"
             placeholder="请简要描述您的问题，更快寻求到帮助"
           ></el-input>
         </el-form-item>
@@ -58,27 +58,28 @@ export default {
   data() {
     return {
       ruleForm: {
-        need: "",
-        type: "",
-        location: "",
+        id: "",
+        needName: "", 
+        needType: "",
+        needLocation: "",
         contact: "",
         description: "",
       },
       rules: {
-        need: [
+        needName: [
           { required: true, message: "请输入您需要的物资", trigger: "blur" },
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
-        type: [
+        needType: [
           { required: true, message: "请选择物资类型", trigger: "change" },
         ],
-        location: [
+        needLocation: [
           { required: true, message: "请输入您所在位置", trigger: "change" },
         ],
-        contact: [
+        needContact: [
           { required: true, message: "请选择您的联系方式", trigger: "change" },
         ],
-        description: [
+        needDescription: [
           { required: true, message: "请输入您的需求说明", trigger: "change" },
         ],
       },

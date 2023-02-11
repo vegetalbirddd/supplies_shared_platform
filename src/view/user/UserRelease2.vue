@@ -11,36 +11,36 @@
         label-width="100px"
         class="demo-ruleForm"
       >
-        <el-form-item label="提供物资" prop="provide">
+        <el-form-item label="提供物资" prop="supName">
           <el-input
-            v-model="ruleForm.provide"
+            v-model="ruleForm.supName"
             placeholder="请输入您想提供的物资"
           ></el-input>
         </el-form-item>
-        <el-form-item label="物资类型" prop="type">
-          <el-radio-group v-model="ruleForm.type">
+        <el-form-item label="物资类型" prop="supType">
+          <el-radio-group v-model="ruleForm.supType">
             <el-radio label="防护用具"></el-radio>
             <el-radio label="药品"></el-radio>
             <el-radio label="其他"></el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="所在位置" prop="location">
+        <el-form-item label="所在位置" prop="supLocation">
           <el-input
-            v-model="ruleForm.location"
+            v-model="ruleForm.supLocation"
             placeholder="xx省xx市xx区/县/市xxx（详细地址）"
           ></el-input>
         </el-form-item>
 
-        <el-form-item label="联系方式" prop="contact">
+        <el-form-item label="联系方式" prop="supContact">
           <el-input
-            v-model="ruleForm.contact"
+            v-model="ruleForm.supContact"
             placeholder="手机：xxx / 微信：xxx"
           ></el-input>
         </el-form-item>
-        <el-form-item label="帮助说明" prop="description">
+        <el-form-item label="帮助说明" prop="supDescription">
           <el-input
             type="textarea"
-            v-model="ruleForm.description"
+            v-model="ruleForm.supDescription"
             placeholder="请简要描述您提供的物资（药物来源等）、能够提供的帮助，让更多有需要的人能够主动联系您。"
             style="font-family: '黑体' !important"
           ></el-input>
@@ -60,14 +60,15 @@ export default {
   data() {
     return {
       ruleForm: {
-        provide: "",
-        type: "",
-        location: "",
-        contact: "",
-        description: "",
+        id: "",
+        supName: "",
+        supType: "",
+        supLocation: "",
+        supContact: "",
+        supDescription: "",
       },
       rules: {
-        provide: [
+        supName: [
           {
             required: true,
             message: "请输入您想要提供的物资",
@@ -75,16 +76,16 @@ export default {
           },
           // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ],
-        type: [
+        supType: [
           { required: true, message: "请选择物资类型", trigger: "change" },
         ],
-        location: [
+        supLocation: [
           { required: true, message: "请输入您所在位置", trigger: "change" },
         ],
-        contact: [
+        supContact: [
           { required: true, message: "请选择您的联系方式", trigger: "change" },
         ],
-        description: [
+        supDescription: [
           { required: true, message: "请输入您的帮助说明", trigger: "change" },
         ],
       },

@@ -165,6 +165,7 @@ export default {
     async handleSolve(index, row) {
       let res = await this.$axios.post("/admin/need", {
         isNeedSolve: row.isNeedSolve,
+        needId: row.needId,
       });
       if (res.data.isSolve == 1) {
         this.$message.success("修改成功");
@@ -177,6 +178,7 @@ export default {
     async handleShow(index, row) {
       let res = await this.$axios.post("/admin/need", {
         isNeedShow: row.isNeedShow,
+        needId: row.needId,
       });
       if (res.data.isShow == 1) {
         this.$message.success("修改成功");
