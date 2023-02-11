@@ -97,10 +97,10 @@ export default {
       this.$router.push("/user/need");
     },
     async getData() {
-      const res = await this.$axios.get("/user/home");
-      console.log(res);
-      this.sup = res.data.sup;
-      this.need = res.data.need;
+      const res1 = await this.$axios.get("/user/supplies/limit");
+      const res2 = await this.$axios.get("/user/supplies/limit");
+      this.sup = res1.data.data;
+      this.need = res2.data.data;
     },
     toNeedD(index) {
       this.$router.push({

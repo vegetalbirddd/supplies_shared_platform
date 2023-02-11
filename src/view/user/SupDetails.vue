@@ -62,7 +62,7 @@ export default {
       this.$router.go(-1)
     },
     async getData() {
-      const res = await this.$axios.get(`/user/supdetails?supId=${this.$route.query.supId}`)
+      const res = await this.$axios.get(`/user/supplies/supdetails?supId=${this.$route.query.supId}`)
       this.sup = res.data
    
     }

@@ -62,7 +62,7 @@ export default {
       this.$router.go(-1);
     },
     async getData() {
-      const res = await this.$axios.get(`/user/needdetails?needId=${this.$route.query.needId}`);
+      const res = await this.$axios.get(`/user/need/needdetails?needId=${this.$route.query.needId}`);
       this.need = res.data;
     },
   },
