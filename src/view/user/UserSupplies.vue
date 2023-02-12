@@ -21,25 +21,22 @@
     </div>
 
     <div class="cards">
-      <div class="card" v-for="(item, index) in sup" :key="index">
+      <div class="card" v-for="(item, index) in handledData" :key="index">
         <p style="-webkit-line-clamp: 2">
-          <span>提供 </span
-          >{{item.supName}}  （{{item.supType}}）
+          <span>提供 </span>{{ item.supName }} （{{ item.supType }}）
         </p>
         <p style="-webkit-line-clamp: 2">
-          <span>位置 </span
-          >{{item.supLocation}}
+          <span>位置 </span>{{ item.supLocation }}
         </p>
         <!-- <p style="-webkit-line-clamp: 2">
           <span>联系方式 </span>12345678901（手机号码）12345678901（微信）
         </p> -->
         <div class="last">
           <p style="-webkit-line-clamp: 6">
-            <span>描述说明 </span
-            >{{item.supDescription}}
+            <span>描述说明 </span>{{ item.supDescription }}
           </p>
         </div>
-        <button @click="goDetail(item.supId)">查看详情</button>
+        <button @click="goDetail(item.id)">查看详情</button>
       </div>
     </div>
   </div>
@@ -67,6 +64,7 @@ export default {
         },
       ],
       sup: [],
+      handledData: [],
     };
   },
   created() {
@@ -76,18 +74,57 @@ export default {
   methods: {
     isSorted(no) {
       this.sorted = no;
+      // console.log(no)
+      if (no == 1) {
+        this.handleSortId();
+      }
+      if (no == 2) {
+        this.handleSortArea();
+      }
+      if (no == 3) {
+        this.handleSortType();
+      }
     },
+    handleSortId() {
+      this.handledData = this.sup;
+      this.handledData = this.sortKey(this.handledData, "id");
+      // console.log(this.sup)
+    },
+    handleSortType() {
+      this.handledData = this.sortKey(this.handledData, "supType");
+    },
+    handleSortArea() {
+      this.handledData = this.sortKey2(this.handledData, "supLocation");
+    },
+    // 倒序
+    sortKey(array, key) {
+      return array.sort(function (a, b) {
+        var x = a[key];
+        var y = b[key];
+        return x > y ? -1 : x < y ? 1 : 0;
+      });
+    },
+    // 正序
+    sortKey2(array, key) {
+      return array.sort(function (a, b) {
+        var x = a[key];
+        var y = b[key];
+        return x < y ? -1 : x > y ? 1 : 0;
+      });
+    },
+
     goDetail(id) {
       this.$router.push({
-        name: "supdetails",
+        path: "/user/supdetails",
         query: { supId: id },
       });
     },
     async getData() {
-      const res = await this.$axios.get("/user/supplies")
-      this.sup = res.data.data
-      console.log(res)
-    }
+      const res = await this.$axios.get("/user/supplies");
+      this.sup = res.data.data;
+      console.log(res);
+      this.isSorted(1);
+    },
   },
 };
 </script>

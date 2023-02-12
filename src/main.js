@@ -1,10 +1,3 @@
-/*
- * @Author: Ayun
- * @Date: 2023-02-11 20:40:04
- * @LastEditTime: 2023-02-11 20:43:12
- * @FilePath: \supplies_shared_platform-main\supplies_shared_platform\src\main.js
- * @Ayun: Practice make perfect
- */
 import Vue from 'vue'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -28,7 +21,8 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI);
 //接口请求的前缀地址(模拟)
-axios.defaults.baseURL = 'http://localhost:8081'
+axios.defaults.baseURL = 'http://localhost:8081' //后端测试
+// axios.defaults.baseURL = 'http://127.0.0.1:4523/m1/2218851-0-default' //前端测试
 axios.defaults.withCredentials = true
 //全局设置token
 axios.interceptors.request.use(function (config) {

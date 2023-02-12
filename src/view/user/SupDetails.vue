@@ -64,7 +64,6 @@ export default {
     async getData() {
       const res = await this.$axios.get(`/user/supplies/supDetail?supId=${this.$route.query.supId}`)
       this.sup = res.data.data;
-   
     }
   },
 };

@@ -66,7 +66,7 @@
         <br /><br />
         <el-card class="published">
           <div slot="header" class="clearfix">
-            <b style="font-size: 20px">我发布的</b>
+            <b style="font-size: 20px">发布物资</b>
             <el-button
               @click="preview"
               style="float: right; padding: 3px 0"
@@ -86,7 +86,7 @@
         <br /><br />
         <el-card class="acquired">
           <div slot="header" class="clearfix">
-            <b style="font-size: 20px">已获得的</b>
+            <b style="font-size: 20px">发布需求</b>
           </div>
           <div
             v-for="(item, index) in need"

@@ -1,5 +1,5 @@
 <template>
-  <div class="supplies">
+  <div class="need">
     <div class="sort">
       <ul>
         <li class="firstSort">排序方式</li>
@@ -30,7 +30,7 @@
             >{{item.needDescription}}
           </p>
         </div>
-        <button @click="goDetail(item.needId)">查看详情</button>
+        <button @click="goDetail(item.id)">查看详情</button>
       </div>
     </div>
   </div>
@@ -67,6 +67,44 @@ export default {
   methods: {
     isSorted(no) {
       this.sorted = no;
+      this.handledData = this.need;
+      // console.log(no)
+      if (no == 1) {
+        this.handleSortId();
+      }
+      if (no == 2) {
+        this.handleSortArea();
+      }
+      if (no == 3) {
+        this.handleSortType();
+      }
+    },
+    handleSortId() {
+      
+      this.handledData = this.sortKey(this.handledData, "id");
+      // console.log(this.sup)
+    },
+    handleSortType() {
+      this.handledData = this.sortKey(this.handledData, "needType");
+    },
+    handleSortArea() {
+      this.handledData = this.sortKey2(this.handledData, "needLocation");
+    },
+    // 倒序
+    sortKey(array, key) {
+      return array.sort(function (a, b) {
+        var x = a[key];
+        var y = b[key];
+        return x > y ? -1 : x < y ? 1 : 0;
+      });
+    },
+    // 正序
+    sortKey2(array, key) {
+      return array.sort(function (a, b) {
+        var x = a[key];
+        var y = b[key];
+        return x < y ? -1 : x > y ? 1 : 0;
+      });
     },
     goDetail(id) {
       this.$router.push({
@@ -77,6 +115,7 @@ export default {
     async getData() {
       const res = await this.$axios.get("/user/need")
       this.need = res.data.data
+      this.isSorted(1);
     }
   },
 };
