@@ -98,9 +98,13 @@ export default {
     },
     async getData() {
       const res1 = await this.$axios.get("/user/supplies/limit");
+<<<<<<< HEAD
       const res2 = await this.$axios.get("/user/need/limit");
 
 
+=======
+      const res2 = await this.$axios.get("/user/supplies/limit");
+>>>>>>> 292db94af46eab5bc6523b98f8aa573c0f41827d
       this.sup = res1.data.data;
       this.need = res2.data.data;
     },
