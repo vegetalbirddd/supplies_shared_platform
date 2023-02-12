@@ -223,7 +223,7 @@ export default {
     },
     async getData() {
       const res = await this.$axios.get(`/user/info`);
-      this.editForm = res.data;
+      this.editForm = res.data.data;
       this.supName = res.data.supName;
       this.needName = res.data.needName;
     },

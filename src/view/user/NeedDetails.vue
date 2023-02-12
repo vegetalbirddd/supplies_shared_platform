@@ -62,8 +62,8 @@ export default {
       this.$router.go(-1);
     },
     async getData() {
-      const res = await this.$axios.get(`/user/needdetails?needId=${this.$route.query.needId}`);
-      this.need = res.data;
+      const res = await this.$axios.get(`/user/need/needDetail?needId=${this.$route.query.needId}`);
+      this.need = res.data.data;
     },
   },
 };

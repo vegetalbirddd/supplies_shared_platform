@@ -71,7 +71,7 @@ export default {
     },
     async getNeedData() {
       let res = await this.$axios.get(`/admin/need/needDetail?needId=${this.$route.query.needId}`);
-      this.editForm = res.data;
+      this.editForm = res.data.data;
     },
     async handleSave() {
       const res = this.$axios

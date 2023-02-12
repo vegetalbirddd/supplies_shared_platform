@@ -79,7 +79,7 @@ export default {
     },
     async getSupData() {
       let res = await this.$axios.get(`/admin/sup/supDetail?supId=${this.$route.query.supId}`);
-      this.editForm = res.data;
+      this.editForm = res.data.data;
     },
     async handleSave() {
       const res = this.$axios

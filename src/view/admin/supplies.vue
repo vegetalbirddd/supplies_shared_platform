@@ -168,7 +168,7 @@ export default {
     checkSup(row) {
       this.$router.push({
         path: "/admin/supDetail",
-        query: { SupId: row.id },
+        query: { supId: row.id },
       });
     },
     //解决按钮
@@ -197,7 +197,7 @@ export default {
     },
     //删除按钮
     async handleDelete(index, row) {
-      let res = await this.$axios.post("/admin/sup", {
+      let res = await this.$axios.post("/admin/sup/delete", {
         id: row.id,
       });
       this.$message.success(res.data.msg);

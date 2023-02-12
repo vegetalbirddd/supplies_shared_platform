@@ -97,21 +97,23 @@ export default {
       this.$router.push("/user/need");
     },
     async getData() {
-      const res = await this.$axios.get("/user/home");
-      console.log(res);
-      this.sup = res.data.sup;
-      this.need = res.data.need;
+      const res1 = await this.$axios.get("/user/supplies/limit");
+      const res2 = await this.$axios.get("/user/need/limit");
+
+
+      this.sup = res1.data.data;
+      this.need = res2.data.data;
     },
     toNeedD(index) {
       this.$router.push({
         name: "needdetails",
-        query: { needId: this.need[index].needId },
+        query: { needId: this.need[index].id },
       });
     },
     toSupD(index) {
       this.$router.push({
         name: "supdetails",
-        query: { supId: this.sup[index].supId },
+        query: { supId: this.sup[index].id },
       });
     }
   },

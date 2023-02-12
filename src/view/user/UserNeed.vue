@@ -76,7 +76,7 @@ export default {
     },
     async getData() {
       const res = await this.$axios.get("/user/need")
-      this.need = res.data
+      this.need = res.data.data
     }
   },
 };
