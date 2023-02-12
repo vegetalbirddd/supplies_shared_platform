@@ -33,7 +33,9 @@
               @click="resetForm('formInline')"
               >重置</el-button
             >
-            <el-button type="info" icon="el-icon-download">下载</el-button>
+            <el-button type="info" icon="el-icon-download" @click="download()"
+              >下载</el-button
+            >
           </el-form-item>
         </div>
       </el-form>
@@ -159,6 +161,10 @@ export default {
         this.search();
       });
     },
+    //下载功能按钮
+    download() {
+      window.location.href = "http://localhost:8081/admin/download/supplies";
+    },
     //查询功能按钮
     search() {
       this.table = this.tableData.filter((data) => {
@@ -190,7 +196,7 @@ export default {
         id: row.id,
       });
       this.$message.success(res.data.msg);
-      this.getTableData()
+      this.getTableData();
     },
     // 展示按钮
     async handleShow(index, row) {
@@ -203,7 +209,7 @@ export default {
         id: row.id,
       });
       this.$message.success(res.data.msg);
-      this.getTableData()
+      this.getTableData();
     },
     //删除按钮
     async handleDelete(index, row) {
@@ -211,7 +217,7 @@ export default {
         id: row.id,
       });
       this.$message.success(res.data.msg);
-      this.getTableData()
+      this.getTableData();
     },
   },
 };
