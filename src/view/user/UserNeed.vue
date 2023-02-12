@@ -15,7 +15,7 @@
     </div>
 
     <div class="cards">
-      <div class="card" v-for="(item,index) in need" :key="index">
+      <div class="card" v-for="(item,index) in handledData" :key="index">
         <p style="-webkit-line-clamp: 2">
           <span>需要 </span
           >{{item.needName}}  （{{item.needType}}）
@@ -58,6 +58,7 @@ export default {
         },
       ],
       need: [],
+      handledData: [],
     };
   },
   created() {
@@ -67,8 +68,8 @@ export default {
   methods: {
     isSorted(no) {
       this.sorted = no;
-      this.handledData = this.need;
-      // console.log(no)
+      this.handledData = this.need.filter((data) => data.isShow == 0);
+      // console.log(this.handledData)
       if (no == 1) {
         this.handleSortId();
       }
@@ -79,8 +80,7 @@ export default {
         this.handleSortType();
       }
     },
-    handleSortId() {
-      
+    handleSortId() {    
       this.handledData = this.sortKey(this.handledData, "id");
       // console.log(this.sup)
     },

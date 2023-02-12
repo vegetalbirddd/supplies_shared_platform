@@ -21,7 +21,11 @@
     </div>
 
     <div class="cards">
-      <div class="card" v-for="(item, index) in handledData" :key="index">
+      <div
+        class="card"
+        v-for="(item, index) in handledData"
+        :key="index"
+      >
         <p style="-webkit-line-clamp: 2">
           <span>提供 </span>{{ item.supName }} （{{ item.supType }}）
         </p>
@@ -73,6 +77,7 @@ export default {
   computed: {},
   methods: {
     isSorted(no) {
+      this.handledData = this.sup.filter((data) => data.isShow == 0);
       this.sorted = no;
       // console.log(no)
       if (no == 1) {
@@ -86,7 +91,6 @@ export default {
       }
     },
     handleSortId() {
-      this.handledData = this.sup;
       this.handledData = this.sortKey(this.handledData, "id");
       // console.log(this.sup)
     },
@@ -123,6 +127,7 @@ export default {
       const res = await this.$axios.get("/user/supplies");
       this.sup = res.data.data;
       this.isSorted(1);
+      console.log(res);
     },
   },
 };

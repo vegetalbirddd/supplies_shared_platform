@@ -169,6 +169,7 @@ export default {
         id: row.id,
       });
       this.$message.success(res.data.msg);
+      this.getTableData()
     },
     // 展示按钮
     async handleShow(index, row) {
@@ -178,6 +179,7 @@ export default {
         id: row.id,
       });
       this.$message.success(res.data.msg);
+      this.getTableData()
     },
     //删除按钮
     async handleDelete(index, row) {
@@ -185,6 +187,7 @@ export default {
         id: row.id,
       });
       this.$message.success(res.data.msg);
+      this.getTableData()
     },
   },
 };

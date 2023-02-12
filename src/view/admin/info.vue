@@ -129,7 +129,9 @@ export default {
       let res = this.$axios.post("/admin/info/delete", {
         id: row.id,
       });
-      this.$message.success(res.data.msg);
+      this.fetchUserInfo()
+      this.$message.success('成功删除用户');
+      
     },
     fetchUserInfo() {
       this.$axios({
