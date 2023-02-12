@@ -75,12 +75,12 @@
             >
           </div>
           <div
-            v-for="(item, index) in supName"
+            v-for="(item, index) in sup"
             :key="index"
             class="text item"
             style="margin-bottom: 15px"
           >
-            - {{ item }}
+            - {{ item.supName }}
           </div>
         </el-card>
         <br /><br />
@@ -89,12 +89,12 @@
             <b style="font-size: 20px">已获得的</b>
           </div>
           <div
-            v-for="(item, index) in needName"
+            v-for="(item, index) in need"
             :key="index"
             class="text item"
             style="margin-bottom: 15px"
           >
-            - {{ item }}
+            - {{ item.needName }}
           </div>
         </el-card>
       </el-main>
@@ -202,8 +202,8 @@ export default {
         userPhoneNum: "未填写",
         userAddress: "未填写",
       },
-      supName: [],
-      needName: [],
+      sup: [],
+      need: [],
       //奖状的相关数据
       dialogVisible: false,
       pageData: null, //接收html格式代码
@@ -222,10 +222,13 @@ export default {
       this.edit = true;
     },
     async getData() {
-      const res = await this.$axios.get(`/user/info`);
-      this.editForm = res.data.data;
-      this.supName = res.data.supName;
-      this.needName = res.data.needName;
+      const res1 = await this.$axios.get(`/user/info`);
+      const res2 = await this.$axios.get(`/user/supplies/mysupplies`);
+      const res3 = await this.$axios.get(`/user/need/myneed`);
+      this.editForm = res1.data.data;
+      this.sup = res2.data.data;
+      this.need = res3.data.data;
+      console.log(res2)
     },
     saveEdit() {
       // 发起修改用户信息的数据请求
