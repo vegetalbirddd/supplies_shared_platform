@@ -36,23 +36,38 @@
     <!-- 用户表格 -->
     <div class="table">
       <el-table :data="tables" border stripe style="width: 100%">
-        <el-table-column prop="id" label="id" min-width="50">
-        </el-table-column>
+        <el-table-column prop="id" label="id" min-width="50"> </el-table-column>
         <el-table-column prop="userName" label="用户名" min-width="180">
         </el-table-column>
         <el-table-column prop="userSupNum" label="发布物资数量" min-width="180">
         </el-table-column>
-        <el-table-column prop="userNeedNum" label="发布需求数量" min-width="180">
+        <el-table-column
+          prop="userNeedNum"
+          label="发布需求数量"
+          min-width="180"
+        >
         </el-table-column>
         <el-table-column prop="operate" label="操作" min-width="150">
           <template slot-scope="scope">
-            <el-button size="medium" @click="handleCheck(scope.$index, scope.row)">查看</el-button>
             <el-button
               size="medium"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
-              >删除</el-button
+              @click="handleCheck(scope.$index, scope.row)"
+              >查看</el-button
             >
+            <el-popconfirm
+              style="margin-left: 10px"
+              confirm-button-text="确定"
+              confirm-button-type="danger"
+              @confirm="handleDelete(scope.$index, scope.row)"
+              cancel-button-text="取消"
+              icon="el-icon-info"
+              icon-color="red"
+              title="确定删除该用户吗？"
+            >
+              <el-button size="medium" type="danger" slot="reference"
+                >删除</el-button
+              >
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
@@ -122,16 +137,14 @@ export default {
       // console.log(form);
     },
     handleCheck(index, row) {
-      this.$router.push({path: "/admin/infoDetail",query: {id: row.id}});
-      
+      this.$router.push({ path: "/admin/infoDetail", query: { id: row.id } });
     },
     handleDelete(index, row) {
       let res = this.$axios.post("/admin/info/delete", {
         id: row.id,
       });
-      this.fetchUserInfo()
-      this.$message.success('成功删除用户');
-      
+      this.fetchUserInfo();
+      this.$message.success("成功删除用户");
     },
     fetchUserInfo() {
       this.$axios({
@@ -140,10 +153,8 @@ export default {
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
         },
-      })
-     .then((res) => {
-        this.tableData = res.data.data
-        
+      }).then((res) => {
+        this.tableData = res.data.data;
       });
     },
   },

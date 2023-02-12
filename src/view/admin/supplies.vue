@@ -69,12 +69,20 @@
               @click="handleShow(scope.$index, scope.row)"
               >展示</el-button
             >
-            <el-button
-              size="medium"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
-              >删除</el-button
+            <el-popconfirm
+              style="margin-left: 10px"
+              confirm-button-text="确定"
+              confirm-button-type="danger"
+              @confirm="handleDelete(scope.$index, scope.row)"
+              cancel-button-text="取消"
+              icon="el-icon-info"
+              icon-color="red"
+              title="确定删除该用户吗？"
             >
+              <el-button size="medium" type="danger" slot="reference"
+                >删除</el-button
+              >
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
