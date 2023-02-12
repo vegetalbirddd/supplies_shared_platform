@@ -92,7 +92,7 @@ export default {
         xAxis: {
           type: "category",
           boundaryGap: false,
-          data: this.date,
+          data: ['周一','周二','周三','周四','周五','周六','周日']
         },
         yAxis: {
           type: "value",
@@ -101,12 +101,12 @@ export default {
           {
             name: "发布物资数量",
             type: "line",
-            data: this.supNum,
+            data: [2,3,5,7,5,3,7],
           },
           {
             name: "发布需求数量",
             type: "line",
-            data: this.needNum,
+            data: [4,5,4,3,2,4,6],
           },
         ],
       };
@@ -124,10 +124,10 @@ export default {
         this.allUserNum = res.data.map.allUserNum;
         this.allSupNum = res.data.map.allSupNum;
         this.allNeedNum = res.data.map.allNeedNum;
-        this.date = res.data.date;
-        this.supNum = res.data.supNum;
-        this.needNum = res.data.needNum;
-        console.log(this.date);
+        // this.date = res.data.date;
+        // this.supNum = res.data.supNum;
+        // this.needNum = res.data.needNum;
+        // console.log(this.date);
         this.drawLine();
       });
     },

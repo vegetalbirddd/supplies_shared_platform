@@ -123,7 +123,7 @@ export default {
     },
     handleCheck(index, row) {
       this.$router.push({path: "/admin/infoDetail",query: {id: row.id}});
-      console.log(row.id)
+      
     },
     handleDelete(index, row) {
       let res = this.$axios.post("/admin/info/delete", {
@@ -141,7 +141,7 @@ export default {
       })
      .then((res) => {
         this.tableData = res.data.data
-        console.log(res);
+        
       });
     },
   },

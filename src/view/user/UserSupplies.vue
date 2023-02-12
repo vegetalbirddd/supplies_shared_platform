@@ -122,7 +122,6 @@ export default {
     async getData() {
       const res = await this.$axios.get("/user/supplies");
       this.sup = res.data.data;
-      console.log(res);
       this.isSorted(1);
     },
   },
