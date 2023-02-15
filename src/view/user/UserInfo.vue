@@ -86,7 +86,7 @@
               style="float: right"
               @click="handleSupSolve(index)"
               plain
-              >{{ index.isFinished == 0 ? "解决了" : "未解决" }}</el-button
+              >{{ item.isFinished == 0 ? "解决了" : "未解决" }}</el-button
             >
           </div>
         </el-card>
@@ -107,7 +107,7 @@
               style="float: right"
               @click="handleNeedSolve(index)"
               plain
-              >{{ index.isFinished == 0 ? "解决" : "未解决" }}</el-button
+              >{{ item.isFinished == 0 ? "解决了" : "未解决" }}</el-button
             >
           </div>
         </el-card>
@@ -242,7 +242,7 @@ export default {
       this.editForm = res1.data.data;
       this.sup = res2.data.data;
       this.need = res3.data.data;
-      // console.log(res2);
+      // console.log(this.sup[0].isFinished);
     },
     saveEdit() {
       // 发起修改用户信息的数据请求
@@ -273,20 +273,23 @@ export default {
     async handleSupSolve(index) {
       // console.log(index);
       let res = await this.$axios.post("/user/supplies/mysupplies", {
-        isFinished: index.isFinished == 1 ? 0 : 1,
-        id: index.id,
+        isFinished: this.sup[index].isFinished == 1 ? 0 : 1,
+        id: this.sup[index].id,
       });
-      console.log(res);
+      // console.log(this.sup[index].isFinished);
       this.$message.success(res.data.msg);
+      this.getData();
+      // console.log(this.sup[index].isFinished);
     },
     //解决按钮事件need
     async handleNeedSolve(index) {
-      let res = await this.$axios.get("/user/need/myneed", {
-        isFinished: index.isFinished == 1 ? 0 : 1,
-        id: index.id,
+      let res = await this.$axios.post("/user/need/myneed", {
+        isFinished: this.need[index].isFinished == 1 ? 0 : 1,
+        id: this.need[index].id,
       });
-      console.log(res);
+      // console.log(res);
       this.$message.success(res.data.msg);
+      this.getData();
     },
     // 编辑框关闭方式
     closeEdit() {
