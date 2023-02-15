@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="card">
+      <el-tag v-if="sup.isFinished == 1" type="success" style="position: absolute;">已解决</el-tag>
       <h1>物资详情</h1>
+      
       <p>
         <span>提供 </span
         >{{sup.supName}}  （{{sup.supType}}）

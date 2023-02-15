@@ -16,6 +16,7 @@
 
     <div class="cards">
       <div class="card" v-for="(item,index) in handledData" :key="index">
+        <img v-if="item.isFinished == 1" class="solveIcon" src="../../assets/Home/solve.png" alt="" />
         <p style="-webkit-line-clamp: 2">
           <span>需要 </span
           >{{item.needName}}  （{{item.needType}}）
@@ -188,11 +189,12 @@ li:last-child {
   }
   transition: box-shadow 0.5s;
 }
-// .description {
-
-// }
 .card:hover {
   box-shadow: 1px 1px 10px #999;
+}
+.solveIcon {
+  float: right;
+  width: 30px;
 }
 button {
   height: 30px;

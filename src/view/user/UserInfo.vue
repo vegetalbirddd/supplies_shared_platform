@@ -86,7 +86,7 @@
               style="float: right"
               @click="handleSupSolve(index)"
               plain
-              >{{ index.isFinished == 0 ? "解决" : "未解决" }}</el-button
+              >{{ index.isFinished == 0 ? "解决了" : "未解决" }}</el-button
             >
           </div>
         </el-card>

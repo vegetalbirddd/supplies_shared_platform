@@ -21,11 +21,8 @@
     </div>
 
     <div class="cards">
-      <div
-        class="card"
-        v-for="(item, index) in handledData"
-        :key="index"
-      >
+      <div class="card" v-for="(item, index) in handledData" :key="index">
+        <img v-if="item.isFinished == 1" class="solveIcon" src="../../assets/Home/solve.png" alt="" />
         <p style="-webkit-line-clamp: 2">
           <span>提供 </span>{{ item.supName }} （{{ item.supType }}）
         </p>
@@ -174,7 +171,7 @@ li:last-child {
 .card {
   // float: left;
   width: calc(25% - 30px);
-  // height: 45vh;
+  // height: calc(25vw - 30px);
   // cursor: pointer;
   // border-radius: 5px;
   box-shadow: 1px 1px 5px #c7c7c7;
@@ -211,6 +208,10 @@ li:last-child {
 // }
 .card:hover {
   box-shadow: 1px 1px 10px #999;
+}
+.solveIcon {
+  float: right;
+  width: 30px;
 }
 button {
   height: 30px;

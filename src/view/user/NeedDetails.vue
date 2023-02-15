@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="card">
+      <el-tag v-if="need.isFinished == 1" type="success" style="position: absolute;">已解决</el-tag>
       <h1>需求详情</h1>
       <p>
         <span>需要 </span
