@@ -28,7 +28,7 @@
               @click="resetForm('formInline')"
               >重置</el-button
             >
-            <el-button type="info" icon="el-icon-download">下载</el-button>
+            <el-button type="info" icon="el-icon-download" @click="download()">下载</el-button>
           </el-form-item>
         </div>
       </el-form>
@@ -135,6 +135,11 @@ export default {
     resetForm(form) {
       this.$refs[form].resetFields();
       // console.log(form);
+    },
+    //下载功能按钮
+    download() {
+      // console.log('xxx')
+      window.location.href = "http://localhost:8081/admin/download/user";
     },
     handleCheck(index, row) {
       this.$router.push({ path: "/admin/infoDetail", query: { id: row.id } });

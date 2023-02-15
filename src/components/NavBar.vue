@@ -23,13 +23,13 @@
         </nav>
       </div>
       <div class="box" style="padding-right: 20px">
-        <input
+        <!-- <input
           class="text"
           type="text"
           placeholder="搜索需要的物资"
           name="search"
         />
-        <input class="button" type="button" value="搜索" />
+        <input class="button" type="button" value="搜索" /> -->
         <!-- <img
           src="../assets/Home/user.jpg"
           style="border-radius: 100%;cursor:pointer;"

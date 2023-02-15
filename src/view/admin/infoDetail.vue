@@ -109,7 +109,7 @@
         <h3>发布物资</h3>
       </div>
       <div v-for="(item, index) in supName" :key="index" class="item">
-        - {{ item }}
+        - {{ item.supName }}
       </div>
     </div>
     <!-- 第四部分 -->
@@ -118,7 +118,7 @@
         <h3>发布需求</h3>
       </div>
       <div v-for="(item, index) in needName" :key="index" class="item">
-        - {{ item }}
+        - {{ item.needName }}
       </div>
     </div>
   </div>
@@ -177,8 +177,9 @@ export default {
       }).then((res) => {
         // this.editForm = res.data;  // 前端测试
         this.editForm = res.data.data;  // 后端测试
-        this.supName = res.data.supName;
-        this.needName = res.data.needName;
+        this.supName = res.data.map.supName;
+        this.needName = res.data.map.needName;
+        console.log(res)
         // console.log('this.$route.query ---> ' + this.$route.query.id)
       });
     },

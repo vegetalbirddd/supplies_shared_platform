@@ -33,7 +33,7 @@
               @click="resetForm('formInline')"
               >重置</el-button
             >
-            <el-button type="info" icon="el-icon-download">下载</el-button>
+            <el-button type="info" icon="el-icon-download" @click="download()">下载</el-button>
           </el-form-item>
         </div>
       </el-form>
@@ -61,13 +61,13 @@
               size="medium"
               type="success"
               @click="handleSolve(scope.$index, scope.row)"
-              >解决</el-button
+              >{{scope.row.isFinished == 0 ? '解决' : '未解'}}</el-button
             >
             <el-button
               size="medium"
               type="warning"
               @click="handleShow(scope.$index, scope.row)"
-              >展示</el-button
+              >{{scope.row.isShow == 1 ? '展示' : '下架'}}</el-button
             >
             <el-popconfirm
               style="margin-left: 10px"
@@ -77,7 +77,7 @@
               cancel-button-text="取消"
               icon="el-icon-info"
               icon-color="red"
-              title="确定删除该用户吗？"
+              title="确定删除该需求吗？"
             >
               <el-button size="medium" type="danger" slot="reference"
                 >删除</el-button
@@ -162,6 +162,10 @@ export default {
     resetForm(form) {
       this.$refs[form].resetFields();
     },
+    //下载功能按钮
+    download() {
+      window.location.href = "http://localhost:8081/admin/download/need";
+    },
     //查看详情按钮
     checkNeed(row) {
       this.$router.push({
@@ -172,7 +176,7 @@ export default {
     //解决按钮
     async handleSolve(index, row) {
       let res = await this.$axios.post("/admin/need", {
-        isFinished: 1,
+        isFinished: row.isFinished == 1 ? 0 : 1,
         isShow: row.isShow,
         id: row.id,
       });
@@ -182,7 +186,7 @@ export default {
     // 展示按钮
     async handleShow(index, row) {
       let res = await this.$axios.post("/admin/need", {
-        isShow: 1,
+        isShow: row.isShow == 1 ? 0 : 1,
         isFinished: row.isFinished,
         id: row.id,
       });

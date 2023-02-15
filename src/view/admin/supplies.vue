@@ -63,13 +63,13 @@
               size="medium"
               type="success"
               @click="handleSolve(scope.$index, scope.row)"
-              >解决</el-button
+              >{{scope.row.isFinished == 0 ? '解决' : '未解'}}</el-button
             >
             <el-button
               size="medium"
               type="warning"
               @click="handleShow(scope.$index, scope.row)"
-              >展示</el-button
+              >{{scope.row.isShow == 1 ? '展示' : '下架'}}</el-button
             >
             <el-popconfirm
               style="margin-left: 10px"
@@ -79,7 +79,7 @@
               cancel-button-text="取消"
               icon="el-icon-info"
               icon-color="red"
-              title="确定删除该用户吗？"
+              title="确定删除该物资吗？"
             >
               <el-button size="medium" type="danger" slot="reference"
                 >删除</el-button
@@ -191,7 +191,7 @@ export default {
       //   row.isFinished = "已解决";
       // } else if (row.isFinished == "已解决") row.isFinished = "未解决";
       let res = await this.$axios.post("/admin/sup", {
-        isFinished: 1,
+        isFinished: row.isFinished == 1 ? 0 : 1,
         isShow: row.isShow,
         id: row.id,
       });
@@ -204,7 +204,7 @@ export default {
       //   row.isShow = "下线";
       // } else if (row.isShow == "下线") row.isShow = "上线";
       let res = await this.$axios.post("/admin/sup", {
-        isShow: 1,
+        isShow: row.isShow == 1 ? 0 : 1,
         isFinished: row.isFinished,
         id: row.id,
       });
