@@ -81,6 +81,13 @@
             style="margin-bottom: 15px"
           >
             - {{ item.supName }}
+            <el-button
+              size="mini"
+              style="float: right"
+              @click="handleSupSolve(index)"
+              plain
+              >{{ index.isFinished == 0 ? "解决" : "未解决" }}</el-button
+            >
           </div>
         </el-card>
         <br /><br />
@@ -95,6 +102,13 @@
             style="margin-bottom: 15px"
           >
             - {{ item.needName }}
+            <el-button
+              size="mini"
+              style="float: right"
+              @click="handleNeedSolve(index)"
+              plain
+              >{{ index.isFinished == 0 ? "解决" : "未解决" }}</el-button
+            >
           </div>
         </el-card>
       </el-main>
@@ -228,7 +242,7 @@ export default {
       this.editForm = res1.data.data;
       this.sup = res2.data.data;
       this.need = res3.data.data;
-      console.log(res2)
+      // console.log(res2);
     },
     saveEdit() {
       // 发起修改用户信息的数据请求
@@ -254,6 +268,25 @@ export default {
           this.edit = true;
           return this.$message.error("服务器连接失败，请稍后重试");
         });
+    },
+    //解决按钮事件sup
+    async handleSupSolve(index) {
+      // console.log(index);
+      let res = await this.$axios.post("/user/supplies/mysupplies", {
+        isFinished: index.isFinished == 1 ? 0 : 1,
+        id: index.id,
+      });
+      console.log(res);
+      this.$message.success(res.data.msg);
+    },
+    //解决按钮事件need
+    async handleNeedSolve(index) {
+      let res = await this.$axios.get("/user/need/myneed", {
+        isFinished: index.isFinished == 1 ? 0 : 1,
+        id: index.id,
+      });
+      console.log(res);
+      this.$message.success(res.data.msg);
     },
     // 编辑框关闭方式
     closeEdit() {
